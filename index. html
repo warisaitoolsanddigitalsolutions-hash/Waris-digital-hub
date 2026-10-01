@@ -292,5 +292,262 @@ tr:hover td{background:rgba(255,255,255,.02)}
 </style>
 </head>
 <body>
-```
+<header class="header">
+<div class="wrap header-inner">
+<a href="#/" class="logo">
+<div class="logo-mark">WD</div>
+<div class="logo-text">
+<span class="logo-name">Waris Digital Hub</span>
+<span class="logo-tag">Tools · Apps · Websites</span>
+</div>
+</a>
+<nav class="nav">
+<a href="#/" class="active">Home</a>
+<a href="#tools">Tools</a>
+<a href="#guides">Guides</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</nav>
+<div class="header-actions">
+<button class="icon-btn hamburger" id="ham" aria-label="Menu">☰</button>
+</div>
+</div>
+</header>
+
+<div class="mobile-menu" id="mm">
+<a href="#/">Home</a>
+<a href="#tools">Tools</a>
+<a href="#guides">Guides</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</div>
+
+<main>
+<section class="hero">
+<div class="wrap hero-grid">
+<div>
+<div class="pill"><span class="pill-dot"></span> 47+ tools curated &amp; reviewed</div>
+<h1>Useful Digital Tools, Apps &amp; Websites — <span class="grad-text">All in One Place</span></h1>
+<p class="lead">Discover AI tools, apps, websites and digital resources with clear descriptions, practical use cases and direct official links.</p>
+<div class="hero-btns">
+<a href="#tools" class="btn btn-primary">Explore 47+ Tools</a>
+<a href="#guides" class="btn btn-ghost">Read Guides</a>
+</div>
+<div class="hero-stats">
+<div><div class="hero-stat-num grad-text">47</div><div class="hero-stat-lbl">Tools</div></div>
+<div><div class="hero-stat-num grad-text">13</div><div class="hero-stat-lbl">Categories</div></div>
+<div><div class="hero-stat-num grad-text">18</div><div class="hero-stat-lbl">Guides</div></div>
+</div>
+</div>
+<div class="hero-visual">
+<div class="orbit orbit-1"></div>
+<div class="orbit orbit-2"></div>
+<div class="hero-core">WD</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="tools">
+<div class="wrap">
+<div class="sec-head">
+<span class="eyebrow">Tool Catalogue</span>
+<h2>Browse Digital Tools</h2>
+<p>Filter by category to find the right tool for your workflow.</p>
+</div>
+<div class="search-hero" style="margin-bottom:24px">
+<input type="search" class="search-input" id="sbox" placeholder="Search tools by name, tag or category…">
+</div>
+<div class="filters" id="fc">
+<button class="filter-chip active" data-c="All">All</button>
+<button class="filter-chip" data-c="AI Tools">AI Tools</button>
+<button class="filter-chip" data-c="Design">Design</button>
+<button class="filter-chip" data-c="Video">Video</button>
+<button class="filter-chip" data-c="Writing">Writing</button>
+<button class="filter-chip" data-c="Productivity">Productivity</button>
+<button class="filter-chip" data-c="Developer">Developer</button>
+<button class="filter-chip" data-c="Social">Social</button>
+</div>
+<div class="tools-grid" id="tg"></div>
+</div>
+</section>
+
+<section class="section" id="guides" style="background:rgba(255,255,255,.015);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+<div class="wrap">
+<div class="sec-head">
+<span class="eyebrow">Learning Center</span>
+<h2>Guides to Help You Choose Well</h2>
+<p>Original, practical articles — written to be useful, not to fill space.</p>
+</div>
+<div class="guides-grid">
+<article class="glass guide-card"><div class="guide-cat">AI Basics</div><h3>ChatGPT for Beginners</h3><p>How to write prompts that actually work, and where the model goes wrong.</p><div class="guide-meta"><span>⏱ 8 min</span></div></article>
+<article class="glass guide-card"><div class="guide-cat">Research</div><h3>AI Research Tools Workflow</h3><p>Building a research process that uses AI for leverage while keeping verification intact.</p><div class="guide-meta"><span>⏱ 9 min</span></div></article>
+<article class="glass guide-card"><div class="guide-cat">Safety</div><h3>Digital Privacy and Safety</h3><p>Passwords, two-factor authentication, phishing and what never to share with an AI.</p><div class="guide-meta"><span>⏱ 10 min</span></div></article>
+<article class="glass guide-card"><div class="guide-cat">Buying Advice</div><h3>Free vs Paid AI Tools</h3><p>What free tiers include, what paid plans add, and when upgrading is worth it.</p><div class="guide-meta"><span>⏱ 8 min</span></div></article>
+<article class="glass guide-card"><div class="guide-cat">Design</div><h3>Figma for Beginners</h3><p>Frames, auto layout, components and prototyping explained with a practical walkthrough.</p><div class="guide-meta"><span>⏱ 10 min</span></div></article>
+<article class="glass guide-card"><div class="guide-cat">Responsible AI</div><h3>Responsible Use of AI</h3><p>Principles for using AI honestly, safely and accountably at work.</p><div class="guide-meta"><span>⏱ 8 min</span></div></article>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="wrap">
+<div class="sec-head">
+<span class="eyebrow">Editorial Approach</span>
+<h2>How We Help You Choose Digital Tools</h2>
+</div>
+<div class="value-grid">
+<div class="glass value-card"><div class="value-num">1</div><h3>Start with your use case</h3><p>Define the job you need done before comparing features. The right tool follows from the task.</p></div>
+<div class="glass value-card"><div class="value-num">2</div><h3>Compare features and limitations</h3><p>Every tool has trade-offs. We describe what each does well and where it falls short.</p></div>
+<div class="glass value-card"><div class="value-num">3</div><h3>Check current pricing</h3><p>Pricing changes constantly. We never invent prices and always link to official providers.</p></div>
+<div class="glass value-card"><div class="value-num">4</div><h3>Protect your personal information</h3><p>Understand how any tool handles your data before you enter anything sensitive.</p></div>
+<div class="glass value-card"><div class="value-num">5</div><h3>Learn before you buy</h3><p>Use free tiers on real work first. Upgrade only when you hit a genuine limit.</p></div>
+</div>
+</div>
+</section>
+
+<section class="section" id="about" style="background:rgba(255,255,255,.015);border-top:1px solid var(--border)">
+<div class="wrap">
+<div class="sec-head">
+<span class="eyebrow">About</span>
+<h2>What Waris Digital Hub Is</h2>
+<p>An independent, curated directory of useful digital tools, apps and websites.</p>
+</div>
+<div class="glass" style="padding:36px;max-width:820px;margin:0 auto">
+<p style="color:var(--txt-2);font-size:15.5px;line-height:1.85;margin-bottom:16px">Waris Digital Hub is a curated directory of digital tools across categories including AI assistants, design platforms, video editors, writing assistants, productivity apps, developer tools, social platforms, marketplaces and reference websites.</p>
+<p style="color:var(--txt-2);font-size:15.5px;line-height:1.85;margin-bottom:16px">Each entry includes a plain-language description, practical use cases, relevant tags and a direct link to the official provider. We also publish original guides about how to use these tools well and how to choose between them.</p>
+<p style="color:var(--txt-2);font-size:15.5px;line-height:1.85">We are not the developer, owner or official representative of any tool listed here. We are a discovery layer that helps you find and evaluate them. Tool features, pricing and policies change frequently — always verify current details on the official provider website.</p>
+</div>
+</div>
+</section>
+
+<section class="section" id="contact">
+<div class="wrap">
+<div class="sec-head">
+<span class="eyebrow">Contact</span>
+<h2>Get in Touch</h2>
+<p>Questions, corrections, partnership enquiries or feedback.</p>
+</div>
+<div class="glass" style="padding:32px;max-width:560px;margin:0 auto;text-align:center">
+<p style="font-size:15.5px;color:var(--txt-2);margin-bottom:20px">Email us at:</p>
+<a href="mailto:Warisalidigitalsolutions@gmail.com" class="btn btn-primary">Warisalidigitalsolutions@gmail.com</a>
+<div class="warn-box" style="margin-top:24px;text-align:left">
+<strong>Security reminder:</strong> We will never ask for your password, OTP code, bank PIN or card number. Never send these to anyone.
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="footer">
+<div class="wrap">
+<div class="footer-main">
+<div>
+<a href="#/" class="logo">
+<div class="logo-mark">WD</div>
+<div class="logo-text"><span class="logo-name">Waris Digital Hub</span></div>
+</a>
+<p class="footer-desc">Useful Digital Tools, Apps &amp; Websites — All in One Place. A curated directory to help you discover, compare and choose the right digital resources.</p>
+</div>
+<div>
+<h4>Explore</h4>
+<div class="footer-links">
+<a href="#tools">Tools</a>
+<a href="#guides">Guides</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</div>
+</div>
+<div>
+<h4>Legal</h4>
+<div class="footer-links">
+<a href="#privacy">Privacy Policy</a>
+<a href="#terms">Terms &amp; Conditions</a>
+<a href="#disclaimer">Disclaimer</a>
+<a href="#affiliate">Affiliate Disclosure</a>
+</div>
+</div>
+<div>
+<h4>Contact</h4>
+<div class="footer-links">
+<a href="mailto:Warisalidigitalsolutions@gmail.com">Warisalidigitalsolutions@gmail.com</a>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<span>© 2026 Waris Digital Hub. All rights reserved.</span>
+<span>Pricing and features may change — always verify on the official provider website.</span>
+</div>
+</div>
+</footer>
+
+<script>
+var tools=[
+{n:"ChatGPT",c:"AI Tools",d:"AI assistant for writing, learning, coding and brainstorming.",t:["ai","writing","chat"]},
+{n:"Claude",c:"AI Tools",d:"AI assistant for long-document analysis and careful writing.",t:["ai","writing","analysis"]},
+{n:"Google Gemini",c:"AI Tools",d:"Google's multimodal AI assistant integrated across apps.",t:["ai","google"]},
+{n:"Perplexity AI",c:"AI Tools",d:"Answer engine that searches the web and cites sources.",t:["ai","research"]},
+{n:"Microsoft Copilot",c:"AI Tools",d:"Microsoft's AI assistant across Windows and Office.",t:["ai","microsoft"]},
+{n:"DeepSeek",c:"AI Tools",d:"AI assistant and open model family for reasoning and coding.",t:["ai","code"]},
+{n:"Grok",c:"AI Tools",d:"xAI's assistant with real-time access to posts on X.",t:["ai","x"]},
+{n:"Meta AI",c:"AI Tools",d:"Meta's assistant inside WhatsApp, Instagram and Messenger.",t:["ai","meta"]},
+{n:"Canva AI",c:"Design",d:"Design platform with AI templates and image generation.",t:["design","graphics"]},
+{n:"Adobe Express",c:"Design",d:"Adobe's quick design tool with AI effects and templates.",t:["design","adobe"]},
+{n:"Figma",c:"Design",d:"Browser-based UI/UX design and prototyping tool.",t:["design","ui"]},
+{n:"CapCut",c:"Video",d:"Free video editor with auto-captions and templates.",t:["video","editing"]},
+{n:"YouTube",c:"Video",d:"Video platform for tutorials, streams and content.",t:["video","streaming"]},
+{n:"Netflix",c:"Video",d:"Subscription streaming for films and series.",t:["video","streaming"]},
+{n:"Spotify",c:"Video",d:"Music and podcast streaming service.",t:["music","audio"]},
+{n:"Grammarly",c:"Writing",d:"Writing assistant for grammar, clarity and tone.",t:["writing","grammar"]},
+{n:"Notion",c:"Productivity",d:"All-in-one workspace for notes, databases and projects.",t:["notes","productivity"]},
+{n:"Trello",c:"Productivity",d:"Visual kanban boards for organising tasks and projects.",t:["tasks","kanban"]},
+{n:"Slack",c:"Productivity",d:"Team messaging with channels and integrations.",t:["messaging","team"]},
+{n:"Google Drive",c:"Productivity",d:"Cloud storage with sharing and collaboration.",t:["storage","cloud"]},
+{n:"Dropbox",c:"Productivity",d:"Cloud file storage and sync with sharing controls.",t:["storage","sync"]},
+{n:"Google Docs",c:"Productivity",d:"Free browser word processor with real-time editing.",t:["documents","writing"]},
+{n:"Microsoft 365",c:"Productivity",d:"Word, Excel, PowerPoint, Outlook and Teams.",t:["office","documents"]},
+{n:"Zoom",c:"Social",d:"Video conferencing for meetings and webinars.",t:["video calls","meetings"]},
+{n:"Discord",c:"Social",d:"Community chat platform with voice and video.",t:["community","chat"]},
+{n:"LinkedIn",c:"Social",d:"Professional networking and career platform.",t:["professional","career"]},
+{n:"WhatsApp",c:"Social",d:"Encrypted messaging for chats, groups and calls.",t:["messaging","encrypted"]},
+{n:"Telegram",c:"Social",d:"Cloud messaging with channels, bots and large groups.",t:["messaging","channels"]},
+{n:"GitHub",c:"Developer",d:"Platform for hosting code and collaborating on projects.",t:["code","git"]},
+{n:"GitHub Copilot",c:"Developer",d:"AI coding assistant inside your editor.",t:["ai","coding"]},
+{n:"Cursor",c:"Developer",d:"AI-first code editor with multi-file editing.",t:["ai","editor"]},
+{n:"Replit",c:"Developer",d:"Browser-based coding environment with hosting.",t:["coding","cloud"]}
+];
+var cat="All",q="";
+function render(){
+var g=document.getElementById("tg");
+var l=tools.filter(function(t){
+var mc=cat==="All"||t.c===cat;
+var mq=!q||t.n.toLowerCase().indexOf(q)>-1||t.c.toLowerCase().indexOf(q)>-1||t.d.toLowerCase().indexOf(q)>-1||t.t.join(" ").indexOf(q)>-1;
+return mc&&mq;
+});
+if(!l.length){g.innerHTML='<div class="empty-state" style="grid-column:1/-1"><h3>No tools found</h3><p>Try a different search or category.</p></div>';return;}
+g.innerHTML=l.map(function(t){
+return '<article class="glass tool-card"><div class="tool-card-top"><div class="tool-logo" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6)">'+t.n.substring(0,2).toUpperCase()+'</div><div style="min-width:0;flex:1"><h3>'+t.n+'</h3><span class="cat-chip">'+t.c+'</span></div></div><p>'+t.d+'</p><div class="tag-row">'+t.t.slice(0,3).map(function(x){return '<span class="tag">'+x+'</span>'}).join("")+'</div></article>';
+}).join("");
+}
+document.getElementById("fc").addEventListener("click",function(e){
+if(e.target.classList.contains("filter-chip")){
+document.querySelectorAll(".filter-chip").forEach(function(c){c.classList.remove("active")});
+e.target.classList.add("active");
+cat=e.target.dataset.c;
+render();
+}
+});
+document.getElementById("sbox").addEventListener("input",function(e){
+q=e.target.value.toLowerCase().trim();
+render();
+});
+document.getElementById("ham").addEventListener("click",function(){
+document.getElementById("mm").classList.toggle("open");
+});
+document.querySelectorAll("#mm a").forEach(function(a){
+a.addEventListener("click",function(){document.getElementById("mm").classList.remove("open")});
+});
+render();
+</script>
+</body>
+</html>
 
