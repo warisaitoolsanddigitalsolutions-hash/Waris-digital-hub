@@ -16,9 +16,19 @@
 <div id="login" class="card">
 <div class="brand"><b>WD</b> Waris Digital Hub</div>
 <h2>🔐 Products Manager Login</h2>
-<p class="muted">Google account سے login کرنے کے بعد نیا product شامل کیا جا سکتا ہے۔ Edit/Delete صرف Admin کر سکتا ہے۔</p>
+<p class="muted">Google یا Email/Password سے login کریں۔ Edit/Delete صرف Admin کر سکتا ہے۔</p>
 <div class="notice">نیا Product: کسی بھی Google account سے۔<br>Edit / Delete: صرف Admin <b>warisalidigitalsolutions@gmail.com</b></div>
-<br><button class="btn primary" id="googleBtn">Google / Gmail سے Login</button>
+<br>
+<div style="text-align:left;direction:ltr">
+<label class="muted" for="emailInput">Admin Email</label>
+<input id="emailInput" type="email" autocomplete="username" value="warisalidigitalsolutions@gmail.com" style="width:100%;margin:7px 0 10px;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:#0b1120;color:#fff">
+<label class="muted" for="passwordInput">Password</label>
+<input id="passwordInput" type="password" autocomplete="current-password" placeholder="Firebase password" style="width:100%;margin:7px 0 12px;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:#0b1120;color:#fff">
+<button class="btn primary" id="emailBtn" style="width:100%">Email / Password سے Login</button>
+</div>
+<div style="margin:14px 0;border-top:1px solid rgba(255,255,255,.1);padding-top:14px">
+<button class="btn ghost" id="googleBtn">Google / Gmail سے Login</button>
+</div>
 </div>
 <div id="app" class="hidden"><div class="wrap">
 <div class="top"><div><div class="brand"><b>WD</b> Products Manager</div><div class="muted">Waris Digital Hub — Products, Games & Affiliate Links</div></div>
@@ -37,7 +47,7 @@
 </div></div>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult, onAuthStateChanged, signOut, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
 import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 import { firebaseConfig } from "./firebase-config.js";
 const ADMIN_EMAIL="warisalidigitalsolutions@gmail.com";
@@ -52,6 +62,13 @@ function isAdmin(){return !!currentUser && (currentUser.email||"").toLowerCase()
 function render(){const q=$("search").value.trim().toLowerCase();const arr=products.filter(p=>(p.name+" "+p.cat+" "+(p.desc||"")).toLowerCase().includes(q));$("list").innerHTML=arr.length?arr.map(p=>`<div class="product"><img src="${esc(p.image)}" onerror="this.style.display='none'"><div><b>${esc(p.name)}</b><div><span class="pill">${esc(p.cat)}</span> <span class="pill">Rs ${Number(p.sale||p.price||0).toLocaleString()}</span></div><div class="muted">${esc(p.desc||"")}</div></div><div class="actions"><button class="btn ghost" data-edit="${p.id}" style="${isAdmin()?"":"display:none"}">Edit</button> <button class="btn danger" data-delete="${p.id}" style="${isAdmin()?"":"display:none"}">Delete</button></div></div>`).join(""):"<p class='muted'>کوئی product نہیں ملا۔</p>";document.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>{const p=products.find(x=>x.id===b.dataset.edit);editId=p.id;form(p);scrollTo(0,0)});document.querySelectorAll("[data-delete]").forEach(b=>b.onclick=async()=>{if(confirm("کیا آپ واقعی یہ product delete کرنا چاہتے ہیں؟")){await deleteDoc(doc(db,"products",b.dataset.delete));await load()}})}
 $("save").onclick=async()=>{const p={name:$("name").value.trim(),cat:$("cat").value,price:Number($("price").value||0),sale:Number($("sale").value||0),image:$("image").value.trim(),url:$("url").value.trim(),buy:$("buy").value.trim(),affiliate:$("affiliate").value.trim(),download:$("download").value.trim(),desc:$("desc").value.trim(),featured:$("featured").checked,published:$("published").checked,updatedAt:serverTimestamp()};if(!p.name)return alert("Product name لکھیں");try{if(editId){if(!isAdmin())return alert("صرف Admin product edit کر سکتا ہے۔");await updateDoc(doc(db,"products",editId),p);}else await addDoc(collection(db,"products"),{...p,createdAt:serverTimestamp(),createdBy:currentUser?.email||"google-user"});editId=null;form();await load()}catch(e){alert("Save نہیں ہوا: "+e.message)}};
 $("clear").onclick=()=>{editId=null;form()};$("search").oninput=render;
+$("emailBtn").onclick=async()=>{
+const email=$("emailInput").value.trim().toLowerCase(),password=$("passwordInput").value;
+if(email!==ADMIN_EMAIL)return alert("یہ Admin email نہیں ہے۔");
+if(!password)return alert("Password enter کریں۔");
+try{await signInWithEmailAndPassword(auth,email,password)}
+catch(e){alert("Email Login error: "+e.message)}
+};
 $("googleBtn").onclick=async()=>{try{await signInWithRedirect(auth,provider);}catch(e){alert("Google Login error: "+e.message+"\\n\\nFirebase Authentication > Settings > Authorized domains میں GitHub Pages domain add کریں۔")}};\ngetRedirectResult(auth).catch(e=>{if(e?.code) alert("Google Login error: "+e.message+"\\n\\nFirebase Authentication > Settings > Authorized domains اور Sign-in method میں Google کو check کریں۔")});
 onAuthStateChanged(auth,async u=>{currentUser=u||null;if(u){login.classList.add("hidden");panel.classList.remove("hidden");$("formTitle").textContent=isAdmin()?"➕ / ✏️ Product Manager":"➕ نیا Product شامل کریں";$("save").textContent="Save Product";try{await load()}catch(e){alert("Firestore access error: "+e.message)}}else{panel.classList.add("hidden");login.classList.remove("hidden")}});
 $("logout").onclick=()=>signOut(auth);form();
