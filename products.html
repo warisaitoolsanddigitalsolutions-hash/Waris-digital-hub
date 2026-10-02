@@ -35,7 +35,7 @@ import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc, doc, s
 import { firebaseConfig } from "./firebase-config.js";
 const ADMIN_EMAIL="warisalidigitalsolutions@gmail.com";
 const app=initializeApp(firebaseConfig), auth=getAuth(app), db=getFirestore(app);
-const login=document.getElementById("login"), panel=document.getElementById("app");
+const panel=document.getElementById("app");
 let products=[], editId=null, currentUser=null;
 const $=id=>document.getElementById(id);
 function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
@@ -45,14 +45,6 @@ function isAdmin(){return !!currentUser && (currentUser.email||"").toLowerCase()
 function render(){const q=$("search").value.trim().toLowerCase();const arr=products.filter(p=>(p.name+" "+p.cat+" "+(p.desc||"")).toLowerCase().includes(q));$("list").innerHTML=arr.length?arr.map(p=>`<div class="product"><img src="${esc(p.image)}" onerror="this.style.display='none'"><div><b>${esc(p.name)}</b><div><span class="pill">${esc(p.cat)}</span> <span class="pill">Rs ${Number(p.sale||p.price||0).toLocaleString()}</span></div><div class="muted">${esc(p.desc||"")}</div></div><div class="actions"><button class="btn ghost" data-edit="${p.id}" style="${isAdmin()?"":"display:none"}">Edit</button> <button class="btn danger" data-delete="${p.id}" style="${isAdmin()?"":"display:none"}">Delete</button></div></div>`).join(""):"<p class='muted'>کوئی product نہیں ملا۔</p>";document.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>{const p=products.find(x=>x.id===b.dataset.edit);editId=p.id;form(p);scrollTo(0,0)});document.querySelectorAll("[data-delete]").forEach(b=>b.onclick=async()=>{if(confirm("کیا آپ واقعی یہ product delete کرنا چاہتے ہیں؟")){await deleteDoc(doc(db,"products",b.dataset.delete));await load()}})}
 $("save").onclick=async()=>{const p={name:$("name").value.trim(),cat:$("cat").value,price:Number($("price").value||0),sale:Number($("sale").value||0),image:$("image").value.trim(),url:$("url").value.trim(),buy:$("buy").value.trim(),affiliate:$("affiliate").value.trim(),download:$("download").value.trim(),desc:$("desc").value.trim(),featured:$("featured").checked,published:$("published").checked,updatedAt:serverTimestamp()};if(!p.name)return alert("Product name لکھیں");try{if(editId){if(!isAdmin())return alert("صرف Admin product edit کر سکتا ہے۔");await updateDoc(doc(db,"products",editId),p);}else await addDoc(collection(db,"products"),{...p,createdAt:serverTimestamp(),createdBy:currentUser?.email||"google-user"});editId=null;form();await load()}catch(e){alert("Save نہیں ہوا: "+e.message)}};
 $("clear").onclick=()=>{editId=null;form()};$("search").oninput=render;
-$("emailBtn").onclick=async()=>{
-const email=$("emailInput").value.trim().toLowerCase(),password=$("passwordInput").value;
-if(email!==ADMIN_EMAIL)return alert("یہ Admin email نہیں ہے۔");
-if(!password)return alert("Password enter کریں۔");
-try{await signInWithEmailAndPassword(auth,email,password)}
-catch(e){alert("Email Login error: "+e.message)}
-};
-$("googleBtn").onclick=async()=>{try{await signInWithRedirect(auth,provider);}catch(e){alert("Google Login error: "+e.message+"\\n\\nFirebase Authentication > Settings > Authorized domains میں GitHub Pages domain add کریں۔")}};\ngetRedirectResult(auth).catch(e=>{if(e?.code) alert("Google Login error: "+e.message+"\\n\\nFirebase Authentication > Settings > Authorized domains اور Sign-in method میں Google کو check کریں۔")});
 onAuthStateChanged(auth,async u=>{
   currentUser=u||null;
   if(!u){
