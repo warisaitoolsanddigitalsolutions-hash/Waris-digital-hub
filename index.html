@@ -300,7 +300,20 @@ tr:hover td{background:rgba(255,255,255,.02)}
 .admin-card h3{margin-bottom:8px}.admin-card p{color:var(--txt-2);font-size:14px}
 .admin-input{width:100%;padding:12px;border-radius:10px;background:var(--surface);border:1px solid var(--border);outline:none;margin:8px 0 14px}
 </style>
-</head>
+<style>
+/* Waris Digital Hub — classic hub styling */
+.category-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.category-card{padding:20px;display:flex;align-items:center;gap:14px;min-height:125px;transition:.25s ease;border-color:rgba(100,120,255,.14)}
+.category-card:hover{transform:translateY(-5px);border-color:rgba(139,92,246,.5);box-shadow:0 15px 45px rgba(59,130,246,.16)}
+.cat-icon{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(135deg,rgba(59,130,246,.2),rgba(139,92,246,.2));font-size:25px;flex:none}
+.category-card h3{font-size:16px;margin-bottom:4px}.category-card p{font-size:12px;color:var(--txt-2);line-height:1.45}.cat-arrow{margin-left:auto;color:#93c5fd;font-size:20px}
+.hub-cta{padding-top:20px}.cta-box{padding:34px 38px;display:flex;align-items:center;justify-content:space-between;gap:24px;background:linear-gradient(135deg,rgba(59,130,246,.11),rgba(139,92,246,.12));border-color:rgba(139,92,246,.25)}
+.cta-box h2{font-size:clamp(25px,4vw,38px);margin:7px 0}.cta-box p{color:var(--txt-2)}
+.hero-float{position:absolute;padding:9px 13px;border:1px solid rgba(255,255,255,.13);background:rgba(8,12,28,.72);backdrop-filter:blur(10px);border-radius:12px;font-size:12px;box-shadow:0 10px 35px rgba(0,0,0,.35)}
+.hf1{top:18%;right:5%}.hf2{bottom:17%;left:5%}.hf3{top:48%;right:-4%}
+@media(max-width:900px){.category-grid{grid-template-columns:repeat(2,1fr)}.cta-box{flex-direction:column;align-items:flex-start}}
+@media(max-width:520px){.category-grid{grid-template-columns:1fr}.category-card{min-height:100px}.cta-box{padding:25px 20px}.hf1{right:0}.hf2{left:0}.hf3{display:none}}
+</style></head>
 <body>
 <header class="header">
 <div class="wrap header-inner">
@@ -313,7 +326,9 @@ tr:hover td{background:rgba(255,255,255,.02)}
 </a>
 <nav class="nav">
 <a href="#/" class="active">Home</a>
-<a href="#tools">Tools</a>
+<a href="#tools">AI Tools</a>
+<a href="#categories">Categories</a>
+<a href="#products">Products</a>
 <a href="#guides">Guides</a>
 <a href="#about">About</a>
 <a href="#contact">Contact</a>
@@ -326,7 +341,9 @@ tr:hover td{background:rgba(255,255,255,.02)}
 
 <div class="mobile-menu" id="mm">
 <a href="#/">Home</a>
-<a href="#tools">Tools</a>
+<a href="#tools">AI Tools</a>
+<a href="#categories">Categories</a>
+<a href="#products">Products</a>
 <a href="#guides">Guides</a>
 <a href="#about">About</a>
 <a href="#contact">Contact</a>
@@ -336,27 +353,47 @@ tr:hover td{background:rgba(255,255,255,.02)}
 <section class="hero">
 <div class="wrap hero-grid">
 <div>
-<div class="pill"><span class="pill-dot"></span> 47+ tools curated &amp; reviewed</div>
-<h1>Useful Digital Tools, Apps &amp; Websites — <span class="grad-text">All in One Place</span></h1>
-<p class="lead">Discover AI tools, apps, websites and digital resources with clear descriptions, practical use cases and direct official links.</p>
+<div class="pill"><span class="pill-dot"></span> 47+ Useful Tools &amp; Websites</div>
+<h1>Waris Digital Hub — <span class="grad-text">Everything Digital, All in One Place</span></h1>
+<p class="lead">AI tools, apps, games, websites, digital products and useful resources — organized in one fast, modern hub.</p>
 <div class="hero-btns">
-<a href="#tools" class="btn btn-primary">Explore 47+ Tools</a>
-<a href="#guides" class="btn btn-ghost">Read Guides</a>
+<a href="#tools" class="btn btn-primary">🚀 Explore 47+ Tools</a>
+<a href="#categories" class="btn btn-ghost">Browse Categories</a>
 </div>
 <div class="hero-stats">
-<div><div class="hero-stat-num grad-text">47</div><div class="hero-stat-lbl">Tools</div></div>
-<div><div class="hero-stat-num grad-text">13</div><div class="hero-stat-lbl">Categories</div></div>
-<div><div class="hero-stat-num grad-text">18</div><div class="hero-stat-lbl">Guides</div></div>
+<div><div class="hero-stat-num grad-text">47+</div><div class="hero-stat-lbl">Useful Tools</div></div>
+<div><div class="hero-stat-num grad-text">7</div><div class="hero-stat-lbl">Main Categories</div></div>
+<div><div class="hero-stat-num grad-text">24/7</div><div class="hero-stat-lbl">Easy Access</div></div>
 </div>
 </div>
 <div class="hero-visual">
-<div class="orbit orbit-1"></div>
-<div class="orbit orbit-2"></div>
+<div class="orbit orbit-1"></div><div class="orbit orbit-2"></div>
 <div class="hero-core">WD</div>
+<div class="hero-float hf1">🤖 AI Tools</div>
+<div class="hero-float hf2">🎮 Games</div>
+<div class="hero-float hf3">🌐 Websites</div>
 </div>
 </div>
 </section>
 
+<section class="section categories-section" id="categories">
+<div class="wrap">
+<div class="sec-head">
+<span class="eyebrow">Explore</span>
+<h2>Everything You Need in One Place</h2>
+<p>Find useful digital resources by category.</p>
+</div>
+<div class="category-grid">
+<a class="glass category-card" href="#tools"><span class="cat-icon">🤖</span><div><h3>AI Tools</h3><p>ChatGPT, Gemini, Copilot, Perplexity &amp; more</p></div><span class="cat-arrow">→</span></a>
+<a class="glass category-card" href="#products"><span class="cat-icon">📱</span><div><h3>Apps</h3><p>Useful apps and digital utilities</p></div><span class="cat-arrow">→</span></a>
+<a class="glass category-card" href="#products"><span class="cat-icon">🎮</span><div><h3>Games</h3><p>Discover games and official links</p></div><span class="cat-arrow">→</span></a>
+<a class="glass category-card" href="#tools"><span class="cat-icon">🌐</span><div><h3>Websites</h3><p>Helpful websites for everyday work</p></div><span class="cat-arrow">→</span></a>
+<a class="glass category-card" href="#products"><span class="cat-icon">💎</span><div><h3>Digital Products</h3><p>Digital resources, downloads and offers</p></div><span class="cat-arrow">→</span></a>
+<a class="glass category-card" href="#products"><span class="cat-icon">🛠️</span><div><h3>Services</h3><p>Useful digital services and solutions</p></div><span class="cat-arrow">→</span></a>
+<a class="glass category-card" href="#products"><span class="cat-icon">🔥</span><div><h3>Special Offers</h3><p>Featured deals and useful finds</p></div><span class="cat-arrow">→</span></a>
+</div>
+</div>
+</section>
 <section class="section" id="tools">
 <div class="wrap">
 <div class="sec-head">
@@ -449,6 +486,12 @@ tr:hover td{background:rgba(255,255,255,.02)}
 <section class="section" id="products"><div class="wrap"><div class="sec-head"><span class="eyebrow">Products & Offers</span><h2>Featured Products</h2><p>Products, Games, Apps and Digital Products added from the Admin Products Manager appear here automatically.</p></div><div class="tools-grid" id="publicProducts"><div class="glass tool-card"><p class="muted">Loading products…</p></div></div></div></section>
 </main>
 
+<section class="section hub-cta">
+<div class="wrap"><div class="glass cta-box">
+<div><span class="eyebrow">Waris Digital Hub</span><h2>Ready to discover something useful?</h2><p>Explore 47+ tools and practical digital resources — all from one place.</p></div>
+<div class="hero-btns"><a href="#tools" class="btn btn-primary">Explore Tools</a><a href="#products" class="btn btn-ghost">View Products</a></div>
+</div></div>
+</section>
 <footer class="footer">
 <div class="wrap">
 <div class="footer-main">
