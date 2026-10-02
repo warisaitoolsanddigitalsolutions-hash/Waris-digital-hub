@@ -1,13 +1,23 @@
 <!doctype html>
 <html lang="ur" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Waris Digital Hub — Admin Dashboard</title>
 <style>*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#060912;color:#e8edf7;min-height:100vh}.wrap{max-width:1200px;margin:auto;padding:22px}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}.logo{font-size:22px;font-weight:800}.logo b{background:linear-gradient(135deg,#3b82f6,#8b5cf6);padding:10px;border-radius:12px;margin-left:8px}.card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:20px;margin-top:18px;backdrop-filter:blur(12px)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.btn{border:0;border-radius:10px;padding:11px 16px;cursor:pointer;font-weight:700}.primary{background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff}.ghost{background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.12)}.danger{background:#7f1d1d;color:#fff}.muted{color:#a3aec4}.hidden{display:none}.status{padding:10px;border-radius:10px;background:rgba(34,211,238,.08);color:#67e8f9;margin-top:12px}#login{max-width:500px;margin:10vh auto;text-align:center}</style></head>
-<body><div class="wrap"><div id="login" class="card"><div class="logo"><b>WD</b> Waris Digital Hub</div><h2>🔐 Admin Login</h2><p class="muted">Google/Gmail سے محفوظ Admin Login</p><div class="status"><b>Allowed Admin:</b> warisalidigitalsolutions@gmail.com</div><br><button class="btn primary" id="googleBtn">Google / Gmail سے Login</button></div>
+<body><div class="wrap"><div id="login" class="card"><div class="logo"><b>WD</b> Waris Digital Hub</div><h2>🔐 Admin Login</h2><p class="muted">Google یا Email/Password سے محفوظ Admin Login</p><div class="status"><b>Allowed Admin:</b> warisalidigitalsolutions@gmail.com</div><br>
+<div style="text-align:left;direction:ltr">
+<label class="muted" for="emailInput">Admin Email</label>
+<input id="emailInput" type="email" autocomplete="username" value="warisalidigitalsolutions@gmail.com" style="width:100%;margin:7px 0 10px;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.2);color:#fff">
+<label class="muted" for="passwordInput">Password</label>
+<input id="passwordInput" type="password" autocomplete="current-password" placeholder="Firebase password" style="width:100%;margin:7px 0 12px;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.2);color:#fff">
+<button class="btn primary" id="emailBtn" style="width:100%">Email / Password سے Login</button>
+</div>
+<div style="margin:14px 0;border-top:1px solid rgba(255,255,255,.1);padding-top:14px">
+<button class="btn ghost" id="googleBtn">Google / Gmail سے Login</button>
+</div></div>
 <div id="app" class="hidden"><div class="top"><div><div class="logo"><b>WD</b> Admin Dashboard</div><div class="muted">Tools • Products • Games • Affiliate Links</div></div><div><button class="btn primary" onclick="location.href='products.html'">📦 Products Manager</button> <button class="btn ghost" onclick="location.href='index.html'">Website</button> <button class="btn danger" id="logout">Logout</button></div></div>
 <div class="grid"><div class="card"><h3>📦 Products</h3><strong id="count">0</strong><p class="muted">Total products</p></div><div class="card"><h3>✅ Published</h3><strong id="published">0</strong><p class="muted">Published products</p></div><div class="card"><h3>⭐ Featured</h3><strong id="featured">0</strong><p class="muted">Featured products</p></div><div class="card"><h3>🧾 Orders</h3><strong id="orders">0</strong><p class="muted">Real order requests</p></div><div class="card"><h3>👥 Customers</h3><strong id="customers">0</strong><p class="muted">Unique order emails</p></div><div class="card"><h3>💰 Sales</h3><strong id="sales">Rs 0</strong><p class="muted">Recorded order amounts</p></div></div>
 <div class="card"><h2>📦 Product Management</h2><p class="muted">الگ Products Manager میں Add / Edit / Delete کریں۔</p><button class="btn primary" onclick="location.href='products.html'">Open Products Manager</button></div></div></div>
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-import {getAuth,GoogleAuthProvider,signInWithRedirect,getRedirectResult,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+import {getAuth,GoogleAuthProvider,signInWithRedirect,getRedirectResult,onAuthStateChanged,signOut,signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
 import {getFirestore,collection,getDocs} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 import {firebaseConfig} from "./firebase-config.js";
 const ADMIN_EMAIL="warisalidigitalsolutions@gmail.com",app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app),provider=new GoogleAuthProvider(),login=document.getElementById("login"),panel=document.getElementById("app");
@@ -18,7 +28,15 @@ document.getElementById("published").textContent=products.filter(p=>p.published!
 document.getElementById("featured").textContent=products.filter(p=>p.featured===true).length;
 }catch(e){document.getElementById("count").textContent="—"}
 try{const os=await getDocs(collection(db,"orders"));const orders=os.docs.map(d=>d.data());document.getElementById("orders").textContent=orders.length;document.getElementById("sales").textContent="Rs "+orders.reduce((n,o)=>n+Number(o.amount||0),0).toLocaleString();document.getElementById("customers").textContent=new Set(orders.map(o=>(o.customer&&o.customer.email)||"").filter(Boolean)).size}catch(e){document.getElementById("orders").textContent="—"} }
-document.getElementById("googleBtn").onclick=async()=>{try{await signInWithRedirect(auth,provider)}catch(e){alert("Google Login error: "+e.message)}};getRedirectResult(auth).catch(e=>{if(e?.code)alert("Google Login error: "+e.message)});
+document.getElementById("googleBtn").onclick=async()=>{try{await signInWithRedirect(auth,provider)}catch(e){alert("Google Login error: "+e.message)}};
+document.getElementById("emailBtn").onclick=async()=>{
+  const email=document.getElementById("emailInput").value.trim().toLowerCase();
+  const password=document.getElementById("passwordInput").value;
+  if(email!==ADMIN_EMAIL){alert("This email is not authorized as Admin.");return}
+  if(!password){alert("Password enter کریں.");return}
+  try{await signInWithEmailAndPassword(auth,email,password)}
+  catch(e){alert("Email Login error: "+e.message)}
+};getRedirectResult(auth).catch(e=>{if(e?.code)alert("Google Login error: "+e.message)});
 onAuthStateChanged(auth,async u=>{if(u&&(u.email||"").toLowerCase()===ADMIN_EMAIL){login.classList.add("hidden");panel.classList.remove("hidden");refresh()}else{panel.classList.add("hidden");login.classList.remove("hidden")}});
 document.getElementById("logout").onclick=()=>signOut(auth);
 </script></body></html>
