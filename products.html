@@ -13,23 +13,6 @@
 @media(max-width:650px){.product{grid-template-columns:60px 1fr}.product .actions{grid-column:1/-1}.product img{width:60px;height:55px}}
 </style></head>
 <body>
-<div id="login" class="card">
-<div class="brand"><b>WD</b> Waris Digital Hub</div>
-<h2>🔐 Products Manager Login</h2>
-<p class="muted">Google یا Email/Password سے login کریں۔ Edit/Delete صرف Admin کر سکتا ہے۔</p>
-<div class="notice">نیا Product: کسی بھی Google account سے۔<br>Edit / Delete: صرف Admin <b>warisalidigitalsolutions@gmail.com</b></div>
-<br>
-<div style="text-align:left;direction:ltr">
-<label class="muted" for="emailInput">Admin Email</label>
-<input id="emailInput" type="email" autocomplete="username" value="warisalidigitalsolutions@gmail.com" style="width:100%;margin:7px 0 10px;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:#0b1120;color:#fff">
-<label class="muted" for="passwordInput">Password</label>
-<input id="passwordInput" type="password" autocomplete="current-password" placeholder="Firebase password" style="width:100%;margin:7px 0 12px;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:#0b1120;color:#fff">
-<button class="btn primary" id="emailBtn" style="width:100%">Email / Password سے Login</button>
-</div>
-<div style="margin:14px 0;border-top:1px solid rgba(255,255,255,.1);padding-top:14px">
-<button class="btn ghost" id="googleBtn">Google / Gmail سے Login</button>
-</div>
-</div>
 <div id="app" class="hidden"><div class="wrap">
 <div class="top"><div><div class="brand"><b>WD</b> Products Manager</div><div class="muted">Waris Digital Hub — Products, Games & Affiliate Links</div></div>
 <div><button class="btn ghost" onclick="location.href='admin.html'">Admin Dashboard</button> <button class="btn ghost" onclick="location.href='index.html'">Website</button> <button class="btn danger" id="logout">Logout</button></div></div>
@@ -47,11 +30,11 @@
 </div></div>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult, onAuthStateChanged, signOut, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
 import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 import { firebaseConfig } from "./firebase-config.js";
 const ADMIN_EMAIL="warisalidigitalsolutions@gmail.com";
-const app=initializeApp(firebaseConfig), auth=getAuth(app), db=getFirestore(app), provider=new GoogleAuthProvider();
+const app=initializeApp(firebaseConfig), auth=getAuth(app), db=getFirestore(app);
 const login=document.getElementById("login"), panel=document.getElementById("app");
 let products=[], editId=null, currentUser=null;
 const $=id=>document.getElementById(id);
@@ -70,6 +53,20 @@ try{await signInWithEmailAndPassword(auth,email,password)}
 catch(e){alert("Email Login error: "+e.message)}
 };
 $("googleBtn").onclick=async()=>{try{await signInWithRedirect(auth,provider);}catch(e){alert("Google Login error: "+e.message+"\\n\\nFirebase Authentication > Settings > Authorized domains میں GitHub Pages domain add کریں۔")}};\ngetRedirectResult(auth).catch(e=>{if(e?.code) alert("Google Login error: "+e.message+"\\n\\nFirebase Authentication > Settings > Authorized domains اور Sign-in method میں Google کو check کریں۔")});
-onAuthStateChanged(auth,async u=>{currentUser=u||null;if(u){login.classList.add("hidden");panel.classList.remove("hidden");$("formTitle").textContent=isAdmin()?"➕ / ✏️ Product Manager":"➕ نیا Product شامل کریں";$("save").textContent="Save Product";try{await load()}catch(e){alert("Firestore access error: "+e.message)}}else{panel.classList.add("hidden");login.classList.remove("hidden")}});
+onAuthStateChanged(auth,async u=>{
+  currentUser=u||null;
+  if(!u){
+    location.replace("admin.html");
+    return;
+  }
+  if(!isAdmin()){
+    await signOut(auth);
+    alert("صرف Admin account کو Products Manager کی اجازت ہے۔");
+    location.replace("admin.html");
+    return;
+  }
+  panel.classList.remove("hidden");
+  try{await load()}catch(e){alert("Firestore access error: "+e.message)}
+});
 $("logout").onclick=()=>signOut(auth);form();
 </script></body></html>
