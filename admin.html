@@ -20,7 +20,7 @@ table{width:100%;border-collapse:collapse;margin-top:14px}th,td{padding:11px;bor
 <div id="login" class="card">
 <div class="logo"><b>WD</b> Waris Digital Hub</div>
 <h2>Admin Login</h2>
-<p class="muted">محفوظ Admin Dashboard کے لیے Google/Gmail Sign-In استعمال کریں۔</p>
+<p class="muted">محفوظ Admin Dashboard کے لیے Google/Gmail Sign-In استعمال کریں۔</p><div class="status"><b>Allowed Admin Gmail:</b> warisalidigitalsolutions@gmail.com</div>
 <button class="btn primary" id="googleBtn">🔐 Google / Gmail سے Login</button>
 <div class="status">نوٹ: GitHub Pages پر Google Login چلانے کے لیے اپنا Google OAuth Client ID configure کرنا ضروری ہے۔ اس صفحے میں کوئی Gmail password/OTP محفوظ نہیں کیا جاتا۔</div>
 </div>
@@ -57,6 +57,7 @@ table{width:100%;border-collapse:collapse;margin-top:14px}th,td{padding:11px;bor
 <div class="card"><h2>🎮 Games</h2><p class="muted">Games بھی اسی Product system میں Category = Games کے ساتھ add کیے جا سکتے ہیں، اور Official Link الگ رکھا جا سکتا ہے۔</p></div>
 </div></div>
 <script>
+const ADMIN_EMAIL='warisalidigitalsolutions@gmail.com';
 const seed=[
 ['Smart Watch','Products',3499,2999,'Smart fitness smartwatch sample listing.'],
 ['TWS Earbuds','Products',2499,1999,'Wireless earbuds sample listing.'],
@@ -78,7 +79,7 @@ function editP(i){let p=products[i];edit=i;for(let k of ['name','price','sale','
 function delP(i){if(confirm('یہ product delete کرنا ہے؟')){products.splice(i,1);save()}}
 document.getElementById('save').onclick=()=>{let p={name:name.value.trim(),cat:cat.value,price:Number(price.value||0),sale:Number(sale.value||0),url:url.value.trim(),buy:buy.value.trim(),affiliate:affiliate.value.trim(),image:image.value.trim(),desc:desc.value.trim()};if(!p.name)return alert('Product name لکھیں');if(edit<0)products.push(p);else{products[edit]=p;edit=-1}save();document.getElementById('clear').click()};
 document.getElementById('clear').onclick=()=>{edit=-1;['name','price','sale','url','buy','affiliate','image','desc'].forEach(id=>document.getElementById(id).value='');document.getElementById('save').textContent='➕ Product Save کریں'};
-document.getElementById('googleBtn').onclick=()=>alert('Google Login کو live کرنے کے لیے Google OAuth Client ID configure کریں۔ ابھی demo login شروع نہیں کیا گیا تاکہ fake Gmail authentication نہ ہو۔');
+document.getElementById('googleBtn').onclick=()=>alert('Admin Gmail: '+ADMIN_EMAIL+'\n\nGoogle OAuth ابھی configure نہیں ہے۔ Gmail password/OTP کی ضرورت نہیں ہونی چاہیے۔ Live Google Login کے لیے Firebase/Google OAuth Client ID اور authorized domain configure کرنا باقی ہے۔');
 document.getElementById('logout').onclick=()=>{document.getElementById('app').classList.add('hidden');document.getElementById('login').classList.remove('hidden')};
 render();
 </script>
