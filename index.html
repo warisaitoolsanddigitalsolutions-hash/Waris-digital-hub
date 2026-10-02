@@ -289,6 +289,16 @@ tr:hover td{background:rgba(255,255,255,.02)}
 .cart-drawer-head{padding:20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
 .cart-drawer-body{flex:1;overflow-y:auto;padding:16px}
 .cart-drawer-foot{padding:20px;border-top:1px solid var(--border)}
+
+.admin-launch{position:fixed;right:18px;bottom:18px;z-index:150}
+.admin-panel{display:none;position:fixed;inset:0;z-index:300;background:rgba(3,6,14,.96);backdrop-filter:blur(18px);overflow:auto}
+.admin-panel.open{display:block}
+.admin-box{max-width:1100px;margin:40px auto;padding:28px}
+.admin-top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:24px}
+.admin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.admin-card{padding:22px}
+.admin-card h3{margin-bottom:8px}.admin-card p{color:var(--txt-2);font-size:14px}
+.admin-input{width:100%;padding:12px;border-radius:10px;background:var(--surface);border:1px solid var(--border);outline:none;margin:8px 0 14px}
 </style>
 </head>
 <body>
@@ -517,6 +527,28 @@ render();
 </script>
 
 <!-- Waris Digital Hub professional update: 47+ tools | 2026-10-02 -->
+
+<button class="btn btn-ghost admin-launch" id="adminOpen">⚙ Admin</button>
+<div class="admin-panel" id="adminPanel">
+<div class="admin-box">
+<div class="admin-top"><div><span class="eyebrow">Management</span><h2>Waris Digital Hub Admin</h2></div><button class="btn btn-danger" id="adminClose">Close</button></div>
+<div class="admin-grid">
+<div class="glass admin-card"><h3>📊 Overview</h3><p>Website tools, categories and content management overview.</p></div>
+<div class="glass admin-card"><h3>🧰 Tools</h3><p>Add, edit and organize featured tools and official links.</p><button class="btn btn-primary btn-sm" onclick="alert('Tool management can be connected to a secure backend.')">Manage Tools</button></div>
+<div class="glass admin-card"><h3>📦 Products</h3><p>Manage digital products, services, offers and download links.</p></div>
+<div class="glass admin-card"><h3>🗂 Categories</h3><p>Manage AI, Design, Video, Productivity, Developer and other categories.</p></div>
+<div class="glass admin-card"><h3>📢 Ads</h3><p>Ad placement checklist for compliant AdSense/advertising integration.</p></div>
+<div class="glass admin-card"><h3>🛡️ Ad Protector</h3><p>Basic anti-abuse controls: discourage repeated clicks and protect ad areas without bypassing ad-network policies.</p><button class="btn btn-ghost btn-sm" onclick="alert('Ad Protector is enabled as a compliance-focused placeholder. Connect server-side validation before production.')">Protection Status: ON</button></div>
+<div class="glass admin-card"><h3>🔍 SEO</h3><p>Manage metadata, sitemap, robots.txt and search-engine settings.</p></div>
+<div class="glass admin-card"><h3>⚙️ Website Settings</h3><p>Branding, contact details, analytics and general site configuration.</p></div>
+</div>
+<div class="glass" style="padding:22px;margin-top:20px"><h3>Security</h3><p style="color:var(--txt-2);margin:8px 0 0">This static GitHub Pages dashboard is only a front-end interface. Do not put passwords, API keys or private credentials in this file. Real admin authentication and ad-click protection require a secure server/backend.</p></div>
+</div></div>
+
+<script>
+document.getElementById("adminOpen").onclick=function(){document.getElementById("adminPanel").classList.add("open")};
+document.getElementById("adminClose").onclick=function(){document.getElementById("adminPanel").classList.remove("open")};
+</script>
 </body>
 </html>
 
