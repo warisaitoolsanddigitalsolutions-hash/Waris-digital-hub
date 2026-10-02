@@ -56,8 +56,14 @@ table{width:100%;border-collapse:collapse;margin-top:14px}th,td{padding:11px;bor
 
 <div class="card"><h2>🎮 Games</h2><p class="muted">Games بھی اسی Product system میں Category = Games کے ساتھ add کیے جا سکتے ہیں، اور Official Link الگ رکھا جا سکتا ہے۔</p></div>
 </div></div>
-<script>
+<script type="module">
 const ADMIN_EMAIL='warisalidigitalsolutions@gmail.com';
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+import { firebaseConfig } from "./firebase-config.js";
+const firebaseApp=initializeApp(firebaseConfig);
+const auth=getAuth(firebaseApp); const provider=new GoogleAuthProvider(); const db=getFirestore(firebaseApp);
 const seed=[
 ['Smart Watch','Products',3499,2999,'Smart fitness smartwatch sample listing.'],
 ['TWS Earbuds','Products',2499,1999,'Wireless earbuds sample listing.'],
@@ -79,8 +85,9 @@ function editP(i){let p=products[i];edit=i;for(let k of ['name','price','sale','
 function delP(i){if(confirm('یہ product delete کرنا ہے؟')){products.splice(i,1);save()}}
 document.getElementById('save').onclick=()=>{let p={name:name.value.trim(),cat:cat.value,price:Number(price.value||0),sale:Number(sale.value||0),url:url.value.trim(),buy:buy.value.trim(),affiliate:affiliate.value.trim(),image:image.value.trim(),desc:desc.value.trim()};if(!p.name)return alert('Product name لکھیں');if(edit<0)products.push(p);else{products[edit]=p;edit=-1}save();document.getElementById('clear').click()};
 document.getElementById('clear').onclick=()=>{edit=-1;['name','price','sale','url','buy','affiliate','image','desc'].forEach(id=>document.getElementById(id).value='');document.getElementById('save').textContent='➕ Product Save کریں'};
-document.getElementById('googleBtn').onclick=()=>alert('Admin Gmail: '+ADMIN_EMAIL+'\n\nGoogle OAuth ابھی configure نہیں ہے۔ Gmail password/OTP کی ضرورت نہیں ہونی چاہیے۔ Live Google Login کے لیے Firebase/Google OAuth Client ID اور authorized domain configure کرنا باقی ہے۔');
-document.getElementById('logout').onclick=()=>{document.getElementById('app').classList.add('hidden');document.getElementById('login').classList.remove('hidden')};
+document.getElementById('googleBtn').onclick=async()=>{try{const r=await signInWithPopup(auth,provider);if((r.user.email||'').toLowerCase()!==ADMIN_EMAIL){await signOut(auth);alert('یہ Gmail Admin نہیں ہے۔');return;}login.style.display='none';app.classList.remove('hidden');}catch(e){alert('Google Login ابھی Firebase config/rules کی وجہ سے مکمل نہیں ہوا: '+e.message)}};
+onAuthStateChanged(auth,u=>{if(u&&(u.email||'').toLowerCase()===ADMIN_EMAIL){login.style.display='none';app.classList.remove('hidden')}else{app.classList.add('hidden');login.style.display='block'}});
+document.getElementById('logout').onclick=()=>signOut(auth);document.getElementById('login').classList.remove('hidden')};
 render();
 </script>
 </body></html>
