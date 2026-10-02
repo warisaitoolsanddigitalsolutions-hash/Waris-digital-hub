@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tool Details — Waris Digital Hub</title>
+<meta name="description" content="Useful, factual tool information and official provider links from Waris Digital Hub.">
+<link rel="canonical" href="https://httpswarisalidigitalhub.com/tool.html">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#050816;color:#edf2ff;font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;line-height:1.7}
+body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(900px 600px at 8% 0%,rgba(37,99,235,.2),transparent 60%),radial-gradient(850px 650px at 92% 0%,rgba(124,58,237,.18),transparent 60%),linear-gradient(#050816,#080b18 55%,#050711)}
+.wrap{max-width:1050px;margin:auto;padding:20px}.nav{position:sticky;top:12px;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:rgba(7,12,28,.72);backdrop-filter:blur(16px)}.brand{display:flex;gap:10px;align-items:center;font-weight:800}.logo{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,#3b82f6,#8b5cf6);box-shadow:0 0 28px rgba(59,130,246,.25)}.nav a{color:#b9c4da;text-decoration:none;margin-left:16px;font-size:14px}.card{margin-top:22px;padding:28px;border:1px solid rgba(255,255,255,.1);border-radius:24px;background:rgba(255,255,255,.045);backdrop-filter:blur(16px);box-shadow:0 20px 70px rgba(0,0,0,.28)}.hero{display:grid;grid-template-columns:1fr 190px;gap:25px;align-items:center}.eyebrow{color:#93c5fd;text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:800}.title{font-size:clamp(32px,6vw,58px);line-height:1.08;margin:10px 0;background:linear-gradient(135deg,#fff,#93c5fd 45%,#c4b5fd);-webkit-background-clip:text;color:transparent}.muted{color:#a8b4ca}.logo-big{width:170px;height:170px;border-radius:38px;display:grid;place-items:center;font-size:55px;font-weight:900;background:linear-gradient(135deg,rgba(59,130,246,.22),rgba(139,92,246,.25));border:1px solid rgba(147,197,253,.2);box-shadow:0 0 70px rgba(59,130,246,.18)}.chips{display:flex;gap:7px;flex-wrap:wrap;margin:18px 0}.chip{padding:5px 9px;border-radius:999px;background:rgba(59,130,246,.12);color:#a5c9ff;border:1px solid rgba(96,165,250,.14);font-size:12px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.box{padding:20px;border-radius:18px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07)}h2{margin-top:0}.btn{display:inline-block;padding:11px 16px;border-radius:12px;text-decoration:none;font-weight:800;margin:5px 6px 0 0}.primary{color:#fff;background:linear-gradient(135deg,#3b82f6,#8b5cf6)}.ghost{color:#dbeafe;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.05)}.notice{padding:14px;border-radius:14px;background:rgba(34,211,238,.06);border:1px solid rgba(34,211,238,.12);color:#b8f4ff;margin-top:15px}@media(max-width:720px){.hero{grid-template-columns:1fr}.logo-big{width:110px;height:110px;font-size:38px}.grid{grid-template-columns:1fr}.nav a{display:none}}
+</style></head><body><div class="wrap">
+<nav class="nav"><a class="brand" href="index.html"><span class="logo">WD</span> Waris Digital Hub</a><div><a href="index.html#tools">Tools</a><a href="index.html#guides">Guides</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a></div></nav>
+<main id="app"></main>
+</div>
+<script>
+const tools=[
+["Canva AI","Design","AI-assisted design, templates, presentations and creative content.","https://www.canva.com/"],
+["Microsoft Copilot","AI Tools","AI assistant for writing, research, planning and productivity.","https://copilot.microsoft.com/"],
+["Perplexity AI","AI Tools","AI search and research with web sources and citations.","https://www.perplexity.ai/"],
+["Google Gemini","AI Tools","Google's multimodal AI assistant for everyday tasks and research.","https://gemini.google.com/"],
+["CapCut","Video","Video editing, captions, templates and creative effects.","https://www.capcut.com/"],
+["ChatGPT","AI Tools","AI assistant for writing, learning, coding and brainstorming.","https://chatgpt.com/"],
+["Claude","AI Tools","AI assistant for writing, analysis and long documents.","https://claude.ai/"],
+["DeepSeek","AI Tools","AI assistant for reasoning, research and coding tasks.","https://www.deepseek.com/"],
+["Grok","AI Tools","Conversational AI from xAI for information discovery and creative tasks.","https://grok.com/"],
+["Meta AI","AI Tools","Meta's AI assistant for questions, ideas and creative tasks.","https://www.meta.ai/"],
+["Adobe Express","Design","Quick design and content creation from Adobe.","https://www.adobe.com/express/"],
+["Figma","Design","Collaborative interface design, prototyping and product work.","https://www.figma.com/"],
+["Grammarly","Writing","Writing assistance for grammar, clarity and tone.","https://www.grammarly.com/"],
+["Notion","Productivity","Workspace for notes, documents, databases and projects.","https://www.notion.so/"],
+["Trello","Productivity","Visual boards for organizing tasks and projects.","https://trello.com/"],
+["Slack","Communication","Team communication with channels and integrations.","https://slack.com/"],
+["Zoom","Communication","Video meetings, webinars and online collaboration.","https://zoom.us/"],
+["Discord","Communication","Community chat, voice and video platform.","https://discord.com/"],
+["GitHub","Developer","Code hosting, collaboration and open-source development.","https://github.com/"],
+["GitHub Copilot","Developer","AI coding assistance inside supported development tools.","https://github.com/features/copilot"],
+["Cursor","Developer","AI-first code editor for building software.","https://cursor.com/"],
+["Replit","Developer","Browser-based coding, collaboration and app deployment.","https://replit.com/"],
+["Google Drive","Productivity","Cloud storage for files, sharing and collaboration.","https://drive.google.com/"],
+["Dropbox","Productivity","Cloud storage, file synchronization and sharing.","https://www.dropbox.com/"],
+["Google Docs","Productivity","Online documents with real-time collaboration.","https://docs.google.com/"],
+["Microsoft 365","Software","Microsoft productivity apps and services.","https://www.microsoft.com/microsoft-365"],
+["LinkedIn","Social","Professional networking, jobs and career resources.","https://www.linkedin.com/"],
+["Facebook","Social","Social networking, communities and content discovery.","https://www.facebook.com/"],
+["Instagram","Social","Photo, video and creator-focused social platform.","https://www.instagram.com/"],
+["TikTok","Social","Short-form video creation and discovery platform.","https://www.tiktok.com/"],
+["WhatsApp","Communication","Messaging, calls and group communication.","https://www.whatsapp.com/"],
+["YouTube","Entertainment","Video publishing, viewing, learning and creator tools.","https://www.youtube.com/"],
+["X","Social","Social network for public posts, conversations and news discovery.","https://x.com/"],
+["Reddit","Social","Community discussion organized around topics and communities.","https://www.reddit.com/"],
+["Amazon","Shopping","Online marketplace for products and services.","https://www.amazon.com/"],
+["eBay","Shopping","Marketplace for buying and selling products.","https://www.ebay.com/"],
+["AliExpress","Shopping","Online marketplace with products from international sellers.","https://www.aliexpress.com/"],
+["Walmart","Shopping","Retail marketplace and shopping services.","https://www.walmart.com/"],
+["Booking.com","Travel","Accommodation and travel reservation platform.","https://www.booking.com/"],
+["Airbnb","Travel","Marketplace for stays and travel experiences.","https://www.airbnb.com/"],
+["Netflix","Entertainment","Subscription streaming service for movies and shows.","https://www.netflix.com/"],
+["Spotify","Entertainment","Music and audio streaming platform.","https://www.spotify.com/"],
+["Pinterest","Social","Visual discovery and idea-sharing platform.","https://www.pinterest.com/"],
+["Telegram","Communication","Messaging platform with channels, groups and media sharing.","https://telegram.org/"],
+["Google","Websites","Search, maps, productivity and other internet services.","https://www.google.com/"],
+["Bing","Websites","Microsoft search engine and web services.","https://www.bing.com/"],
+["Wikipedia","Websites","Free collaborative encyclopedia.","https://www.wikipedia.org/"]
+];
+const q=new URLSearchParams(location.search).get("tool")||"";
+const esc=s=>String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+const t=tools.find(x=>x[0].toLowerCase()===q.toLowerCase());
+if(!t){document.title="Tool Not Found — Waris Digital Hub";document.getElementById("app").innerHTML='<section class="card"><h1>Tool not found</h1><p class="muted">Please return to the catalog and choose a tool.</p><a class="btn primary" href="index.html#tools">Back to Tools</a></section>';}
+else{
+document.title=t[0]+" — Waris Digital Hub";
+const related=tools.filter(x=>x[1]===t[1]&&x[0]!==t[0]).slice(0,4);
+document.getElementById("app").innerHTML=`
+<section class="card hero"><div><span class="eyebrow">${esc(t[1])}</span><h1 class="title">${esc(t[0])}</h1><p class="muted">${esc(t[2])}</p><div class="chips"><span class="chip">${esc(t[1])}</span><span class="chip">Official provider</span><span class="chip">Waris Digital Hub</span></div><a class="btn primary" href="${esc(t[3])}" target="_blank" rel="noopener">Visit Official Website ↗</a><a class="btn ghost" href="index.html#tools">Back to Catalog</a></div><div class="logo-big">${esc(t[0].slice(0,2).toUpperCase())}</div></section>
+<section class="grid"><article class="card box"><h2>Overview</h2><p>${esc(t[2])}</p><p class="muted">This listing is for discovery and educational purposes. Features, availability and pricing can vary by country, account type and provider updates.</p></article>
+<article class="card box"><h2>Who can use it?</h2><p>Students, creators, professionals, businesses and everyday users may use this type of service depending on its current terms and eligibility requirements.</p></article>
+<article class="card box"><h2>Practical use cases</h2><ul><li>Explore the official service and its current features.</li><li>Try an available free tier or demo where offered.</li><li>Compare the tool with alternatives before choosing a paid plan.</li><li>Use account and privacy settings carefully.</li></ul></article>
+<article class="card box"><h2>Pricing &amp; limitations</h2><p>Pricing and availability can change. Verify current details on the official provider website before purchasing or relying on a feature.</p><p>Free access, regional availability, usage limits and paid features may vary.</p></article>
+</section>
+<section class="card"><h2>Beginner guidance</h2><p>Start with a simple task, review the provider's documentation and privacy information, and avoid entering passwords, payment-card details or other sensitive information into tools unless you understand why it is required.</p><div class="notice">Waris Digital Hub does not claim to be the owner or official representative of this service. Always verify important details on the official provider website.</div></section>
+<section class="card"><h2>Related tools</h2><div class="chips">${related.map(x=>'<a class="chip" href="tool.html?tool='+encodeURIComponent(x[0])+'">'+esc(x[0])+'</a>').join("")||'<span class="muted">No related tools listed.</span>'}</div></section>`;
+}
+</script></body></html>
