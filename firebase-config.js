@@ -1,11 +1,12 @@
 // Firebase Web configuration for Waris Digital Hub.
-// Replace the placeholder values with the Web App config from your Firebase project.
-// Do NOT put Gmail passwords, OTPs, recovery codes, or service-account private keys here.
+// Client-side Firebase config is not a password. Never place Gmail passwords, OTPs,
+// recovery codes, service-account private keys, or other private credentials here.
 export const firebaseConfig = {
-  apiKey: "PASTE_FIREBASE_WEB_API_KEY",
-  authDomain: "PASTE_PROJECT_ID.firebaseapp.com",
-  projectId: "PASTE_PROJECT_ID",
-  storageBucket: "PASTE_PROJECT_ID.firebasestorage.app",
-  messagingSenderId: "PASTE_MESSAGING_SENDER_ID",
-  appId: "PASTE_APP_ID"
+  apiKey: "AIzaSyBkKSwCiPORopnOEzR46rIdvqK5soS4STI",
+  authDomain: "waris-digital-hub.firebaseapp.com",
+  projectId: "waris-digital-hub",
+  storageBucket: "waris-digital-hub.firebasestorage.app",
+  messagingSenderId: "233238947274",
+  appId: "1:233238947274:web:23f757ab92f124967f5b33",
+  measurementId: "G-3CFLP1M65P"
 };
