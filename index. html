@@ -482,38 +482,38 @@ tr:hover td{background:rgba(255,255,255,.02)}
 
 <script>
 var tools=[
-{n:"ChatGPT",c:"AI Tools",d:"AI assistant for writing, learning, coding and brainstorming.",t:["ai","writing","chat"]},
-{n:"Claude",c:"AI Tools",d:"AI assistant for long-document analysis and careful writing.",t:["ai","writing","analysis"]},
-{n:"Google Gemini",c:"AI Tools",d:"Google's multimodal AI assistant integrated across apps.",t:["ai","google"]},
-{n:"Perplexity AI",c:"AI Tools",d:"Answer engine that searches the web and cites sources.",t:["ai","research"]},
-{n:"Microsoft Copilot",c:"AI Tools",d:"Microsoft's AI assistant across Windows and Office.",t:["ai","microsoft"]},
-{n:"DeepSeek",c:"AI Tools",d:"AI assistant and open model family for reasoning and coding.",t:["ai","code"]},
-{n:"Grok",c:"AI Tools",d:"xAI's assistant with real-time access to posts on X.",t:["ai","x"]},
-{n:"Meta AI",c:"AI Tools",d:"Meta's assistant inside WhatsApp, Instagram and Messenger.",t:["ai","meta"]},
-{n:"Canva AI",c:"Design",d:"Design platform with AI templates and image generation.",t:["design","graphics"]},
-{n:"Adobe Express",c:"Design",d:"Adobe's quick design tool with AI effects and templates.",t:["design","adobe"]},
-{n:"Figma",c:"Design",d:"Browser-based UI/UX design and prototyping tool.",t:["design","ui"]},
-{n:"CapCut",c:"Video",d:"Free video editor with auto-captions and templates.",t:["video","editing"]},
-{n:"YouTube",c:"Video",d:"Video platform for tutorials, streams and content.",t:["video","streaming"]},
-{n:"Netflix",c:"Video",d:"Subscription streaming for films and series.",t:["video","streaming"]},
-{n:"Spotify",c:"Video",d:"Music and podcast streaming service.",t:["music","audio"]},
-{n:"Grammarly",c:"Writing",d:"Writing assistant for grammar, clarity and tone.",t:["writing","grammar"]},
-{n:"Notion",c:"Productivity",d:"All-in-one workspace for notes, databases and projects.",t:["notes","productivity"]},
-{n:"Trello",c:"Productivity",d:"Visual kanban boards for organising tasks and projects.",t:["tasks","kanban"]},
-{n:"Slack",c:"Productivity",d:"Team messaging with channels and integrations.",t:["messaging","team"]},
-{n:"Google Drive",c:"Productivity",d:"Cloud storage with sharing and collaboration.",t:["storage","cloud"]},
-{n:"Dropbox",c:"Productivity",d:"Cloud file storage and sync with sharing controls.",t:["storage","sync"]},
-{n:"Google Docs",c:"Productivity",d:"Free browser word processor with real-time editing.",t:["documents","writing"]},
-{n:"Microsoft 365",c:"Productivity",d:"Word, Excel, PowerPoint, Outlook and Teams.",t:["office","documents"]},
-{n:"Zoom",c:"Social",d:"Video conferencing for meetings and webinars.",t:["video calls","meetings"]},
-{n:"Discord",c:"Social",d:"Community chat platform with voice and video.",t:["community","chat"]},
-{n:"LinkedIn",c:"Social",d:"Professional networking and career platform.",t:["professional","career"]},
-{n:"WhatsApp",c:"Social",d:"Encrypted messaging for chats, groups and calls.",t:["messaging","encrypted"]},
-{n:"Telegram",c:"Social",d:"Cloud messaging with channels, bots and large groups.",t:["messaging","channels"]},
-{n:"GitHub",c:"Developer",d:"Platform for hosting code and collaborating on projects.",t:["code","git"]},
-{n:"GitHub Copilot",c:"Developer",d:"AI coding assistant inside your editor.",t:["ai","coding"]},
-{n:"Cursor",c:"Developer",d:"AI-first code editor with multi-file editing.",t:["ai","editor"]},
-{n:"Replit",c:"Developer",d:"Browser-based coding environment with hosting.",t:["coding","cloud"]}
+{n:"ChatGPT",c:"AI Tools",d:"AI assistant for writing, learning, coding and brainstorming.",t:["ai","writing","chat"],u:"https://chat.openai.com"},
+{n:"Claude",c:"AI Tools",d:"AI assistant for long-document analysis and careful writing.",t:["ai","writing","analysis"],u:"https://claude.ai"},
+{n:"Google Gemini",c:"AI Tools",d:"Google's multimodal AI assistant integrated across apps.",t:["ai","google"],u:"https://gemini.google.com"},
+{n:"Perplexity AI",c:"AI Tools",d:"Answer engine that searches the web and cites sources.",t:["ai","research"],u:"https://www.perplexity.ai"},
+{n:"Microsoft Copilot",c:"AI Tools",d:"Microsoft's AI assistant across Windows and Office.",t:["ai","microsoft"],u:"https://copilot.microsoft.com"},
+{n:"DeepSeek",c:"AI Tools",d:"AI assistant and open model family for reasoning and coding.",t:["ai","code"],u:"https://www.deepseek.com"},
+{n:"Grok",c:"AI Tools",d:"xAI's assistant with real-time access to posts on X.",t:["ai","x"],u:"https://grok.com"},
+{n:"Meta AI",c:"AI Tools",d:"Meta's assistant inside WhatsApp, Instagram and Messenger.",t:["ai","meta"],u:"https://www.meta.ai"},
+{n:"Canva AI",c:"Design",d:"Design platform with AI templates and image generation.",t:["design","graphics"],u:"https://www.canva.com"},
+{n:"Adobe Express",c:"Design",d:"Adobe's quick design tool with AI effects and templates.",t:["design","adobe"],u:"https://www.adobe.com/express/"},
+{n:"Figma",c:"Design",d:"Browser-based UI/UX design and prototyping tool.",t:["design","ui"],u:"https://www.figma.com"},
+{n:"CapCut",c:"Video",d:"Free video editor with auto-captions and templates.",t:["video","editing"],u:"https://www.capcut.com"},
+{n:"YouTube",c:"Video",d:"Video platform for tutorials, streams and content.",t:["video","streaming"],u:"https://www.youtube.com"},
+{n:"Netflix",c:"Video",d:"Subscription streaming for films and series.",t:["video","streaming"],u:"https://www.netflix.com"},
+{n:"Spotify",c:"Video",d:"Music and podcast streaming service.",t:["music","audio"],u:"https://www.spotify.com"},
+{n:"Grammarly",c:"Writing",d:"Writing assistant for grammar, clarity and tone.",t:["writing","grammar"],u:"https://www.grammarly.com"},
+{n:"Notion",c:"Productivity",d:"All-in-one workspace for notes, databases and projects.",t:["notes","productivity"],u:"https://www.notion.so"},
+{n:"Trello",c:"Productivity",d:"Visual kanban boards for organising tasks and projects.",t:["tasks","kanban"],u:"https://trello.com"},
+{n:"Slack",c:"Productivity",d:"Team messaging with channels and integrations.",t:["messaging","team"],u:"https://slack.com"},
+{n:"Google Drive",c:"Productivity",d:"Cloud storage with sharing and collaboration.",t:["storage","cloud"],u:"https://drive.google.com"},
+{n:"Dropbox",c:"Productivity",d:"Cloud file storage and sync with sharing controls.",t:["storage","sync"],u:"https://www.dropbox.com"},
+{n:"Google Docs",c:"Productivity",d:"Free browser word processor with real-time editing.",t:["documents","writing"],u:"https://docs.google.com"},
+{n:"Microsoft 365",c:"Productivity",d:"Word, Excel, PowerPoint, Outlook and Teams.",t:["office","documents"],u:"https://www.microsoft.com/microsoft-365"},
+{n:"Zoom",c:"Social",d:"Video conferencing for meetings and webinars.",t:["video calls","meetings"],u:"https://zoom.us"},
+{n:"Discord",c:"Social",d:"Community chat platform with voice and video.",t:["community","chat"],u:"https://discord.com"},
+{n:"LinkedIn",c:"Social",d:"Professional networking and career platform.",t:["professional","career"],u:"https://www.linkedin.com"},
+{n:"WhatsApp",c:"Social",d:"Encrypted messaging for chats, groups and calls.",t:["messaging","encrypted"],u:"https://www.whatsapp.com"},
+{n:"Telegram",c:"Social",d:"Cloud messaging with channels, bots and large groups.",t:["messaging","channels"],u:"https://telegram.org"},
+{n:"GitHub",c:"Developer",d:"Platform for hosting code and collaborating on projects.",t:["code","git"],u:"https://github.com"},
+{n:"GitHub Copilot",c:"Developer",d:"AI coding assistant inside your editor.",t:["ai","coding"],u:"https://github.com/features/copilot"},
+{n:"Cursor",c:"Developer",d:"AI-first code editor with multi-file editing.",t:["ai","editor"],u:"https://cursor.com"},
+{n:"Replit",c:"Developer",d:"Browser-based coding environment with hosting.",t:["coding","cloud"],u:"https://replit.com"}
 ];
 var cat="All",q="";
 function render(){
@@ -525,7 +525,7 @@ return mc&&mq;
 });
 if(!l.length){g.innerHTML='<div class="empty-state" style="grid-column:1/-1"><h3>No tools found</h3><p>Try a different search or category.</p></div>';return;}
 g.innerHTML=l.map(function(t){
-return '<article class="glass tool-card"><div class="tool-card-top"><div class="tool-logo" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6)">'+t.n.substring(0,2).toUpperCase()+'</div><div style="min-width:0;flex:1"><h3>'+t.n+'</h3><span class="cat-chip">'+t.c+'</span></div></div><p>'+t.d+'</p><div class="tag-row">'+t.t.slice(0,3).map(function(x){return '<span class="tag">'+x+'</span>'}).join("")+'</div></article>';
+return '<article class="glass tool-card"><div class="tool-card-top"><div class="tool-logo" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6)">'+t.n.substring(0,2).toUpperCase()+'</div><div style="min-width:0;flex:1"><h3>'+t.n+'</h3><span class="cat-chip">'+t.c+'</span></div></div><p>'+t.d+'</p><div class="tag-row">'+t.t.slice(0,3).map(function(x){return '<span class="tag">'+x+'</span>'}).join("")+'</div><div class="tool-card-actions"><a href="'+t.u+'" target="_blank" rel="noopener nofollow" class="btn btn-primary btn-sm" style="flex:1;text-align:center;padding:9px 16px;border-radius:10px;font-size:13.5px;font-weight:600;color:#fff;background:linear-gradient(135deg,#3b82f6,#8b5cf6);text-decoration:none;display:inline-block">Visit Site ↗</a></div></article>';
 }).join("");
 }
 document.getElementById("fc").addEventListener("click",function(e){
