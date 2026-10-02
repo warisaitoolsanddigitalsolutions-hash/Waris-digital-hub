@@ -8,44 +8,48 @@
 .card{margin-top:18px;padding:20px;border:1px solid #202a42;border-radius:18px;background:rgba(255,255,255,.05);backdrop-filter:blur(12px)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}label{display:block;color:#aeb8cf;font-size:13px}input,select,textarea{width:100%;margin-top:6px;padding:11px;border-radius:10px;border:1px solid #293552;background:#0b1120;color:white}textarea{min-height:90px;resize:vertical}
 .btn{border:0;border-radius:10px;padding:11px 16px;font-weight:700;cursor:pointer}.primary{background:linear-gradient(135deg,#2563eb,#8b5cf6);color:#fff}.ghost{background:#111827;color:#fff;border:1px solid #293552}.danger{background:#7f1d1d;color:#fff}
-.product{display:grid;grid-template-columns:80px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid #202a42}.product img{width:80px;height:65px;object-fit:cover;border-radius:12px;background:#101827}.muted{color:#9ca9c3}.pill{display:inline-block;padding:4px 8px;border-radius:999px;background:#172554;color:#93c5fd;font-size:12px;margin:2px}
+.product{display:grid;grid-template-columns:80px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid #202a42}.product img{width:80px;height:65px;object-fit:cover;border-radius:12px;background:#101827}.muted{color:#9ca9c3}.pill{display:inline-block;padding:4px 8px;border-radius:999px;background:#172554;color:#93c5fd;font-size:12px;margin:2px}.notice{padding:12px;border-radius:12px;background:rgba(34,211,238,.08);color:#67e8f9;margin-top:12px}
+#login{max-width:520px;margin:8vh auto;text-align:center}.hidden{display:none}
 @media(max-width:650px){.product{grid-template-columns:60px 1fr}.product .actions{grid-column:1/-1}.product img{width:60px;height:55px}}
 </style></head>
-<body><div class="wrap">
+<body>
+<div id="login" class="card">
+<div class="brand"><b>WD</b> Waris Digital Hub</div>
+<h2>🔐 Products Manager Login</h2>
+<p class="muted">صرف Admin Gmail سے login کرنے کے بعد products manage کیے جا سکتے ہیں۔</p>
+<div class="notice">Allowed Admin: <b>warisalidigitalsolutions@gmail.com</b></div>
+<br><button class="btn primary" id="googleBtn">Google / Gmail سے Login</button>
+</div>
+<div id="app" class="hidden"><div class="wrap">
 <div class="top"><div><div class="brand"><b>WD</b> Products Manager</div><div class="muted">Waris Digital Hub — Products, Games & Affiliate Links</div></div>
-<div><button class="btn ghost" onclick="location.href='admin.html'">Admin Dashboard</button> <button class="btn ghost" onclick="location.href='index.html'">Website</button></div></div>
-
+<div><button class="btn ghost" onclick="location.href='admin.html'">Admin Dashboard</button> <button class="btn ghost" onclick="location.href='index.html'">Website</button> <button class="btn danger" id="logout">Logout</button></div></div>
 <div class="card"><h2 id="formTitle">➕ نیا Product شامل کریں</h2>
 <div class="grid">
-<label>نام<input id="name" placeholder="Smart Watch"></label>
-<label>Category<select id="cat"><option>Products</option><option>Games</option><option>Apps</option><option>AI Tools</option><option>Websites</option><option>Digital Products</option><option>Services</option></select></label>
-<label>Price PKR<input id="price" type="number" placeholder="3499"></label>
-<label>Discount Price PKR<input id="sale" type="number" placeholder="2999"></label>
-<label>Image URL<input id="image" placeholder="https://..."></label>
-<label>Visit URL<input id="url" placeholder="https://..."></label>
-<label>Buy URL<input id="buy" placeholder="https://..."></label>
-<label>Affiliate URL<input id="affiliate" placeholder="https://..."></label>
-<label>Download URL<input id="download" placeholder="https://..."></label>
-</div>
-<label>Description<textarea id="desc" placeholder="Product کی مختصر تفصیل"></textarea></label><br>
+<label>نام<input id="name" placeholder="Smart Watch"></label><label>Category<select id="cat"><option>Products</option><option>Games</option><option>Apps</option><option>AI Tools</option><option>Websites</option><option>Digital Products</option><option>Services</option></select></label>
+<label>Price PKR<input id="price" type="number" placeholder="3499"></label><label>Discount Price PKR<input id="sale" type="number" placeholder="2999"></label>
+<label>Image URL<input id="image" placeholder="https://..."></label><label>Visit URL<input id="url" placeholder="https://..."></label><label>Buy URL<input id="buy" placeholder="https://..."></label><label>Affiliate URL<input id="affiliate" placeholder="https://..."></label><label>Download URL<input id="download" placeholder="https://..."></label>
+</div><label>Description<textarea id="desc" placeholder="Product کی مختصر تفصیل"></textarea></label><br>
 <button class="btn primary" id="save">Save Product</button> <button class="btn ghost" id="clear">Clear</button>
-<div class="muted" style="margin-top:12px">نوٹ: ابھی یہ browser storage demo ہے۔ حقیقی multi-device sync کے لیے Firebase database جوڑنا اگلا مرحلہ ہے۔</div>
-</div>
-
+<div class="notice">Products اب Firebase Firestore میں محفوظ ہوں گے، اس لیے مختلف devices پر بھی ایک ہی data استعمال ہوگا۔</div></div>
 <div class="card"><div class="top"><h2>📦 Products List</h2><input id="search" style="max-width:280px" placeholder="Search product..."></div><div id="list"></div></div>
-</div>
-<script>
-const seed=[['Smart Watch','Products',3499,2999],['TWS Earbuds','Products',2499,1999],['Bluetooth Speaker','Products',2999,2499],['Gaming Headset','Products',4499,3799],['Power Bank 20000mAh','Products',3999,3499],['USB-C Fast Charger','Products',1799,1499],['Wireless Keyboard','Products',3299,2799],['Wireless Mouse','Products',1499,1199],['LED Desk Lamp','Products',2299,1899],['Phone Stand','Products',999,799]];
-let products=JSON.parse(localStorage.getItem('wd_products')||'null')||seed.map(x=>({name:x[0],cat:x[1],price:x[2],sale:x[3],image:'',url:'',buy:'',affiliate:'',download:'',desc:''}));
-let edit=-1;
+</div></div>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+import { firebaseConfig } from "./firebase-config.js";
+const ADMIN_EMAIL="warisalidigitalsolutions@gmail.com";
+const app=initializeApp(firebaseConfig), auth=getAuth(app), db=getFirestore(app), provider=new GoogleAuthProvider();
+const login=document.getElementById("login"), panel=document.getElementById("app");
+let products=[], editId=null;
 const $=id=>document.getElementById(id);
-function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-function persist(){localStorage.setItem('wd_products',JSON.stringify(products));render()}
-function render(){let q=$('search').value.toLowerCase();let arr=products.map((p,i)=>({p,i})).filter(x=>(x.p.name+' '+x.p.cat).toLowerCase().includes(q));
-$('list').innerHTML=arr.length?arr.map(({p,i})=>`<div class="product"><img src="${esc(p.image)}" onerror="this.style.display='none'"><div><b>${esc(p.name)}</b><div><span class="pill">${esc(p.cat)}</span> <span class="pill">Rs ${Number(p.sale||p.price||0).toLocaleString()}</span></div><div class="muted">${esc(p.desc||'')}</div></div><div class="actions"><button class="btn ghost" onclick="editP(${i})">Edit</button> <button class="btn danger" onclick="delP(${i})">Delete</button></div></div>`).join(''):'<p class="muted">کوئی product نہیں ملا۔</p>'}
-function editP(i){let p=products[i];edit=i;['name','price','sale','image','url','buy','affiliate','download','desc'].forEach(k=>$(k).value=p[k]||'');$('cat').value=p.cat||'Products';$('formTitle').textContent='✏️ Product Edit کریں';$('save').textContent='Update Product';scrollTo(0,0)}
-function delP(i){if(confirm('کیا آپ واقعی یہ product delete کرنا چاہتے ہیں؟')){products.splice(i,1);persist()}}
-$('save').onclick=()=>{let p={name:$('name').value.trim(),cat:$('cat').value,price:Number($('price').value||0),sale:Number($('sale').value||0),image:$('image').value.trim(),url:$('url').value.trim(),buy:$('buy').value.trim(),affiliate:$('affiliate').value.trim(),download:$('download').value.trim(),desc:$('desc').value.trim()};if(!p.name)return alert('Product name لکھیں');if(edit<0)products.push(p);else{products[edit]=p;edit=-1}persist();$('clear').click()};
-$('clear').onclick=()=>{edit=-1;['name','price','sale','image','url','buy','affiliate','download','desc'].forEach(k=>$(k).value='');$('cat').value='Products';$('formTitle').textContent='➕ نیا Product شامل کریں';$('save').textContent='Save Product'};
-$('search').oninput=render;render();
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function form(p={}){["name","price","sale","image","url","buy","affiliate","download","desc"].forEach(k=>$(k).value=p[k]??"");$("cat").value=p.cat||"Products";$("formTitle").textContent=editId?"✏️ Product Edit کریں":"➕ نیا Product شامل کریں";$("save").textContent=editId?"Update Product":"Save Product"}
+async function load(){const snap=await getDocs(collection(db,"products"));products=snap.docs.map(d=>({id:d.id,...d.data()}));render()}
+function render(){const q=$("search").value.trim().toLowerCase();const arr=products.filter(p=>(p.name+" "+p.cat+" "+(p.desc||"")).toLowerCase().includes(q));$("list").innerHTML=arr.length?arr.map(p=>`<div class="product"><img src="${esc(p.image)}" onerror="this.style.display='none'"><div><b>${esc(p.name)}</b><div><span class="pill">${esc(p.cat)}</span> <span class="pill">Rs ${Number(p.sale||p.price||0).toLocaleString()}</span></div><div class="muted">${esc(p.desc||"")}</div></div><div class="actions"><button class="btn ghost" data-edit="${p.id}">Edit</button> <button class="btn danger" data-delete="${p.id}">Delete</button></div></div>`).join(""):"<p class='muted'>کوئی product نہیں ملا۔</p>";document.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>{const p=products.find(x=>x.id===b.dataset.edit);editId=p.id;form(p);scrollTo(0,0)});document.querySelectorAll("[data-delete]").forEach(b=>b.onclick=async()=>{if(confirm("کیا آپ واقعی یہ product delete کرنا چاہتے ہیں؟")){await deleteDoc(doc(db,"products",b.dataset.delete));await load()}})}
+$("save").onclick=async()=>{const p={name:$("name").value.trim(),cat:$("cat").value,price:Number($("price").value||0),sale:Number($("sale").value||0),image:$("image").value.trim(),url:$("url").value.trim(),buy:$("buy").value.trim(),affiliate:$("affiliate").value.trim(),download:$("download").value.trim(),desc:$("desc").value.trim(),updatedAt:serverTimestamp()};if(!p.name)return alert("Product name لکھیں");try{if(editId)await updateDoc(doc(db,"products",editId),p);else await addDoc(collection(db,"products"),{...p,createdAt:serverTimestamp()});editId=null;form();await load()}catch(e){alert("Save نہیں ہوا: "+e.message)}};
+$("clear").onclick=()=>{editId=null;form()};$("search").oninput=render;
+$("googleBtn").onclick=async()=>{try{const r=await signInWithPopup(auth,provider);if((r.user.email||"").toLowerCase()!==ADMIN_EMAIL){await signOut(auth);alert("یہ Gmail Admin نہیں ہے۔");return}}catch(e){alert("Google Login error: "+e.message)}};
+onAuthStateChanged(auth,async u=>{if(u&&(u.email||"").toLowerCase()===ADMIN_EMAIL){login.classList.add("hidden");panel.classList.remove("hidden");try{await load()}catch(e){alert("Firestore access error: "+e.message)}}else{panel.classList.add("hidden");login.classList.remove("hidden")}});
+$("logout").onclick=()=>signOut(auth);form();
 </script></body></html>
