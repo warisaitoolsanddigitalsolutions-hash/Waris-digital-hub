@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Waris Digital Hub — Admin Dashboard</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#060912;color:#e8edf7;min-height:100vh}
+.wrap{max-width:1200px;margin:auto;padding:22px}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+.logo{font-size:22px;font-weight:800}.logo b{background:linear-gradient(135deg,#3b82f6,#8b5cf6);padding:10px;border-radius:12px;margin-left:8px}
+.card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:20px;margin-top:18px;backdrop-filter:blur(12px)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.btn{border:0;border-radius:10px;padding:11px 16px;cursor:pointer;font-weight:700}.primary{background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff}.ghost{background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.12)}.danger{background:#7f1d1d;color:#fff}
+input,select{width:100%;padding:11px;border-radius:10px;border:1px solid #26304a;background:#0c1220;color:#fff;margin-top:6px}label{font-size:13px;color:#a3aec4;display:block;margin-top:10px}
+table{width:100%;border-collapse:collapse;margin-top:14px}th,td{padding:11px;border-bottom:1px solid rgba(255,255,255,.08);text-align:right;font-size:13px}th{color:#a78bfa}
+#login{max-width:500px;margin:10vh auto;text-align:center}.muted{color:#a3aec4}.hidden{display:none}.status{padding:10px;border-radius:10px;background:rgba(34,211,238,.08);color:#67e8f9;margin-top:12px}
+@media(max-width:650px){table{display:block;overflow:auto;white-space:nowrap}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="login" class="card">
+<div class="logo"><b>WD</b> Waris Digital Hub</div>
+<h2>Admin Login</h2>
+<p class="muted">محفوظ Admin Dashboard کے لیے Google/Gmail Sign-In استعمال کریں۔</p>
+<button class="btn primary" id="googleBtn">🔐 Google / Gmail سے Login</button>
+<div class="status">نوٹ: GitHub Pages پر Google Login چلانے کے لیے اپنا Google OAuth Client ID configure کرنا ضروری ہے۔ اس صفحے میں کوئی Gmail password/OTP محفوظ نہیں کیا جاتا۔</div>
+</div>
+
+<div id="app" class="hidden">
+<div class="top"><div><div class="logo"><b>WD</b> Admin Dashboard</div><div class="muted">Tools • Products • Games • Affiliate Links</div></div><div><button class="btn ghost" onclick="location.href='index.html'">Website</button> <button class="btn danger" id="logout">Logout</button></div></div>
+
+<div class="grid">
+<div class="card"><h3>📊 Overview</h3><strong id="count">0</strong><p class="muted">Products</p></div>
+<div class="card"><h3>🎮 Games</h3><p class="muted">Official game links manage کریں۔</p></div>
+<div class="card"><h3>🔗 Affiliate</h3><p class="muted">Affiliate URL ہر product کے ساتھ محفوظ کریں۔</p></div>
+<div class="card"><h3>🛡️ Security</h3><p class="muted">Passwords, API keys یا private credentials یہاں نہ رکھیں۔</p></div>
+</div>
+
+<div class="card">
+<h2>📦 Product Add / Edit</h2>
+<div class="grid">
+<div><label>Product Name<input id="name" placeholder="مثلاً Smart Watch"></label></div>
+<div><label>Category<select id="cat"><option>Products</option><option>Games</option><option>Apps</option><option>Services</option><option>Digital Products</option></select></label></div>
+<div><label>Price (PKR)<input id="price" type="number" placeholder="3499"></label></div>
+<div><label>Discount Price (PKR)<input id="sale" type="number" placeholder="2999"></label></div>
+<div><label>Visit URL<input id="url" placeholder="https://..."></label></div>
+<div><label>Buy URL<input id="buy" placeholder="https://..."></label></div>
+<div><label>Affiliate URL<input id="affiliate" placeholder="اپنا affiliate link یہاں لگائیں"></label></div>
+<div><label>Image URL<input id="image" placeholder="https://.../image.jpg"></label></div>
+</div>
+<label>Description<input id="desc" placeholder="مختصر description"></label>
+<br><button class="btn primary" id="save">➕ Product Save کریں</button>
+<button class="btn ghost" id="clear">Clear</button>
+</div>
+
+<div class="card"><h2>🛍️ Products</h2><div id="list"></div></div>
+
+<div class="card"><h2>🎮 Games</h2><p class="muted">Games بھی اسی Product system میں Category = Games کے ساتھ add کیے جا سکتے ہیں، اور Official Link الگ رکھا جا سکتا ہے۔</p></div>
+</div></div>
+<script>
+const seed=[
+['Smart Watch','Products',3499,2999,'Smart fitness smartwatch sample listing.'],
+['TWS Earbuds','Products',2499,1999,'Wireless earbuds sample listing.'],
+['Bluetooth Speaker','Products',2999,2499,'Portable Bluetooth speaker sample listing.'],
+['Gaming Headset','Products',4499,3799,'Gaming headset sample listing.'],
+['Power Bank 20000mAh','Products',3999,3499,'Portable power bank sample listing.'],
+['USB-C Fast Charger','Products',1799,1499,'Fast charging adapter sample listing.'],
+['Wireless Keyboard','Products',3299,2799,'Wireless keyboard sample listing.'],
+['Wireless Mouse','Products',1499,1199,'Wireless mouse sample listing.'],
+['LED Desk Lamp','Products',2299,1899,'Adjustable LED desk lamp sample listing.'],
+['Phone Stand','Products',999,799,'Adjustable phone stand sample listing.']
+];
+let products=JSON.parse(localStorage.getItem('wd_products')||'null')||seed.map(x=>({name:x[0],cat:x[1],price:x[2],sale:x[3],desc:x[4],url:'',buy:'',affiliate:'',image:''}));
+let edit=-1;
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function save(){localStorage.setItem('wd_products',JSON.stringify(products));render()}
+function render(){document.getElementById('count').textContent=products.length;document.getElementById('list').innerHTML=products.map((p,i)=>'<div class="card"><b>'+esc(p.name)+'</b> — '+esc(p.cat)+' — Rs '+Number(p.sale||p.price||0).toLocaleString()+'<p class="muted">'+esc(p.desc)+'</p><button class="btn ghost" onclick="editP('+i+')">Edit</button> <button class="btn danger" onclick="delP('+i+')">Delete</button></div>').join('')}
+function editP(i){let p=products[i];edit=i;for(let k of ['name','price','sale','url','buy','affiliate','image','desc'])document.getElementById(k).value=p[k]||'';document.getElementById('cat').value=p.cat||'Products';document.getElementById('save').textContent='💾 Update Product'}
+function delP(i){if(confirm('یہ product delete کرنا ہے؟')){products.splice(i,1);save()}}
+document.getElementById('save').onclick=()=>{let p={name:name.value.trim(),cat:cat.value,price:Number(price.value||0),sale:Number(sale.value||0),url:url.value.trim(),buy:buy.value.trim(),affiliate:affiliate.value.trim(),image:image.value.trim(),desc:desc.value.trim()};if(!p.name)return alert('Product name لکھیں');if(edit<0)products.push(p);else{products[edit]=p;edit=-1}save();document.getElementById('clear').click()};
+document.getElementById('clear').onclick=()=>{edit=-1;['name','price','sale','url','buy','affiliate','image','desc'].forEach(id=>document.getElementById(id).value='');document.getElementById('save').textContent='➕ Product Save کریں'};
+document.getElementById('googleBtn').onclick=()=>alert('Google Login کو live کرنے کے لیے Google OAuth Client ID configure کریں۔ ابھی demo login شروع نہیں کیا گیا تاکہ fake Gmail authentication نہ ہو۔');
+document.getElementById('logout').onclick=()=>{document.getElementById('app').classList.add('hidden');document.getElementById('login').classList.remove('hidden')};
+render();
+</script>
+</body></html>
