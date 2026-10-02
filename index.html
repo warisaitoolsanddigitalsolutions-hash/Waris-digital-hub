@@ -313,6 +313,12 @@ tr:hover td{background:rgba(255,255,255,.02)}
 .hf1{top:18%;right:5%}.hf2{bottom:17%;left:5%}.hf3{top:48%;right:-4%}
 @media(max-width:900px){.category-grid{grid-template-columns:repeat(2,1fr)}.cta-box{flex-direction:column;align-items:flex-start}}
 @media(max-width:520px){.category-grid{grid-template-columns:1fr}.category-card{min-height:100px}.cta-box{padding:25px 20px}.hf1{right:0}.hf2{left:0}.hf3{display:none}}
+</style><style>
+body::before{background:radial-gradient(900px 560px at 10% -10%,rgba(36,99,235,.22),transparent 58%),radial-gradient(850px 600px at 90% 5%,rgba(124,58,237,.22),transparent 58%),radial-gradient(900px 700px at 50% 105%,rgba(14,116,144,.10),transparent 65%),linear-gradient(180deg,#050816 0%,#070b18 42%,#050711 100%)}
+body::after{background-image:linear-gradient(rgba(255,255,255,.016) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.016) 1px,transparent 1px),radial-gradient(ellipse at 50% 100%,rgba(59,130,246,.13),transparent 50%);background-size:64px 64px,64px 64px,100% 100%;opacity:.9}
+.hero{position:relative;overflow:hidden}.hero:after{content:'';position:absolute;left:-8%;right:-8%;bottom:-80px;height:210px;background:linear-gradient(180deg,transparent,rgba(12,18,38,.8)),linear-gradient(160deg,transparent 35%,rgba(30,64,175,.16) 36%,transparent 48%),linear-gradient(20deg,transparent 38%,rgba(91,33,182,.13) 39%,transparent 52%);filter:blur(3px);pointer-events:none}
+.tool-card{transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}.tool-card:hover{transform:translateY(-4px);border-color:rgba(96,165,250,.35);box-shadow:0 18px 50px rgba(30,64,175,.14)}
+@media(max-width:700px){.filters{overflow-x:auto;flex-wrap:nowrap;padding-bottom:5px}.filter-chip{white-space:nowrap}}
 </style></head>
 <body>
 <header class="header">
@@ -406,13 +412,19 @@ tr:hover td{background:rgba(255,255,255,.02)}
 </div>
 <div class="filters" id="fc">
 <button class="filter-chip active" data-c="All">All</button>
-<button class="filter-chip" data-c="AI Tools">AI Tools</button>
 <button class="filter-chip" data-c="Design">Design</button>
+<button class="filter-chip" data-c="AI Tools">AI Tools</button>
 <button class="filter-chip" data-c="Video">Video</button>
 <button class="filter-chip" data-c="Writing">Writing</button>
 <button class="filter-chip" data-c="Productivity">Productivity</button>
+<button class="filter-chip" data-c="Communication">Communication</button>
 <button class="filter-chip" data-c="Developer">Developer</button>
 <button class="filter-chip" data-c="Social">Social</button>
+<button class="filter-chip" data-c="Entertainment">Entertainment</button>
+<button class="filter-chip" data-c="Shopping">Shopping</button>
+<button class="filter-chip" data-c="Travel">Travel</button>
+<button class="filter-chip" data-c="Websites">Websites</button>
+<button class="filter-chip" data-c="Software">Software</button>
 </div>
 <div class="tools-grid" id="tg"></div>
 </div>
@@ -546,7 +558,7 @@ return mc&&mq;
 });
 if(!l.length){g.innerHTML='<div class="empty-state" style="grid-column:1/-1"><h3>No tools found</h3><p>Try a different search or category.</p></div>';return;}
 g.innerHTML=l.map(function(t){
-return '<article class="glass tool-card"><div class="tool-card-top"><div class="tool-logo" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6)">'+t.n.substring(0,2).toUpperCase()+'</div><div style="min-width:0;flex:1"><h3>'+t.n+'</h3><span class="cat-chip">'+t.c+'</span></div></div><p>'+t.d+'</p><div class="tag-row">'+t.t.slice(0,3).map(function(x){return '<span class="tag">'+x+'</span>'}).join("")+'</div><div class="tool-card-actions"><a href="'+t.u+'" target="_blank" rel="noopener nofollow" class="btn btn-primary btn-sm" style="flex:1;text-align:center;padding:9px 16px;border-radius:10px;font-size:13.5px;font-weight:600;color:#fff;background:linear-gradient(135deg,#3b82f6,#8b5cf6);text-decoration:none;display:inline-block">Visit Site ↗</a></div></article>';
+return '<article class="glass tool-card"><div class="tool-card-top"><div class="tool-logo" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6)">'+t.n.substring(0,2).toUpperCase()+'</div><div style="min-width:0;flex:1"><h3>'+t.n+'</h3><span class="cat-chip">'+t.c+'</span></div></div><p>'+t.d+'</p><div class="tag-row">'+t.t.slice(0,3).map(function(x){return '<span class="tag">'+x+'</span>'}).join("")+'</div><div class="tool-card-actions"><a href="tool.html?tool='+encodeURIComponent(t.n)+'" class="btn btn-primary btn-sm" style="flex:1;text-align:center;padding:9px 16px;border-radius:10px;font-size:13.5px;font-weight:600;color:#fff;background:linear-gradient(135deg,#3b82f6,#8b5cf6);text-decoration:none;display:inline-block">View Details</a><a href="'+t.u+'" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Official ↗</a></div></article>';
 }).join("");
 }
 document.getElementById("fc").addEventListener("click",function(e){
@@ -618,7 +630,7 @@ function card(p){
 async function loadPublicProducts(){
  try{
   const snap=await getDocs(query(collection(db,"products"),orderBy("createdAt","desc")));
-  const items=snap.docs.map(d=>d.data());
+  const items=snap.docs.map(d=>({id:d.id,...d.data()})).filter(p=>p.published!==false);
   if(!items.length){box.innerHTML='<div class="glass tool-card"><p class="muted">No products published yet. Add products from Products Manager.</p></div>';return}
   box.innerHTML=items.map(card).join("");
  }catch(e){
