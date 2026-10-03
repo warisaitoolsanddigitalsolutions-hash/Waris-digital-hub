@@ -66,7 +66,7 @@ button{cursor:pointer;border:none;background:none}
 .wrap{max-width:1240px;margin:0 auto;padding:0 20px}
 .section{padding:72px 0}
 .section-sm{padding:48px 0}
-@media(max-width:640px){.section{padding:48px 0}}
+@media(max-width:640px){.section{padding:48px 0}.tools-grid{grid-template-columns:1fr}.tool-card-actions{display:grid;grid-template-columns:minmax(0,1fr) auto;min-width:0}.tool-card-actions .btn{min-width:0;overflow:hidden;text-overflow:ellipsis}.tool-card-actions .btn-ghost{max-width:92px}}
 .header{position:sticky;top:0;z-index:100;background:rgba(6,9,18,.72);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border-bottom:1px solid var(--border)}
 .header-inner{display:flex;align-items:center;gap:20px;height:68px}
 .logo{display:flex;align-items:center;gap:11px;flex-shrink:0}
@@ -299,7 +299,17 @@ tr:hover td{background:rgba(255,255,255,.02)}
 .admin-card{padding:22px}
 .admin-card h3{margin-bottom:8px}.admin-card p{color:var(--txt-2);font-size:14px}
 .admin-input{width:100%;padding:12px;border-radius:10px;background:var(--surface);border:1px solid var(--border);outline:none;margin:8px 0 14px}
-</style>
+<style>
+.website-preview{height:150px;position:relative;overflow:hidden;background:linear-gradient(135deg,#1769d1 0%,#6650e8 100%);color:#fff}
+.preview-browser{height:32px;display:flex;align-items:center;gap:6px;padding:0 10px;background:rgba(5,10,25,.28);border-bottom:1px solid rgba(255,255,255,.15)}
+.preview-browser span{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.75)}
+.preview-browser b{margin-left:5px;font-size:9px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:.9}
+.preview-body{height:118px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:5px;padding:12px}
+.preview-body strong{font-size:21px;font-weight:800;text-shadow:0 3px 14px rgba(0,0,0,.25)}
+.preview-body small{font-size:10px;opacity:.82}
+.preview-body i{font-style:normal;font-size:26px;font-weight:900;opacity:.18;position:absolute;right:16px;bottom:6px}
+.preview-label{position:absolute;left:12px;bottom:10px;padding:4px 8px;border-radius:7px;background:rgba(0,0,0,.5);color:#fff;font-size:9px;font-weight:700;backdrop-filter:blur(6px)}
+</style></style>
 <style>
 /* Waris Digital Hub — classic hub styling */
 .category-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
@@ -671,8 +681,9 @@ return mc&&mq;
 });
 if(!l.length){g.innerHTML='<div class="empty-state" style="grid-column:1/-1"><h3>No tools found</h3><p>Try a different search or category.</p></div>';return;}
 g.innerHTML=l.map(function(t){
-var preview='https://image.thum.io/get/width/900/crop/520/noanimate/'+encodeURIComponent(t.u);
-return '<article class="glass tool-card"><div class="tool-card-top" style="padding:0;display:block;min-height:0"><div style="height:150px;position:relative;overflow:hidden;background:linear-gradient(135deg,#1f6ed4,#6550e8)"><img src="'+preview+'" alt="'+t.n+' website preview screenshot" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.display=\'none\';this.parentElement.innerHTML=\'<div style=\'display:grid;place-items:center;height:100%;font-size:24px;font-weight:800;color:white\'>'+t.n.substring(0,2).toUpperCase()+'</div>\'"><div style="position:absolute;left:12px;bottom:10px;padding:4px 8px;border-radius:7px;background:rgba(0,0,0,.5);color:#fff;font-size:9px;font-weight:700;backdrop-filter:blur(6px)">WEBSITE PREVIEW</div></div><div style="padding:12px 14px 0;display:flex;gap:10px;align-items:center"><div class="tool-logo" style="width:40px;height:40px;flex:0 0 40px;background:linear-gradient(135deg,#3b82f6,#8b5cf6)">'+t.n.substring(0,2).toUpperCase()+'</div><div style="min-width:0;flex:1"><h3 style="color:#27384d">'+t.n+'</h3><span class="cat-chip">'+t.c+'</span></div></div></div><p>'+t.d+'</p><div class="tag-row">'+t.t.slice(0,3).map(function(x){return '<span class="tag">'+x+'</span>'}).join("")+'</div><div class="tool-card-actions"><a href="tool.html?tool='+encodeURIComponent(t.n)+'" class="btn btn-primary btn-sm" style="flex:1;text-align:center;padding:9px 16px;border-radius:10px;font-size:13.5px;font-weight:600;color:#fff;background:linear-gradient(135deg,#3b82f6,#8b5cf6);text-decoration:none;display:inline-block">View Details</a><a href="'+t.u+'" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Official ↗</a></div></article>';
+var host=t.u.replace(/^https?:\\/\\//,"").replace(/\\/$/,"");
+var initials=t.n.replace(/[^A-Za-z0-9]/g,"").substring(0,2).toUpperCase();
+return '<article class="glass tool-card"><div class="tool-card-top" style="padding:0;display:block;min-height:0"><div class="website-preview" aria-label="'+t.n+' website preview"><div class="preview-browser"><span></span><span></span><span></span><b>'+host+'</b></div><div class="preview-body"><strong>'+t.n+'</strong><small>Official website preview</small><i>'+initials+'</i></div><div class="preview-label">WEBSITE PREVIEW</div></div><div style="padding:12px 14px 0;display:flex;gap:10px;align-items:center"><div class="tool-logo" style="width:40px;height:40px;flex:0 0 40px;background:linear-gradient(135deg,#3b82f6,#8b5cf6)">'+initials+'</div><div style="min-width:0;flex:1"><h3 style="color:#27384d">'+t.n+'</h3><span class="cat-chip">'+t.c+'</span></div></div></div><p>'+t.d+'</p><div class="tag-row">'+t.t.slice(0,3).map(function(x){return '<span class="tag">'+x+'</span>'}).join("")+'</div><div class="tool-card-actions"><a href="tool.html?tool='+encodeURIComponent(t.n)+'" class="btn btn-primary btn-sm" style="text-align:center;padding:9px 12px;border-radius:10px;font-size:13.5px;font-weight:600;color:#fff;background:linear-gradient(135deg,#3b82f6,#8b5cf6);text-decoration:none;display:inline-flex">View Details</a><a href="'+t.u+'" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm" title="Open official website">Official ↗</a></div></article>';
 }).join("");
 }
 document.getElementById("fc").addEventListener("click",function(e){
