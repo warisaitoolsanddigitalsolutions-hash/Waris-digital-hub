@@ -1,0 +1,41 @@
+name: Deploy Waris Ali Digital Hub
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Validate no Firebase remains
+        run: |
+          if grep -RniE 'firebasejs|firebaseConfig|firebaseapp|firestore' --exclude-dir=.git --exclude='supabase/schema.sql' --exclude='README.md' .; then exit 1; fi
+      - name: Inject public Supabase runtime config
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_PUBLISHABLE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+        run: |
+          test -n "$SUPABASE_URL"
+          test -n "$SUPABASE_PUBLISHABLE_KEY"
+          printf 'window.__SUPABASE_URL__=%s;\nwindow.__SUPABASE_PUBLISHABLE_KEY__=%s;\n' "$(printf '%s' "$SUPABASE_URL" | python3 -c 'import sys,json; print(json.dumps(sys.stdin.read()))')" "$(printf '%s' "$SUPABASE_PUBLISHABLE_KEY" | python3 -c 'import sys,json; print(json.dumps(sys.stdin.read()))')" > supabase-runtime.js
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: .
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
