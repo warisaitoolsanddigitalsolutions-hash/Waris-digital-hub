@@ -719,44 +719,16 @@ render();
 document.getElementById("adminOpen").onclick=function(){window.location.href="admin.html"};
 document.getElementById("adminClose").onclick=function(){document.getElementById("adminPanel").classList.remove("open")};
 </script>
-<!-- Firebase public products -->
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
-import { firebaseConfig } from "./firebase-config.js";
-const firebaseApp=initializeApp(firebaseConfig);
-const db=getFirestore(firebaseApp);
+import{supabase,esc,signOut}from"./supabase-client.js";
 const box=document.getElementById("publicProducts");
-function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
-function card(p){
- const price=Number(p.sale||p.price||0), old=Number(p.sale&&p.price?p.price:0);
- const buttons=[];
- if(p.url) buttons.push('<a class="btn btn-ghost btn-sm" target="_blank" rel="noopener" href="'+esc(p.url)+'">Visit</a>');
- if(p.buy) buttons.push('<a class="btn btn-primary btn-sm" target="_blank" rel="noopener" href="'+esc(p.buy)+'">Buy</a>');
- else if(p.affiliate) buttons.push('<a class="btn btn-primary btn-sm" target="_blank" rel="nofollow sponsored noopener" href="'+esc(p.affiliate)+'">Buy / Offer</a>');
- if(p.download) buttons.push('<a class="btn btn-ghost btn-sm" target="_blank" rel="noopener" href="'+esc(p.download)+'">Download</a>');
- return '<article class="glass tool-card">'+
-  '<div class="tool-card-top"><div class="tool-logo" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6);overflow:hidden">'+(p.image?'<img src="'+esc(p.image)+'" alt="" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display=\'none\'">':'WD')+'</div><div><h3>'+esc(p.name)+'</h3><span class="cat-chip">'+esc(p.cat||"Product")+'</span></div></div>'+
-  '<p>'+esc(p.desc||"Waris Digital Hub product listing.")+'</p>'+
-  '<div style="display:flex;gap:10px;align-items:center;margin:8px 0 16px">'+(price?'<strong style="font-size:18px">Rs '+price.toLocaleString()+'</strong>':"")+(old?'<span style="color:var(--txt-3);text-decoration:line-through">Rs '+old.toLocaleString()+'</span>':"")+'</div>'+
-  '<div class="tool-card-actions">'+(buttons.length?buttons.join(" "):'<span class="muted">Link coming soon</span>')+'</div></article>';
-}
-async function loadPublicProducts(){
- try{
-  const snap=await getDocs(query(collection(db,"products"),where("status","==","approved"),where("published","==",true)));
-  const items=snap.docs.map(d=>({id:d.id,...d.data()})).filter(p=>p.published!==false);
-  if(!items.length){box.innerHTML='<div class="glass tool-card"><p class="muted">No products published yet. Add products from Products Manager.</p></div>';return}
-  box.innerHTML=items.map(card).join("");
- }catch(e){
-  try{
-   const snap=await getDocs(collection(db,"products"));
-   const items=snap.docs.map(d=>d.data());
-   box.innerHTML=items.length?items.map(card).join(""):'<div class="glass tool-card"><p class="muted">No products published yet.</p></div>';
-  }catch(err){box.innerHTML='<div class="glass tool-card"><p class="muted">Products are temporarily unavailable.</p></div>'}
- }
-}
-loadPublicProducts();
+function card(p){const price=Number(p.discount_price_pkr||p.price_pkr||0),old=Number(p.discount_price_pkr?p.price_pkr:0);return '<article class="glass tool-card">'+
+'<div class="tool-card-top"><div class="tool-logo" style="overflow:hidden"><img src="'+esc(p.main_image_url||"assets/tool-placeholder.svg")+'" alt="'+esc(p.name)+'" style="width:100%;height:100%;object-fit:cover" onerror="this.onerror=null;this.src=\'assets/tool-placeholder.svg\'"></div><div><h3>'+esc(p.name)+'</h3><span class="cat-chip">'+esc(p.category_name||"Product")+'</span></div></div>'+
+'<p>'+esc(p.short_description||"Waris Ali Digital Hub listing.")+'</p><div style="display:flex;gap:10px;align-items:center;margin:8px 0 16px">'+(price?'<strong style="font-size:18px">Rs '+price.toLocaleString()+'</strong>':"")+(old?'<span style="color:var(--txt-3);text-decoration:line-through">Rs '+old.toLocaleString()+'</span>':"")+'</div>'+
+'<div class="tool-card-actions"><a class="btn btn-primary btn-sm" href="product.html?id='+p.id+'">View Details</a>'+(p.visit_url?'<a class="btn btn-ghost btn-sm" target="_blank" rel="noopener" href="'+esc(p.visit_url)+'">Visit</a>':"")+'</div></article>'}
+async function load(){try{const{data,error}=await supabase.from("products").select("*").eq("status","approved").eq("published",true).order("featured",{ascending:false}).limit(12);if(error)throw error;box.innerHTML=(data||[]).length?data.map(card).join(""):'<div class="glass tool-card"><p class="muted">No marketplace products published yet.</p></div>'}catch(e){box.innerHTML='<div class="glass tool-card"><p class="muted">Marketplace is being connected. Directory tools remain available.</p></div>'}}
+load();
+const authLinks=document.querySelectorAll('a[href="login.html"],a[href="dashboard.html"],a[href="admin.html"]');const{data:{session}}=await supabase.auth.getSession();if(session){authLinks.forEach(a=>{if(a.href.includes("login.html")){a.textContent="Dashboard";a.href="dashboard.html"}})}supabase.auth.onAuthStateChange((_event,s)=>{if(s)authLinks.forEach(a=>{if(a.href.includes("login.html")){a.textContent="Dashboard";a.href="dashboard.html"}})});
 </script>
 </body>
 </html>
-
