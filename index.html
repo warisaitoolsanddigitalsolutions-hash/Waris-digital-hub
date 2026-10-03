@@ -1048,5 +1048,48 @@ async function load(){try{const{data,error}=await supabase.from("products").sele
 load();
 const authLinks=document.querySelectorAll('a[href="login.html"],a[href="dashboard.html"],a[href="admin.html"]');const{data:{session}}=await supabase.auth.getSession();if(session){authLinks.forEach(a=>{if(a.href.includes("login.html")){a.textContent="Dashboard";a.href="dashboard.html"}})}supabase.auth.onAuthStateChange((_event,s)=>{if(s)authLinks.forEach(a=>{if(a.href.includes("login.html")){a.textContent="Dashboard";a.href="dashboard.html"}})});
 </script>
-</body>
+
+<!-- FINAL DARK HUB OVERRIDE 2026-10-03 -->
+<style id="final-dark-hub">
+html,body{background:#050914!important;color:#eaf1ff!important}
+body{background:radial-gradient(900px 520px at 8% -5%,rgba(37,99,235,.18),transparent 58%),radial-gradient(850px 560px at 92% 5%,rgba(124,58,237,.18),transparent 60%),linear-gradient(180deg,#071226 0%,#050914 48%,#030711 100%)!important}
+body::before{background:radial-gradient(720px 440px at 12% 10%,rgba(59,130,246,.22),transparent 65%),radial-gradient(720px 440px at 88% 12%,rgba(139,92,246,.20),transparent 65%),radial-gradient(700px 500px at 50% 95%,rgba(14,116,144,.10),transparent 70%)!important}
+body::after{background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px)!important;background-size:56px 56px!important;opacity:.8!important}
+.header{background:rgba(4,10,24,.82)!important;border-bottom:1px solid rgba(96,165,250,.16)!important}
+.hero{background:radial-gradient(520px 320px at 84% 42%,rgba(99,102,241,.20),transparent 68%),linear-gradient(135deg,#081a35 0%,#071125 52%,#0b1025 100%)!important;border-bottom:1px solid rgba(96,165,250,.16)!important}
+.hero-copy h1{color:#f5f8ff!important}.hero-copy .lead{color:#aab8cf!important}.market-pill{color:#8bdcff!important;background:rgba(34,211,238,.08)!important;border-color:rgba(34,211,238,.2)!important}
+.hero-dashboard{background:rgba(11,20,42,.88)!important;border-color:rgba(125,160,220,.2)!important}.hero-bar{background:rgba(255,255,255,.045)!important;border-bottom-color:rgba(255,255,255,.08)!important}.hero-bar b{color:#9eacc4!important}.hero-art-body strong{color:#f2f6ff!important}.hero-art-body small{color:#9aa9c0!important}.hero-art-body em{background:rgba(255,255,255,.06)!important;border-color:rgba(255,255,255,.1)!important;color:#b8c6dc!important}
+.categories-section,.marketplace-categories{background:rgba(6,14,30,.72)!important;border-color:rgba(96,165,250,.12)!important}.market-heading{color:#f1f5ff!important}.market-section-label{color:#7ddcff!important}
+.marketplace-categories .filter-chip{background:rgba(255,255,255,.045)!important;color:#b4c0d4!important;border-color:rgba(255,255,255,.09)!important;box-shadow:none!important}.marketplace-categories .filter-chip.active{background:linear-gradient(135deg,#2563eb,#7c3aed)!important;color:#fff!important}
+#tools{background:linear-gradient(180deg,#061125 0%,#050914 100%)!important}#tools .sec-head h2{color:#f3f7ff!important}#tools .sec-head p{color:#91a0b8!important}#tools .search-input{background:rgba(255,255,255,.045)!important;color:#eef4ff!important;border-color:rgba(255,255,255,.1)!important}#tools .search-input::placeholder{color:#74839b!important}
+#tools .filter-chip{background:rgba(255,255,255,.045)!important;color:#aebbd0!important;border-color:rgba(255,255,255,.09)!important}#tools .filter-chip.active{background:linear-gradient(135deg,#2563eb,#7c3aed)!important;color:#fff!important}
+#tools .premium-tool-card{background:linear-gradient(180deg,rgba(16,27,49,.98),rgba(9,17,33,.98))!important;border-color:rgba(96,165,250,.14)!important;box-shadow:0 18px 48px rgba(0,0,0,.28)!important;color:#eaf1ff!important}#tools .premium-tool-card:hover{border-color:rgba(96,165,250,.34)!important;box-shadow:0 22px 55px rgba(37,99,235,.15)!important}
+#tools .premium-preview{background:linear-gradient(135deg,#102b57,#27205a 58%,#3b244c)!important;border-bottom-color:rgba(255,255,255,.08)!important}#tools .preview-browser{background:rgba(3,8,20,.35)!important;color:#aab7ca!important;border-bottom-color:rgba(255,255,255,.08)!important}#tools .preview-body strong{color:#fff!important}.preview-body small{color:#a9b6ca!important}
+#tools .preview-logo{background:rgba(255,255,255,.08)!important;box-shadow:0 10px 25px rgba(0,0,0,.25)!important}.premium-logo{background:rgba(255,255,255,.055)!important;border-color:rgba(255,255,255,.1)!important}#tools .tool-name-wrap h3{color:#f4f7ff!important}.cat-chip{background:rgba(139,92,246,.13)!important;color:#c4b5fd!important;border-color:rgba(139,92,246,.2)!important}
+#tools .tool-card p{color:#9eacc0!important}.tag{background:rgba(255,255,255,.045)!important;color:#8291a8!important;border-color:rgba(255,255,255,.08)!important}#tools .tool-card-actions .btn-ghost{background:rgba(255,255,255,.045)!important;color:#cbd6e6!important;border-color:rgba(255,255,255,.1)!important}
+#brand-story .cta-box{background:linear-gradient(135deg,rgba(22,61,105,.88),rgba(39,20,83,.88))!important;border-color:rgba(96,165,250,.2)!important}#guides,#about{background:rgba(255,255,255,.018)!important;border-color:rgba(255,255,255,.08)!important}#guides .glass,#about .glass,.value-card{background:rgba(255,255,255,.035)!important;border-color:rgba(255,255,255,.08)!important}#guides .guide-card h3,#about h2,#guides h2{color:#f1f5ff!important}.guide-card p,.value-card p{color:#98a7bd!important}.footer{background:rgba(3,7,17,.94)!important}
+@media(max-width:640px){.wrap{padding-left:16px!important;padding-right:16px!important}.hero-copy h1{font-size:31px!important}.tools-grid{grid-template-columns:1fr!important}}
+</style>
+<script>
+(function(){
+function boot(){
+var g=document.getElementById('tg');if(!g)return;
+var list=(typeof tools!=='undefined'&&Array.isArray(tools))?tools:[], cat='All', q='';
+function esc(v){return String(v).replace(/[&<>"']/g,function(ch){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]})}
+function render(){
+var filtered=list.filter(function(t){var s=(t.n+' '+t.c+' '+t.d+' '+t.t.join(' ')).toLowerCase();return(cat==='All'||t.c===cat)&&(!q||s.indexOf(q)>-1)});
+g.innerHTML=filtered.map(function(t){
+var initials=t.n.replace(/[^A-Za-z0-9]/g,'').slice(0,2).toUpperCase(),host=t.u.replace(/^https?:\/\//,'').replace(/\/$/,'');
+var slug=(typeof logoSlugs!=='undefined'?logoSlugs[t.n]:'')||'',img=slug?'<img src="https://cdn.simpleicons.org/'+slug+'" alt="" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'grid\'">':'';
+return '<article class="glass tool-card premium-tool-card"><div class="tool-card-top premium-tool-top"><div class="website-preview premium-preview"><div class="preview-browser"><span></span><span></span><span></span><b>'+esc(host)+'</b></div><div class="preview-body"><div class="preview-logo">'+img+'<span class="preview-fallback">'+esc(initials)+'</span></div><strong>'+esc(t.n)+'</strong><small>Official website</small></div><div class="preview-label">47+ TOOLS</div></div><div class="tool-identity"><div class="tool-logo premium-logo">'+img+'<span class="logo-fallback">'+esc(initials)+'</span></div><div class="tool-name-wrap"><h3>'+esc(t.n)+'</h3><span class="cat-chip">'+esc(t.c)+'</span></div></div></div><p>'+esc(t.d)+'</p><div class="tag-row">'+t.t.slice(0,3).map(function(x){return '<span class="tag">'+esc(x)+'</span>'}).join('')+'</div><div class="tool-card-actions"><a href="tool.html?tool='+encodeURIComponent(t.n)+'" class="btn btn-primary btn-sm">View Details</a><a href="'+esc(t.u)+'" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm">Official ↗</a></div></article>';
+}).join('');
+}
+var fc=document.getElementById('fc'),sb=document.getElementById('sbox');
+if(fc)fc.addEventListener('click',function(e){var b=e.target.closest('.filter-chip');if(!b)return;fc.querySelectorAll('.filter-chip').forEach(function(x){x.classList.remove('active')});b.classList.add('active');cat=b.dataset.c||'All';render()});
+if(sb)sb.addEventListener('input',function(){q=sb.value.toLowerCase().trim();render()});
+render();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
+})();
+</script></body>
 </html>
