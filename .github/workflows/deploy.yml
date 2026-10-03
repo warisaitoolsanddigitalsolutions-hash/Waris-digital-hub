@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v6
       - name: Validate no Firebase remains
         run: |
-          if grep -RniE 'firebasejs|firebaseConfig|firebaseapp|firestore' --exclude-dir=.git --exclude='supabase/schema.sql' --exclude='README.md' .; then exit 1; fi
+          if grep -RniE 'firebasejs|firebaseConfig|firebaseapp|firestore' --exclude-dir=.git --exclude='supabase/schema.sql' --exclude='README.md' --exclude='deploy.yml' --exclude='verify-static.mjs' .; then exit 1; fi
       - name: Run static checks
         run: node scripts/verify-static.mjs
       - uses: actions/configure-pages@v5
