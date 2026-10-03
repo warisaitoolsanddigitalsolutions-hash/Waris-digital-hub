@@ -437,7 +437,103 @@ body::after{
   #brand-story .cta-box h2{font-size:20px}
   #brand-story .cta-box p{font-size:11px}
 }
-</style><script src="supabase-runtime.js"></script></head>
+</style><script src="supabase-runtime.js"></script><style id="premium-light-mobile-upgrade">
+/* Premium light + navy hybrid refresh — keeps the existing Waris Digital Hub structure */
+:root{
+  --bg:#f5f8fc;--bg-2:#ffffff;--bg-3:#eef3f9;
+  --surface:rgba(255,255,255,.92);--surface-2:#f3f7ff;
+  --border:rgba(31,55,88,.12);--border-2:rgba(31,55,88,.2);
+  --txt:#17243a;--txt-2:#58677d;--txt-3:#7d8ba0;
+  --blue:#2563eb;--blue-2:#3b82f6;--purple:#7c3aed;--purple-2:#7c3aed;
+  --cyan:#0891b2;--green:#16a34a;--amber:#d97706;--red:#dc2626;
+  --grad:linear-gradient(135deg,#2563eb 0%,#7c3aed 100%);
+  --grad-2:linear-gradient(135deg,#2563eb 0%,#7c3aed 70%,#0891b2 100%);
+  --shadow:0 14px 38px -18px rgba(31,55,88,.28);
+  --glow-b:0 10px 28px -12px rgba(37,99,235,.38);
+  --glow-p:0 10px 28px -12px rgba(124,58,237,.3);
+}
+body{background:var(--bg);color:var(--txt);overflow-x:hidden}
+body::before{background:radial-gradient(850px 430px at 5% 0%,rgba(37,99,235,.10),transparent 62%),radial-gradient(760px 420px at 95% 5%,rgba(124,58,237,.09),transparent 62%),linear-gradient(180deg,#eef5ff 0,#f8fbff 360px,#f5f8fc 100%);z-index:-2}
+body::after{background-image:linear-gradient(rgba(37,99,235,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,.025) 1px,transparent 1px);z-index:-1}
+.header{background:rgba(255,255,255,.88);border-bottom-color:rgba(31,55,88,.10);box-shadow:0 5px 22px rgba(31,55,88,.06)}
+.logo-mark{box-shadow:0 8px 24px -10px rgba(37,99,235,.55)}
+.logo-tag{color:#7d8ba0}
+.nav a{color:#58677d}.nav a:hover,.nav a.active{color:#17243a;background:#f1f5fb}
+.icon-btn{background:#fff;border-color:rgba(31,55,88,.12);color:#58677d}
+.mobile-menu{background:rgba(248,251,255,.98);border-left:1px solid rgba(31,55,88,.08)}
+.mobile-menu a{color:#58677d}.mobile-menu a:hover,.mobile-menu a.active{background:#fff;color:#17243a;border-color:rgba(37,99,235,.12)}
+.btn-ghost{background:#fff;border-color:rgba(31,55,88,.15);color:#24344d;box-shadow:0 5px 18px -14px rgba(31,55,88,.35)}
+.hero{background:linear-gradient(135deg,rgba(255,255,255,.72),rgba(238,245,255,.82));border-bottom:1px solid rgba(31,55,88,.08)}
+.hero-market{position:relative}
+.market-pill,.market-section-label{color:#315fbf;background:rgba(37,99,235,.07);border-color:rgba(37,99,235,.14)}
+.hero-market h1{color:#16233a}
+.hero-market .lead{color:#5d6c80}
+.market-search .search-input{background:#fff;color:#24344d;border-color:rgba(31,55,88,.12);box-shadow:0 12px 34px rgba(31,55,88,.10)}
+.market-search .search-input::placeholder{color:#93a0b2}
+.marketplace-categories{background:rgba(255,255,255,.82);border-color:rgba(31,55,88,.08)}
+.marketplace-categories .filter-chip{background:#fff;border-color:rgba(31,55,88,.10);color:#58677d}
+.marketplace-categories .filter-chip.active{color:#fff}
+.glass{background:rgba(255,255,255,.9);border-color:rgba(31,55,88,.10);box-shadow:0 8px 28px -22px rgba(31,55,88,.38)}
+.glass:hover{background:#fff;border-color:rgba(37,99,235,.18);box-shadow:0 16px 34px -22px rgba(31,55,88,.35)}
+.tool-card{background:#fff}
+.tool-card p,.guide-card p,.value-card p{color:#58677d}
+.tag{background:#f4f7fb;color:#64748b;border-color:rgba(31,55,88,.08)}
+.cat-chip{color:#6d45cf;background:rgba(124,58,237,.07);border-color:rgba(124,58,237,.14)}
+#brand-story .cta-box{background:linear-gradient(135deg,#102a52,#263b78);border-color:rgba(59,130,246,.25);color:#fff}
+#brand-story .cta-box p{color:rgba(255,255,255,.78)}
+#brand-story .cta-box .eyebrow{color:#9cc5ff}
+#guides{background:#f0f5fb!important;border-color:rgba(31,55,88,.08)!important}
+#about{background:#f0f5fb!important;border-color:rgba(31,55,88,.08)!important}
+.sec-head p{color:#66758a}
+.eyebrow{color:#6d45cf}
+.market-heading{color:#17243a}
+.tool-card-actions{display:grid;grid-template-columns:minmax(0,1fr) minmax(92px,auto);gap:8px;min-width:0}
+.tool-card-actions .btn{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:900px){
+  .wrap{padding-left:16px;padding-right:16px}
+  .header-inner{height:64px;gap:10px}
+  .mobile-menu{inset:64px 0 0 0}
+  .hero{padding:56px 0 42px}
+  .hero-market{text-align:left}
+  .hero-market h1{font-size:clamp(31px,9vw,46px);letter-spacing:-1.2px}
+  .hero-market .lead{font-size:15px}
+  .hero-btns{width:100%}
+  .hero-btns .btn{flex:1;min-width:0}
+}
+@media(max-width:560px){
+  .section{padding:44px 0}
+  .logo-name{font-size:14px}
+  .logo-tag{font-size:8px}
+  .logo-mark{width:38px;height:38px}
+  .hero-market h1{font-size:31px;line-height:1.12}
+  .hero-market .lead{font-size:14px;line-height:1.65}
+  .hero-btns{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .hero-btns .btn{width:100%;padding:11px 9px;font-size:12.5px;white-space:normal;text-align:center}
+  .marketplace-categories{padding:24px 0 18px}
+  .marketplace-categories .filters{margin-left:-16px;margin-right:-16px;padding-left:16px;padding-right:16px}
+  #tools .sec-head h2{font-size:25px}
+  .tools-grid{grid-template-columns:1fr!important;gap:14px}
+  .tool-card{padding:16px}
+  .tool-card-actions{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+  .tool-card-actions .btn{width:100%;padding:10px 7px;font-size:12px;white-space:nowrap}
+  .tool-card-actions .btn-ghost{max-width:none}
+  .website-preview{height:142px!important}
+  .preview-body strong{font-size:19px}
+  .guides-grid,.value-grid{grid-template-columns:1fr;gap:14px}
+  .guide-card,.value-card{padding:20px}
+  .cta-box{padding:24px 18px!important}
+  .cta-box .btn{width:100%}
+  .form-row{grid-template-columns:1fr}
+}
+@media(max-width:360px){
+  .wrap{padding-left:12px;padding-right:12px}
+  .hero-market h1{font-size:28px}
+  .hero-btns .btn{font-size:11.5px}
+  .tool-card-actions .btn{font-size:11.5px;padding-left:5px;padding-right:5px}
+  .logo-text{max-width:150px}
+  .logo-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+}
+</style></head>
 <body>
 <header class="header">
 <div class="wrap header-inner">
