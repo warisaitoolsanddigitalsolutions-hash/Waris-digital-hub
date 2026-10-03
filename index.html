@@ -383,7 +383,7 @@ body::after{
   margin:0;padding:22px 16px 24px;min-height:150px;align-items:flex-start;
   background:linear-gradient(135deg,#1f6ed4,#6550e8);position:relative;overflow:hidden
 }
-.tool-card-top::after{
+.tool-card-top::after{display:none}
   content:'';position:absolute;width:150px;height:150px;border-radius:50%;
   right:-55px;top:-65px;background:rgba(255,255,255,.13)
 }
@@ -663,7 +663,8 @@ return mc&&mq;
 });
 if(!l.length){g.innerHTML='<div class="empty-state" style="grid-column:1/-1"><h3>No tools found</h3><p>Try a different search or category.</p></div>';return;}
 g.innerHTML=l.map(function(t){
-return '<article class="glass tool-card"><div class="tool-card-top"><div class="tool-logo" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6)">'+t.n.substring(0,2).toUpperCase()+'</div><div style="min-width:0;flex:1"><h3>'+t.n+'</h3><span class="cat-chip">'+t.c+'</span></div></div><p>'+t.d+'</p><div class="tag-row">'+t.t.slice(0,3).map(function(x){return '<span class="tag">'+x+'</span>'}).join("")+'</div><div class="tool-card-actions"><a href="tool.html?tool='+encodeURIComponent(t.n)+'" class="btn btn-primary btn-sm" style="flex:1;text-align:center;padding:9px 16px;border-radius:10px;font-size:13.5px;font-weight:600;color:#fff;background:linear-gradient(135deg,#3b82f6,#8b5cf6);text-decoration:none;display:inline-block">View Details</a><a href="'+t.u+'" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Official ↗</a></div></article>';
+var preview='https://image.thum.io/get/width/900/crop/520/noanimate/'+encodeURIComponent(t.u);
+return '<article class="glass tool-card"><div class="tool-card-top" style="padding:0;display:block;min-height:0"><div style="height:150px;position:relative;overflow:hidden;background:linear-gradient(135deg,#1f6ed4,#6550e8)"><img src="'+preview+'" alt="'+t.n+' website preview screenshot" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.display=\'none\';this.parentElement.innerHTML=\'<div style=\'display:grid;place-items:center;height:100%;font-size:24px;font-weight:800;color:white\'>'+t.n.substring(0,2).toUpperCase()+'</div>\'"><div style="position:absolute;left:12px;bottom:10px;padding:4px 8px;border-radius:7px;background:rgba(0,0,0,.5);color:#fff;font-size:9px;font-weight:700;backdrop-filter:blur(6px)">WEBSITE PREVIEW</div></div><div style="padding:12px 14px 0;display:flex;gap:10px;align-items:center"><div class="tool-logo" style="width:40px;height:40px;flex:0 0 40px;background:linear-gradient(135deg,#3b82f6,#8b5cf6)">'+t.n.substring(0,2).toUpperCase()+'</div><div style="min-width:0;flex:1"><h3 style="color:#27384d">'+t.n+'</h3><span class="cat-chip">'+t.c+'</span></div></div></div><p>'+t.d+'</p><div class="tag-row">'+t.t.slice(0,3).map(function(x){return '<span class="tag">'+x+'</span>'}).join("")+'</div><div class="tool-card-actions"><a href="tool.html?tool='+encodeURIComponent(t.n)+'" class="btn btn-primary btn-sm" style="flex:1;text-align:center;padding:9px 16px;border-radius:10px;font-size:13.5px;font-weight:600;color:#fff;background:linear-gradient(135deg,#3b82f6,#8b5cf6);text-decoration:none;display:inline-block">View Details</a><a href="'+t.u+'" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Official ↗</a></div></article>';
 }).join("");
 }
 document.getElementById("fc").addEventListener("click",function(e){
