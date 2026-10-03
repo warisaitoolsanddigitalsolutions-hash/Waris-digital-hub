@@ -1,11 +1,33 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null &&
+        request.auth.token.email == "warisalidigitalsolutions@gmail.com";
+    }
+
     match /products/{productId} {
       allow read: if true;
-      allow create: if request.auth != null;
-      allow update, delete: if request.auth != null && request.auth.token.email == "warisalidigitalsolutions@gmail.com";
+
+      // Admin can create normal published products from Products Manager.
+      // Any visitor can submit a product, but public submissions must stay
+      // pending/unpublished until the Admin reviews and approves them.
+      allow create: if isAdmin() || (
+        request.resource.data.name is string &&
+        request.resource.data.name.size() > 0 &&
+        request.resource.data.name.size() <= 120 &&
+        request.resource.data.cat is string &&
+        request.resource.data.cat.size() <= 60 &&
+        request.resource.data.desc is string &&
+        request.resource.data.desc.size() <= 2000 &&
+        request.resource.data.published == false &&
+        request.resource.data.status == "pending"
+      );
+
+      // Only Admin can approve/edit/delete products.
+      allow update, delete: if isAdmin();
     }
+
     match /orders/{orderId} {
       allow create: if
         request.resource.data.customer is map &&
@@ -14,7 +36,7 @@ service cloud.firestore {
         request.resource.data.items is list &&
         request.resource.data.amount is number &&
         request.resource.data.status == "pending";
-      allow read, update, delete: if request.auth != null && request.auth.token.email == "warisalidigitalsolutions@gmail.com";
+      allow read, update, delete: if isAdmin();
     }
   }
 }
