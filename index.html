@@ -848,7 +848,42 @@ body::after{
 </div>
 </section>
 
-<section class="section" id="brand-story">
+<!-- HIGH GRAPHICS GAMES -->
+<section id="games" class="section games-section">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">FEATURED GAMES</span>
+      <h2>High-Graphics Games</h2>
+      <p>Explore visually rich games with official store links and attractive game previews.</p>
+    </div>
+    <div class="games-grid">
+      <article class="glass game-card"><div class="game-art" style="background-image:linear-gradient(180deg,rgba(5,9,20,.05),rgba(5,9,20,.88)),url('https://cdn.akamai.steamstatic.com/steam/apps/1551360/header.jpg')"><div class="game-logo"><img src="https://cdn.simpleicons.org/forzahorizon5" alt="Forza Horizon 5 logo" onerror="this.style.display='none'"><span>FH5</span></div><span class="game-badge">RACING</span></div><div class="game-body"><h3>Forza Horizon 5</h3><p>Open-world racing experience with detailed cars and vibrant environments.</p><a class="btn btn-primary btn-sm" href="https://store.steampowered.com/app/1551360/Forza_Horizon_5/" target="_blank" rel="noopener noreferrer">Official Store ↗</a></div></article>
+      <article class="glass game-card"><div class="game-art" style="background-image:linear-gradient(180deg,rgba(5,9,20,.05),rgba(5,9,20,.88)),url('https://cdn.akamai.steamstatic.com/steam/apps/990080/header.jpg')"><div class="game-logo"><img src="https://cdn.simpleicons.org/hogwartslegacy" alt="Hogwarts Legacy logo" onerror="this.style.display='none'"><span>HL</span></div><span class="game-badge">RPG</span></div><div class="game-body"><h3>Hogwarts Legacy</h3><p>A visually detailed open-world adventure set in the wizarding world.</p><a class="btn btn-primary btn-sm" href="https://store.steampowered.com/app/990080/Hogwarts_Legacy/" target="_blank" rel="noopener noreferrer">Official Store ↗</a></div></article>
+      <article class="glass game-card"><div class="game-art game-gradient-one"><div class="game-logo"><img src="https://cdn.simpleicons.org/minecraft" alt="Minecraft logo" onerror="this.style.display='none'"><span>MC</span></div><span class="game-badge">SANDBOX</span><div class="game-scene"><i></i><b></b><em></em></div></div><div class="game-body"><h3>Minecraft</h3><p>Creative sandbox gameplay with an instantly recognizable block-style world.</p><a class="btn btn-primary btn-sm" href="https://www.minecraft.net/" target="_blank" rel="noopener noreferrer">Official Website ↗</a></div></article>
+      <article class="glass game-card"><div class="game-art game-gradient-two"><div class="game-logo"><img src="https://cdn.simpleicons.org/fortnite" alt="Fortnite logo" onerror="this.style.display='none'"><span>FN</span></div><span class="game-badge">ACTION</span><div class="game-scene"><i></i><b></b><em></em></div></div><div class="game-body"><h3>Fortnite</h3><p>Colorful multiplayer action with creative experiences and frequent updates.</p><a class="btn btn-primary btn-sm" href="https://www.fortnite.com/" target="_blank" rel="noopener noreferrer">Official Website ↗</a></div></article>
+      <article class="glass game-card"><div class="game-art game-gradient-three"><div class="game-logo"><img src="https://cdn.simpleicons.org/genshinimpact" alt="Genshin Impact logo" onerror="this.style.display='none'"><span>GI</span></div><span class="game-badge">ADVENTURE</span><div class="game-scene"><i></i><b></b><em></em></div></div><div class="game-body"><h3>Genshin Impact</h3><p>Anime-inspired open-world adventure with colorful environments and exploration.</p><a class="btn btn-primary btn-sm" href="https://genshin.hoyoverse.com/" target="_blank" rel="noopener noreferrer">Official Website ↗</a></div></article>
+    </div>
+  </div>
+</section>
+<style>
+.games-section{background:linear-gradient(180deg,#070d1d,#080b18);border-top:1px solid rgba(148,163,184,.10);border-bottom:1px solid rgba(148,163,184,.10)}
+.games-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.game-card{overflow:hidden;min-width:0;background:rgba(10,17,34,.82)!important}
+.game-art{height:205px;background-size:cover;background-position:center;position:relative;overflow:hidden}
+.game-art::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 75% 25%,rgba(59,130,246,.18),transparent 35%);pointer-events:none}
+.game-logo{position:absolute;left:14px;top:14px;width:56px;height:56px;border-radius:15px;background:rgba(4,9,20,.72);border:1px solid rgba(255,255,255,.16);display:grid;place-items:center;z-index:2;overflow:hidden;backdrop-filter:blur(10px);box-shadow:0 10px 28px rgba(0,0,0,.28)}
+.game-logo img{width:34px;height:34px;object-fit:contain}.game-logo span{display:none;font-weight:900;color:#fff}.game-logo img[style*="display: none"] + span{display:block}
+.game-badge{position:absolute;right:12px;top:14px;z-index:2;padding:5px 9px;border-radius:8px;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.14);color:#dbeafe;font-size:9px;font-weight:800;letter-spacing:.8px}
+.game-body{padding:16px}.game-body h3{font-size:16px;margin-bottom:7px;color:#f4f7ff}.game-body p{font-size:12.5px;color:#9eacc0;line-height:1.6;min-height:60px;margin-bottom:12px}
+.game-gradient-one{background:radial-gradient(circle at 25% 30%,#38bdf8 0,transparent 28%),linear-gradient(135deg,#102a43,#1d4d4f 50%,#0f172a)}
+.game-gradient-two{background:radial-gradient(circle at 70% 30%,#f97316 0,transparent 28%),linear-gradient(135deg,#24105a,#0f2d5c 50%,#111827)}
+.game-gradient-three{background:radial-gradient(circle at 30% 25%,#a855f7 0,transparent 30%),linear-gradient(135deg,#10164b,#1d3b69 50%,#0b1024)}
+.game-scene{position:absolute;left:0;right:0;bottom:0;height:90px;opacity:.75}.game-scene i,.game-scene b,.game-scene em{position:absolute;display:block;border-radius:8px;background:rgba(255,255,255,.13)}.game-scene i{width:130px;height:55px;left:15%;bottom:-12px;transform:skewX(-18deg)}.game-scene b{width:80px;height:80px;right:16%;bottom:-28px;border-radius:50%}.game-scene em{width:45px;height:45px;left:52%;bottom:18px;border-radius:10px;background:rgba(125,211,252,.24)}
+@media(max-width:1100px){.games-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:680px){.games-grid{grid-template-columns:1fr 1fr;gap:12px}.game-art{height:160px}.game-body p{min-height:0}.game-body .btn{width:100%}}
+@media(max-width:430px){.games-grid{grid-template-columns:1fr}}
+</style>
+\n<section class="section" id="brand-story">
 <div class="wrap"><div class="glass cta-box">
 <div><span class="eyebrow">WD / WARIS DIGITAL HUB</span><h2>Build. Discover. Grow.</h2><p>Clear listings, beginner-friendly guidance, official provider links and transparent affiliate disclosure.</p></div>
 <a class="btn btn-primary" href="#tools">Explore the Catalog</a>
