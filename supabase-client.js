@@ -3,9 +3,7 @@ import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 const SUPABASE_URL = window.__SUPABASE_URL__ || "";
 const SUPABASE_PUBLISHABLE_KEY = window.__SUPABASE_PUBLISHABLE_KEY__ || "";
 
-if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
-  throw new Error("Supabase is not configured yet. Add SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY in GitHub Actions Secrets, then redeploy.");
-}
+if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) throw new Error("Supabase is not configured.");
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
   auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
@@ -14,30 +12,57 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
 export async function getSession() {
   return (await supabase.auth.getSession()).data.session;
 }
+
 export async function getProfile(uid) {
-  const {data,error}=await supabase.from("profiles").select("*").eq("id",uid).maybeSingle();
-  if(error) throw error;
+  const { data, error } = await supabase.from("profiles").select("*").eq("id", uid).maybeSingle();
+  if (error) throw error;
   return data;
 }
+
 export async function requireUser() {
-  const s=await getSession();
-  if(!s){ location.href="login.html"; throw new Error("Authentication required."); }
-  return s.user;
+  const session = await getSession();
+  if (!session) {
+    location.href = "login.html";
+    throw new Error("Authentication required.");
+  }
+  return session.user;
 }
+
 export async function requireAdmin() {
-  const user=await requireUser();
-  const profile=await getProfile(user.id);
-  if(profile?.role!=="admin"){ location.href="dashboard.html"; throw new Error("Admin access required."); }
-  return {user,profile};
+  const user = await requireUser();
+  const profile = await getProfile(user.id);
+  if (profile?.role !== "admin") {
+    location.href = "dashboard.html";
+    throw new Error("Admin access required.");
+  }
+  return { user, profile };
 }
+
 export async function signInWithGoogle() {
-  const redirectTo=new URL("login.html",location.href).href;
-  const {error}=await supabase.auth.signInWithOAuth({
-    provider:"google",
-    options:{redirectTo,queryParams:{access_type:"offline",prompt:"select_account"}}
+  const redirectTo = new URL("login.html", location.href).href;
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: { redirectTo, queryParams: { prompt: "select_account" } }
   });
-  if(error) throw error;
+  if (error) throw error;
 }
-export async function signOut(){ await supabase.auth.signOut(); location.href="index.html"; }
-export function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",""":"&quot;","'":"&#39;"}[m]));}
-export function publicMediaUrl(path){if(!path)return"";if(/^https?:\/\//i.test(path))return path;return supabase.storage.from("media").getPublicUrl(path).data.publicUrl;}
+
+export async function signOut() {
+  await supabase.auth.signOut();
+  location.href = "index.html";
+}
+
+export function esc(v) {
+  return String(v ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll(String.fromCharCode(34), "&quot;")
+    .replaceAll(String.fromCharCode(39), "&#39;");
+}
+
+export function publicMediaUrl(path) {
+  if (!path) return "";
+  if (/^https?:\/\//i.test(path)) return path;
+  return supabase.storage.from("media").getPublicUrl(path).data.publicUrl;
+}
