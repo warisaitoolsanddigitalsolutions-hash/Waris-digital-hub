@@ -598,6 +598,30 @@ body::after{background-image:linear-gradient(rgba(37,99,235,.025) 1px,transparen
   .hero-market h1{font-size:28px}.tool-card-actions{grid-template-columns:1fr 1fr!important}
   .tool-card-actions .btn{font-size:11px;padding-left:5px;padding-right:5px}
 }
+</style><style id="reference-visual-v3">
+.hero{position:relative;overflow:hidden!important;background:linear-gradient(120deg,#eaf3ff 0%,#fff 46%,#f7efff 100%)!important;border-bottom:1px solid #dce5f0!important}
+.hero-visual-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none;background-image:linear-gradient(rgba(37,99,235,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,.035) 1px,transparent 1px);background-size:36px 36px}
+.hero-visual-bg span{position:absolute;border-radius:50%;filter:blur(4px)}
+.hero-visual-bg span:nth-child(1){width:430px;height:430px;right:-110px;top:-170px;background:radial-gradient(circle,rgba(59,130,246,.25),transparent 68%)}
+.hero-visual-bg span:nth-child(2){width:380px;height:300px;left:32%;bottom:-210px;background:radial-gradient(circle,rgba(124,58,237,.18),transparent 70%)}
+.hero-visual-bg span:nth-child(3){width:260px;height:220px;left:-90px;top:50px;background:radial-gradient(circle,rgba(34,211,238,.12),transparent 70%)}
+.hero-market{position:relative;z-index:1;min-height:390px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.7fr);gap:34px;align-items:center;padding-top:52px;padding-bottom:52px}
+.hero-copy h1{color:#17243a;font-size:clamp(36px,5.2vw,58px);line-height:1.08;letter-spacing:-1.7px;max-width:780px}
+.hero-copy .lead{color:#5c6b80;max-width:660px;font-size:16px;line-height:1.7;margin-top:15px}
+.hero-trust{display:flex;gap:16px;flex-wrap:wrap;color:#6b7890;font-size:12px;font-weight:700;margin-top:20px}
+.hero-art{display:flex;justify-content:center}.hero-dashboard{width:360px;height:260px;border-radius:26px;overflow:hidden;transform:rotate(2deg);background:rgba(255,255,255,.84);border:1px solid rgba(255,255,255,.95);box-shadow:0 30px 70px -28px rgba(37,99,235,.35)}
+.hero-bar{height:38px;display:flex;align-items:center;gap:6px;padding:0 13px;background:rgba(248,250,252,.85);border-bottom:1px solid #e4eaf2}.hero-bar i{width:7px;height:7px;border-radius:50%;background:#cbd5e1}.hero-bar b{font-size:10px;color:#66758a;margin-left:6px}
+.hero-art-body{height:222px;display:flex;align-items:center;flex-direction:column;justify-content:center;gap:7px;text-align:center}.hero-wa{width:68px;height:68px;border-radius:20px;display:grid;place-items:center;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:25px;font-weight:900;box-shadow:0 15px 28px -12px rgba(37,99,235,.55)}.hero-art-body strong{font-size:25px;color:#17243a}.hero-art-body small{font-size:10px;color:#748197}.hero-art-body div{display:flex;gap:7px}.hero-art-body em{font-style:normal;font-size:9px;font-weight:800;padding:6px 9px;border-radius:8px;background:#fff;border:1px solid #dde5ef;color:#5b6b80}
+.categories-section{background:linear-gradient(180deg,#fff,#f5f8fc)!important;border-bottom:1px solid #e5ebf3}
+.marketplace-categories .filters{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding-bottom:5px}.marketplace-categories .filters::-webkit-scrollbar{display:none}
+.marketplace-categories .filter-chip{background:#fff!important;border:1px solid #dfe7f0!important;box-shadow:0 5px 16px rgba(31,55,88,.05);white-space:nowrap}
+#tools{background:linear-gradient(180deg,#f6f9fc,#fff)!important;border-top:0!important}
+#tools .sec-head h2{color:#17243a;font-size:32px}#tools .sec-head p{color:#64748b}
+#tools .search-input{background:#fff;color:#25354c;border-color:#dbe4ee;box-shadow:0 10px 28px rgba(31,55,88,.08)}
+#tools .filters{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin-bottom:18px}.filters::-webkit-scrollbar{display:none}
+#tools .filter-chip{white-space:nowrap;background:#fff;color:#596980;border:1px solid #dfe7f0}
+@media(max-width:900px){.hero-market{grid-template-columns:1fr;min-height:0}.hero-art{display:none}}
+@media(max-width:560px){.hero-market{padding-top:38px;padding-bottom:34px}.hero-copy h1{font-size:31px;line-height:1.12;letter-spacing:-.8px}.hero-copy .lead{font-size:14px}.hero-trust{font-size:10.5px;gap:9px 12px}.marketplace-categories{padding-top:24px;padding-bottom:18px}#tools .sec-head h2{font-size:27px}}
 </style></head>
 <body>
 <header class="header">
@@ -644,17 +668,20 @@ body::after{background-image:linear-gradient(rgba(37,99,235,.025) 1px,transparen
 
 <main>
 <section class="hero">
+<div class="hero-visual-bg"><span></span><span></span><span></span></div>
 <div class="wrap hero-market">
-  <span class="market-pill">PROFESSIONAL DIGITAL MARKETPLACE</span>
-  <h1>Discover digital products, apps,<br><span class="grad-text">games &amp; services.</span></h1>
-  <p class="lead">Useful digital resources with clear pricing, transparent links and a fast mobile-first experience.</p>
-  <div class="search-hero market-search">
-    <span class="search-icon">⌕</span>
-    <input type="search" class="search-input" id="heroSearch" placeholder="Search products, tools &amp; websites..." aria-label="Search">
+  <div class="hero-copy">
+    <span class="market-pill">47+ USEFUL DIGITAL TOOLS</span>
+    <h1>Useful Digital Tools, Apps &amp; Websites <span class="grad-text">— All in One Place</span></h1>
+    <p class="lead">Discover useful AI tools, apps, websites, productivity resources, digital products and practical guides in one organized platform.</p>
+    <div class="hero-btns">
+      <a href="#tools" class="btn btn-primary">Explore 47+ Tools <span>→</span></a>
+      <a href="#guides" class="btn btn-ghost">Read Guides <span>↗</span></a>
+    </div>
+    <div class="hero-trust"><span>✦ Curated Resources</span><span>✓ Official Links</span><span>⚡ Mobile Friendly</span></div>
   </div>
-  <div class="hero-btns">
-    <a href="#tools" class="btn btn-primary">Explore products <span>›</span></a>
-    <a href="contact.html" class="btn btn-ghost">Contact</a>
+  <div class="hero-art" aria-hidden="true">
+    <div class="hero-dashboard"><div class="hero-bar"><i></i><i></i><i></i><b>Waris Digital Hub</b></div><div class="hero-art-body"><div class="hero-wa">WD</div><strong>47+ Tools</strong><small>AI • Apps • Websites • Productivity</small><div><em>AI</em><em>Design</em><em>Video</em><em>Dev</em></div></div></div>
   </div>
 </div>
 </section>
@@ -678,12 +705,7 @@ body::after{background-image:linear-gradient(rgba(37,99,235,.025) 1px,transparen
   </div>
 </div>
 </section>
-<section class="section" id="brand-story">
-<div class="wrap"><div class="glass cta-box">
-<div><span class="eyebrow">WD / WARIS DIGITAL HUB</span><h2>Build. Discover. Grow.</h2><p>Clear listings, beginner-friendly guidance, official provider links and transparent affiliate disclosure.</p></div>
-<a class="btn btn-primary" href="#tools">Explore the Catalog</a>
-</div></div>
-</section>
+
 <section class="section" id="tools">
 <div class="wrap">
 <div class="sec-head">
@@ -714,7 +736,12 @@ body::after{background-image:linear-gradient(rgba(37,99,235,.025) 1px,transparen
 </div>
 </section>
 
-<section class="section" id="guides" style="background:rgba(255,255,255,.015);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+<section class="section" id="brand-story">
+<div class="wrap"><div class="glass cta-box">
+<div><span class="eyebrow">WD / WARIS DIGITAL HUB</span><h2>Build. Discover. Grow.</h2><p>Clear listings, beginner-friendly guidance, official provider links and transparent affiliate disclosure.</p></div>
+<a class="btn btn-primary" href="#tools">Explore the Catalog</a>
+</div></div>
+</section><section class="section" id="guides" style="background:rgba(255,255,255,.015);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
 <div class="wrap">
 <div class="sec-head">
 <span class="eyebrow">Learning Center</span>
