@@ -319,6 +319,114 @@ body::after{background-image:linear-gradient(rgba(255,255,255,.016) 1px,transpar
 .hero{position:relative;overflow:hidden}.hero:after{content:'';position:absolute;left:-8%;right:-8%;bottom:-80px;height:210px;background:linear-gradient(180deg,transparent,rgba(12,18,38,.8)),linear-gradient(160deg,transparent 35%,rgba(30,64,175,.16) 36%,transparent 48%),linear-gradient(20deg,transparent 38%,rgba(91,33,182,.13) 39%,transparent 52%);filter:blur(3px);pointer-events:none}
 .tool-card{transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}.tool-card:hover{transform:translateY(-4px);border-color:rgba(96,165,250,.35);box-shadow:0 18px 50px rgba(30,64,175,.14)}
 @media(max-width:700px){.filters{overflow-x:auto;flex-wrap:nowrap;padding-bottom:5px}.filter-chip{white-space:nowrap}}
+ 
+/* Old Waris Ali Digital Hub marketplace look — refreshed 2026 */
+body{
+  background:#061226;
+}
+body::before{
+  background:
+    radial-gradient(520px 360px at 86% 13%,rgba(247,180,42,.18),transparent 60%),
+    radial-gradient(680px 420px at 18% 18%,rgba(25,119,255,.22),transparent 62%),
+    radial-gradient(760px 500px at 70% 82%,rgba(20,87,180,.22),transparent 65%),
+    linear-gradient(180deg,#102d4c 0%,#06162d 42%,#041126 100%);
+}
+body::after{
+  background:
+    radial-gradient(120px 120px at 86% 22%,rgba(255,197,69,.35),transparent 55%),
+    radial-gradient(300px 120px at 25% 92%,rgba(24,112,190,.25),transparent 70%);
+  filter:blur(8px);
+}
+.header{background:rgba(3,12,28,.82);border-bottom:1px solid rgba(75,150,230,.18)}
+.header-inner{height:64px}
+.nav a{font-size:12.5px;padding:7px 10px}
+.hero{padding:54px 0 42px;min-height:430px}
+.hero-market{text-align:left;max-width:1180px}
+.market-pill,.market-section-label{
+  display:inline-block;font-size:9px;letter-spacing:1.6px;font-weight:800;color:#61d7ff;
+  background:rgba(33,183,255,.08);border:1px solid rgba(33,183,255,.18);
+  padding:6px 10px;border-radius:999px;margin-bottom:18px
+}
+.hero-market h1{font-size:clamp(34px,6vw,62px);line-height:1.08;max-width:850px;margin-bottom:18px}
+.hero-market .lead{max-width:720px;font-size:15px;margin-bottom:24px}
+.market-search{max-width:760px;margin:0 0 14px}
+.market-search .search-input{background:rgba(248,251,255,.96);color:#34445c;border-color:rgba(255,255,255,.8);box-shadow:0 12px 40px rgba(0,0,0,.2)}
+.market-search .search-input::placeholder{color:#9aa6b8}
+.market-search .search-icon{color:#65748a}
+.hero-btns{gap:8px}
+.hero-btns .btn{padding:10px 18px;border-radius:9px;font-size:13px}
+.marketplace-categories{padding:30px 0 24px;background:rgba(2,14,30,.25);border-top:1px solid rgba(94,167,231,.12);border-bottom:1px solid rgba(94,167,231,.12)}
+.market-section-label{margin-bottom:8px}
+.market-heading{font-size:24px;margin-bottom:14px}
+.marketplace-categories .filters{flex-wrap:nowrap;overflow-x:auto;padding-bottom:5px;margin:0;scrollbar-width:none}
+.marketplace-categories .filters::-webkit-scrollbar{display:none}
+.marketplace-categories .filter-chip{flex:0 0 auto;padding:8px 13px;border-radius:999px;background:rgba(255,255,255,.055)}
+.marketplace-categories .filter-chip.active{background:var(--grad);color:#fff}
+#brand-story{padding-top:32px;padding-bottom:34px}
+#brand-story .cta-box{background:linear-gradient(135deg,rgba(14,51,83,.82),rgba(5,25,51,.82));border-color:rgba(67,158,235,.24);box-shadow:0 18px 50px rgba(0,0,0,.25)}
+#tools{padding-top:38px}
+#tools .sec-head{text-align:left;margin-bottom:22px}
+#tools .sec-head .eyebrow{display:none}
+#tools .sec-head h2{font-size:24px;margin-bottom:0}
+#tools .sec-head p{display:none}
+#tools .search-hero{display:none}
+#tools .filters{display:none}
+.tools-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.tool-card{
+  padding:0;min-width:0;overflow:hidden;border-radius:17px;
+  background:linear-gradient(180deg,#eef5fb 0%,#dfe9f3 100%);
+  border:1px solid rgba(95,169,230,.35);color:#27384d;
+  box-shadow:0 12px 35px rgba(0,0,0,.22)
+}
+.tool-card:hover{background:linear-gradient(180deg,#f4f8fc,#e4edf6);transform:translateY(-3px)}
+.tool-card-top{
+  margin:0;padding:22px 16px 24px;min-height:150px;align-items:flex-start;
+  background:linear-gradient(135deg,#1f6ed4,#6550e8);position:relative;overflow:hidden
+}
+.tool-card-top::after{
+  content:'';position:absolute;width:150px;height:150px;border-radius:50%;
+  right:-55px;top:-65px;background:rgba(255,255,255,.13)
+}
+.tool-logo{
+  width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.14)!important;
+  border:1px solid rgba(255,255,255,.18);z-index:1
+}
+.tool-card-top>div:last-child{z-index:1}
+.tool-card h3{color:#fff;font-size:16px;margin-top:1px}
+.cat-chip{color:#dbeafe;background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2)}
+.tool-card p{padding:15px 16px 0;margin:0;color:#5f6f82;font-size:12.5px;min-height:58px}
+.tool-card .tag-row{padding:0 16px}
+.tool-card-actions{padding:10px 16px 16px;gap:7px}
+.tool-card-actions .btn{flex:0 0 auto!important}
+.tool-card-actions .btn-primary{background:linear-gradient(135deg,#1596f3,#5a4fe8);box-shadow:0 5px 15px rgba(59,130,246,.25)}
+.tool-card-actions .btn-ghost{background:#fff;color:#34465b;border-color:#d7e0e9}
+#tools .sec-head:after{
+  content:'47 listings';float:right;color:#718096;font-size:10px;font-weight:600;margin-top:-23px
+}
+@media(max-width:640px){
+  .wrap{padding-left:26px;padding-right:26px}
+  .header-inner{gap:8px}
+  .logo-text{display:none}
+  .hero{padding:34px 0 26px;min-height:auto}
+  .hero-market h1{font-size:35px}
+  .hero-market .lead{font-size:13px;line-height:1.65}
+  .market-search{max-width:none}
+  .market-search .search-input{padding:13px 16px 13px 42px;border-radius:11px;font-size:12px}
+  .market-search .search-icon{left:14px}
+  .market-heading{font-size:20px}
+  .tools-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .tool-card{border-radius:14px}
+  .tool-card-top{min-height:116px;padding:14px 11px 16px}
+  .tool-logo{width:34px;height:34px;font-size:12px;border-radius:9px}
+  .tool-card h3{font-size:12px}
+  .cat-chip{font-size:8px;padding:2px 5px}
+  .tool-card p{padding:10px 11px 0;font-size:9.5px;line-height:1.45;min-height:49px}
+  .tool-card-actions{padding:7px 11px 11px;gap:5px}
+  .tool-card-actions .btn{font-size:9px;padding:7px 7px;border-radius:8px}
+  #brand-story .cta-box{padding:22px}
+  #brand-story .cta-box h2{font-size:20px}
+  #brand-story .cta-box p{font-size:11px}
+}
 </style></head>
 <body>
 <header class="header">
@@ -337,7 +445,7 @@ body::after{background-image:linear-gradient(rgba(255,255,255,.016) 1px,transpar
 <a href="#products">Products</a>
 <a href="guides.html">Guides</a>
 <a href="about.html">About</a>
-<a href="contact.html">Contact</a>
+<a href="contact.html">Contact</a><a href="admin.html">Sign in</a><a href="admin.html">▣ Admin</a><a href="shop.html">Cart (0)</a>
 </nav>
 <div class="header-actions">
 <button class="icon-btn hamburger" id="ham" aria-label="Menu">☰</button>
@@ -357,47 +465,38 @@ body::after{background-image:linear-gradient(rgba(255,255,255,.016) 1px,transpar
 
 <main>
 <section class="hero">
-<div class="wrap hero-grid">
-<div>
-<div class="pill"><span class="pill-dot"></span> 47+ Useful Tools &amp; Websites</div>
-<h1>Waris Digital Hub — <span class="grad-text">Everything Digital, All in One Place</span></h1>
-<p class="lead">AI tools, apps, games, websites, digital products and useful resources — organized in one fast, modern hub.</p>
-<div class="hero-btns">
-<a href="#tools" class="btn btn-primary">🚀 Explore 47+ Tools</a>
-<a href="#categories" class="btn btn-ghost">Browse Categories</a>
-</div>
-<div class="hero-stats">
-<div><div class="hero-stat-num grad-text">47+</div><div class="hero-stat-lbl">Useful Tools</div></div>
-<div><div class="hero-stat-num grad-text">7</div><div class="hero-stat-lbl">Main Categories</div></div>
-<div><div class="hero-stat-num grad-text">24/7</div><div class="hero-stat-lbl">Easy Access</div></div>
-</div>
-</div>
-<div class="hero-visual">
-<div class="orbit orbit-1"></div><div class="orbit orbit-2"></div>
-<div class="hero-core">WD</div>
-<div class="hero-float hf1">🤖 AI Tools</div>
-<div class="hero-float hf2">🎮 Games</div>
-<div class="hero-float hf3">🌐 Websites</div>
-</div>
+<div class="wrap hero-market">
+  <span class="market-pill">PROFESSIONAL DIGITAL MARKETPLACE</span>
+  <h1>Discover digital products, apps,<br><span class="grad-text">games &amp; services.</span></h1>
+  <p class="lead">Useful digital resources with clear pricing, transparent links and a fast mobile-first experience.</p>
+  <div class="search-hero market-search">
+    <span class="search-icon">⌕</span>
+    <input type="search" class="search-input" id="heroSearch" placeholder="Search products, tools &amp; websites..." aria-label="Search">
+  </div>
+  <div class="hero-btns">
+    <a href="#tools" class="btn btn-primary">Explore products <span>›</span></a>
+    <a href="contact.html" class="btn btn-ghost">Contact</a>
+  </div>
 </div>
 </section>
 
-<section class="section categories-section" id="categories">
+<section class="section categories-section marketplace-categories" id="categories">
 <div class="wrap">
-<div class="sec-head">
-<span class="eyebrow">Explore</span>
-<h2>Everything You Need in One Place</h2>
-<p>Find useful digital resources by category.</p>
-</div>
-<div class="category-grid">
-<a class="glass category-card" href="#tools"><span class="cat-icon">🤖</span><div><h3>AI Tools</h3><p>ChatGPT, Gemini, Copilot, Perplexity &amp; more</p></div><span class="cat-arrow">→</span></a>
-<a class="glass category-card" href="#products"><span class="cat-icon">📱</span><div><h3>Apps</h3><p>Useful apps and digital utilities</p></div><span class="cat-arrow">→</span></a>
-<a class="glass category-card" href="#products"><span class="cat-icon">🎮</span><div><h3>Games</h3><p>Discover games and official links</p></div><span class="cat-arrow">→</span></a>
-<a class="glass category-card" href="#tools"><span class="cat-icon">🌐</span><div><h3>Websites</h3><p>Helpful websites for everyday work</p></div><span class="cat-arrow">→</span></a>
-<a class="glass category-card" href="#products"><span class="cat-icon">💎</span><div><h3>Digital Products</h3><p>Digital resources, downloads and offers</p></div><span class="cat-arrow">→</span></a>
-<a class="glass category-card" href="#products"><span class="cat-icon">🛠️</span><div><h3>Services</h3><p>Useful digital services and solutions</p></div><span class="cat-arrow">→</span></a>
-<a class="glass category-card" href="#products"><span class="cat-icon">🔥</span><div><h3>Special Offers</h3><p>Featured deals and useful finds</p></div><span class="cat-arrow">→</span></a>
-</div>
+  <div class="market-section-label">CATEGORIES</div>
+  <h2 class="market-heading">Browse marketplace</h2>
+  <div class="filters" id="marketFilters">
+    <button class="filter-chip active" data-jump="All">All</button>
+    <button class="filter-chip" data-jump="Apps">Apps</button>
+    <button class="filter-chip" data-jump="Games">Games</button>
+    <button class="filter-chip" data-jump="Websites">Websites</button>
+    <button class="filter-chip" data-jump="Digital Products">Digital Products</button>
+    <button class="filter-chip" data-jump="Software">Software</button>
+    <button class="filter-chip" data-jump="Online Tools">Online Tools</button>
+    <button class="filter-chip" data-jump="AI Tools">AI Tools</button>
+    <button class="filter-chip" data-jump="Design Tools">Design Tools</button>
+    <button class="filter-chip" data-jump="Services">Services</button>
+    <button class="filter-chip" data-jump="Deals &amp; Offers">Deals &amp; Offers</button>
+  </div>
 </div>
 </section>
 <section class="section" id="brand-story">
