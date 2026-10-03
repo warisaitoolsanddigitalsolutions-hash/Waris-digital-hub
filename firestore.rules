@@ -1,31 +1,74 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
     function isAdmin() {
-      return request.auth != null &&
-        request.auth.token.email == "warisalidigitalsolutions@gmail.com";
+      return signedIn() && request.auth.token.email == "warisalidigitalsolutions@gmail.com";
+    }
+
+    match /users/{uid} {
+      allow read: if isAdmin() || (signedIn() && request.auth.uid == uid);
+      allow create, update: if isAdmin() || (signedIn() && request.auth.uid == uid);
+      allow delete: if isAdmin();
     }
 
     match /products/{productId} {
-      allow read: if true;
+      // Public queries must include status=approved and published=true.
+      allow read: if isAdmin() ||
+        (signedIn() && resource.data.createdByUid == request.auth.uid) ||
+        (resource.data.status == "approved" && resource.data.published == true);
 
-      // Admin can create normal published products from Products Manager.
-      // Any visitor can submit a product, but public submissions must stay
-      // pending/unpublished until the Admin reviews and approves them.
       allow create: if isAdmin() || (
+        signedIn() &&
+        request.resource.data.createdByUid == request.auth.uid &&
+        request.resource.data.status == "pending" &&
+        request.resource.data.published == false &&
+        request.resource.data.featured == false &&
         request.resource.data.name is string &&
         request.resource.data.name.size() > 0 &&
-        request.resource.data.name.size() <= 120 &&
-        request.resource.data.cat is string &&
-        request.resource.data.cat.size() <= 60 &&
-        request.resource.data.desc is string &&
-        request.resource.data.desc.size() <= 2000 &&
-        request.resource.data.published == false &&
-        request.resource.data.status == "pending"
+        request.resource.data.name.size() <= 120
       );
 
-      // Only Admin can approve/edit/delete products.
-      allow update, delete: if isAdmin();
+      allow update: if isAdmin() || (
+        signedIn() &&
+        resource.data.createdByUid == request.auth.uid &&
+        request.resource.data.createdByUid == resource.data.createdByUid &&
+        request.resource.data.featured == resource.data.featured &&
+        request.resource.data.published == false &&
+        request.resource.data.status == "pending" &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          "name","cat","price","sale","image","url","buy","affiliate","download",
+          "tags","short","full","screenshots","seoTitle","seoDescription","seoKeywords",
+          "status","published","updatedAt"
+        ])
+      );
+
+      allow delete: if isAdmin() || (
+        signedIn() && resource.data.createdByUid == request.auth.uid &&
+        resource.data.status != "approved"
+      );
+    }
+
+    match /messages/{messageId} {
+      allow create: if signedIn() &&
+        request.resource.data.userId == request.auth.uid &&
+        request.resource.data.userEmail == request.auth.token.email;
+      allow read: if isAdmin() || (signedIn() && resource.data.userId == request.auth.uid);
+      allow update: if isAdmin() || (
+        signedIn() && resource.data.userId == request.auth.uid &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(["userRead"])
+      );
+      allow delete: if isAdmin() || (signedIn() && resource.data.userId == request.auth.uid);
+    }
+
+    match /categories/{categoryId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /settings/{settingId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
     }
 
     match /orders/{orderId} {
