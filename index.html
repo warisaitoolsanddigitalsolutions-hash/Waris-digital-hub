@@ -622,6 +622,118 @@ body::after{background-image:linear-gradient(rgba(37,99,235,.025) 1px,transparen
 #tools .filter-chip{white-space:nowrap;background:#fff;color:#596980;border:1px solid #dfe7f0}
 @media(max-width:900px){.hero-market{grid-template-columns:1fr;min-height:0}.hero-art{display:none}}
 @media(max-width:560px){.hero-market{padding-top:38px;padding-bottom:34px}.hero-copy h1{font-size:31px;line-height:1.12;letter-spacing:-.8px}.hero-copy .lead{font-size:14px}.hero-trust{font-size:10.5px;gap:9px 12px}.marketplace-categories{padding-top:24px;padding-bottom:18px}#tools .sec-head h2{font-size:27px}}
+</style><style id="final-dark-hybrid">
+/* FINAL DARK/LIGHT HYBRID THEME — overrides the temporary white reference styling */
+:root{
+  --bg:#050816;--bg-2:#080d1c;--bg-3:#0d1428;
+  --surface:rgba(15,23,42,.72);--surface-2:rgba(30,41,70,.82);
+  --border:rgba(148,163,184,.16);--border-2:rgba(148,163,184,.28);
+  --txt:#eef4ff;--txt-2:#aebbd1;--txt-3:#71809a;
+  --blue:#4f8cff;--blue-2:#7db0ff;--purple:#9b6cff;--purple-2:#b99aff;
+  --cyan:#2dd4ef;--green:#34d399;--amber:#fbbf24;
+  --grad:linear-gradient(135deg,#2563eb 0%,#7c3aed 100%);
+  --grad-2:linear-gradient(135deg,#38bdf8 0%,#4f8cff 45%,#a855f7 100%);
+  --shadow:0 18px 50px -22px rgba(0,0,0,.72);
+}
+body{
+  background:#050816!important;color:#eef4ff!important;
+  background-image:
+    radial-gradient(900px 520px at 8% -8%,rgba(37,99,235,.22),transparent 62%),
+    radial-gradient(850px 520px at 92% 0%,rgba(124,58,237,.20),transparent 62%),
+    radial-gradient(760px 600px at 50% 72%,rgba(34,211,238,.07),transparent 68%)!important;
+}
+body::before{
+  background:
+    radial-gradient(700px 420px at 15% 5%,rgba(59,130,246,.18),transparent 68%),
+    radial-gradient(720px 420px at 85% 10%,rgba(139,92,246,.16),transparent 68%),
+    linear-gradient(180deg,#050816 0%,#080d1c 52%,#060a15 100%)!important;
+}
+body::after{
+  background-image:linear-gradient(rgba(125,176,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(125,176,255,.035) 1px,transparent 1px)!important;
+  background-size:56px 56px!important;
+}
+.header{
+  background:rgba(5,8,22,.78)!important;
+  border-bottom:1px solid rgba(148,163,184,.14)!important;
+  box-shadow:0 10px 35px rgba(0,0,0,.24)!important;
+}
+.nav a{color:#aebbd1!important}.nav a:hover,.nav a.active{color:#fff!important;background:rgba(255,255,255,.06)!important}
+.logo-name{color:#fff}.logo-tag{color:#71809a}
+.hero{
+  background:
+    radial-gradient(520px 330px at 78% 38%,rgba(79,140,255,.20),transparent 68%),
+    radial-gradient(500px 340px at 96% 0%,rgba(168,85,247,.20),transparent 70%),
+    linear-gradient(135deg,#070b19 0%,#0a1022 54%,#100d24 100%)!important;
+  border-bottom:1px solid rgba(148,163,184,.13)!important;
+}
+.hero-visual-bg{background-image:linear-gradient(rgba(125,176,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(125,176,255,.035) 1px,transparent 1px)!important}
+.hero-copy h1,.hero-market h1{color:#f5f8ff!important}
+.hero-copy .lead,.hero-market .lead{color:#aebbd1!important}
+.market-pill{color:#b99aff!important;background:rgba(124,58,237,.12)!important;border-color:rgba(155,108,255,.25)!important}
+.hero-btns .btn-ghost{background:rgba(255,255,255,.05)!important;color:#eef4ff!important;border-color:rgba(148,163,184,.22)!important}
+.hero-dashboard{background:rgba(12,18,35,.82)!important;border-color:rgba(148,163,184,.18)!important;box-shadow:0 30px 80px -30px rgba(37,99,235,.45)!important}
+.hero-bar{background:rgba(18,26,46,.85)!important;border-bottom-color:rgba(148,163,184,.12)!important}.hero-bar b{color:#91a0b7!important}
+.hero-art-body strong{color:#eef4ff!important}.hero-art-body small{color:#8190a8!important}.hero-art-body em{background:rgba(255,255,255,.05)!important;border-color:rgba(148,163,184,.18)!important;color:#aebbd1!important}
+.categories-section,#categories{
+  background:linear-gradient(180deg,#080d1c,#0a1020)!important;
+  border-bottom:1px solid rgba(148,163,184,.12)!important;
+}
+.market-heading,.market-section-label{color:#eef4ff!important}
+.marketplace-categories .filter-chip,#tools .filter-chip{
+  background:rgba(255,255,255,.045)!important;color:#aebbd1!important;
+  border-color:rgba(148,163,184,.16)!important;box-shadow:none!important;
+}
+.marketplace-categories .filter-chip:hover,#tools .filter-chip:hover{color:#fff!important;background:rgba(255,255,255,.08)!important}
+#tools{
+  background:linear-gradient(180deg,#0a1020 0%,#070b17 100%)!important;
+  border-top:1px solid rgba(148,163,184,.08)!important;
+}
+#tools .sec-head h2{color:#f1f5ff!important}.sec-head p{color:#aebbd1!important}.eyebrow{color:#9b8cff!important}
+#tools .search-input{
+  background:rgba(15,23,42,.78)!important;color:#eef4ff!important;
+  border-color:rgba(148,163,184,.20)!important;box-shadow:0 14px 36px -24px rgba(0,0,0,.8)!important;
+}
+#tools .search-input::placeholder{color:#6f7f98!important}
+.glass{
+  background:rgba(12,18,34,.72)!important;
+  border-color:rgba(148,163,184,.15)!important;
+  box-shadow:0 14px 40px -26px rgba(0,0,0,.75)!important;
+}
+.glass:hover{background:rgba(20,29,51,.86)!important;border-color:rgba(148,163,184,.25)!important}
+.tool-card{background:rgba(12,18,34,.82)!important;border-color:rgba(148,163,184,.15)!important}
+.premium-tool-card:hover{box-shadow:0 22px 45px -25px rgba(37,99,235,.38)!important;border-color:rgba(99,102,241,.34)!important}
+.premium-preview{
+  background:
+    radial-gradient(circle at 20% 25%,rgba(56,189,248,.18),transparent 28%),
+    radial-gradient(circle at 80% 30%,rgba(168,85,247,.18),transparent 32%),
+    linear-gradient(135deg,#101b34,#17132d 58%,#17233a)!important;
+  border-bottom-color:rgba(148,163,184,.12)!important;
+}
+.preview-browser{background:rgba(6,10,22,.72)!important;color:#7e8da6!important;border-bottom-color:rgba(148,163,184,.12)!important}
+.preview-body strong{color:#f1f5ff!important}.preview-body small{color:#8291aa!important}
+.preview-logo{background:rgba(255,255,255,.07)!important;box-shadow:0 8px 24px rgba(0,0,0,.28)!important}
+.tool-name-wrap h3{color:#f1f5ff!important}.tool-card p{color:#aebbd1!important}
+.tag{background:rgba(255,255,255,.045)!important;color:#8f9db3!important;border-color:rgba(148,163,184,.14)!important}
+.cat-chip{background:rgba(139,92,246,.13)!important;color:#b99aff!important;border-color:rgba(155,108,255,.22)!important}
+.tool-card-actions .btn-ghost{background:rgba(255,255,255,.045)!important;color:#dbe5f5!important;border-color:rgba(148,163,184,.18)!important}
+#brand-story,#guides,#about{
+  background:linear-gradient(180deg,#080d1c,#0b1122)!important;
+  border-color:rgba(148,163,184,.10)!important;
+}
+#brand-story .cta-box{background:linear-gradient(120deg,rgba(109,53,201,.72),rgba(37,99,235,.72) 65%,rgba(30,141,176,.64))!important}
+.value-card h3,.guide-card h3,#about h2,#guides h2{color:#eef4ff!important}
+.value-card p,.guide-card p,#about p{color:#aebbd1!important}
+#products,.hub-cta{background:#070b17!important}
+#products .sec-head h2,.hub-cta h2{color:#eef4ff!important}
+.footer{background:linear-gradient(135deg,#030611,#0b1020)!important;border-top:1px solid rgba(148,163,184,.12)!important}
+.footer-desc,.footer-links,.footer-bottom{color:#8998b0!important}
+.footer-links a:hover{color:#fff!important}
+@media(max-width:640px){
+  .hero{background:linear-gradient(160deg,#070b19,#0b1022 60%,#110d24)!important}
+  .hero-art{display:none}
+  .tools-grid{grid-template-columns:1fr!important}
+  .premium-preview{height:145px!important}
+}
 </style></head>
 <body>
 <header class="header">
@@ -874,7 +986,7 @@ return mc&&mq;
 });
 if(!l.length){g.innerHTML='<div class="empty-state" style="grid-column:1/-1"><h3>No tools found</h3><p>Try a different search or category.</p></div>';return;}
 g.innerHTML=l.map(function(t){
-var host=t.u.replace(/^https?:\\/\\//,"").replace(/\\/$/,"");
+var host=t.u.replace(/^https?:\/\//,"").replace(/\/$/,"");
 var initials=t.n.replace(/[^A-Za-z0-9]/g,"").substring(0,2).toUpperCase();
 var logo=logoUrl(t);
 var logoImg=logo?'<img src="'+logo+'" alt="'+escHtml(t.n)+' logo" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'grid\';">':'';
