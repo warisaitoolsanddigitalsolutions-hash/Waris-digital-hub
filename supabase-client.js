@@ -39,7 +39,7 @@ export async function requireAdmin() {
 }
 
 export async function signInWithGoogle() {
-  const redirectTo = new URL("login.html", "https://warisaitoolsanddigitalsolutions-hash.github.io/Waris-digital-hub/").href;
+  const redirectTo = new URL("/login.html", "https://httpswarisalidigitalhub.com/").href;
   const { error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: { redirectTo, queryParams: { prompt: "select_account" } }
