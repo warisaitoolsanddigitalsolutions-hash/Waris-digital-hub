@@ -715,7 +715,7 @@ document.getElementById("adminClose").onclick=function(){document.getElementById
 <!-- Firebase public products -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 import { firebaseConfig } from "./firebase-config.js";
 const firebaseApp=initializeApp(firebaseConfig);
 const db=getFirestore(firebaseApp);
@@ -736,7 +736,7 @@ function card(p){
 }
 async function loadPublicProducts(){
  try{
-  const snap=await getDocs(query(collection(db,"products"),orderBy("createdAt","desc")));
+  const snap=await getDocs(query(collection(db,"products"),where("status","==","approved"),where("published","==",true)));
   const items=snap.docs.map(d=>({id:d.id,...d.data()})).filter(p=>p.published!==false);
   if(!items.length){box.innerHTML='<div class="glass tool-card"><p class="muted">No products published yet. Add products from Products Manager.</p></div>';return}
   box.innerHTML=items.map(card).join("");
