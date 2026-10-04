@@ -67,6 +67,7 @@ const t=tools.find(x=>x[0].toLowerCase()===q.toLowerCase());
 if(!t){document.title="Tool Not Found — Waris Digital Hub";document.getElementById("app").innerHTML='<section class="card"><h1>Tool not found</h1><p class="muted">Please return to the catalog and choose a tool.</p><a class="btn primary" href="index.html#tools">Back to Tools</a></section>';}
 else{
 document.title=t[0]+" — Waris Digital Hub";
+const canonical=document.querySelector('link[rel="canonical"]'); if(canonical) canonical.href=location.href.split("#")[0];
 const related=tools.filter(x=>x[1]===t[1]&&x[0]!==t[0]).slice(0,4);
 document.getElementById("app").innerHTML=`
 <section class="card hero"><div><span class="eyebrow">${esc(t[1])}</span><h1 class="title">${esc(t[0])}</h1><p class="muted">${esc(t[2])}</p><div class="chips"><span class="chip">${esc(t[1])}</span><span class="chip">Official provider</span><span class="chip">Waris Digital Hub</span></div><a class="btn primary" href="${esc(t[3])}" target="_blank" rel="noopener">Visit Official Website ↗</a><a class="btn ghost" href="index.html#tools">Back to Catalog</a></div><div class="logo-big" style="padding:0;overflow:hidden"><img src="https://image.thum.io/get/width/900/crop/620/noanimate/${encodeURIComponent(t[3])}" alt="${esc(t[0])} website preview screenshot" loading="lazy" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"></div></section>
@@ -75,7 +76,27 @@ document.getElementById("app").innerHTML=`
 <article class="card box"><h2>Practical use cases</h2><ul><li>Explore the official service and its current features.</li><li>Try an available free tier or demo where offered.</li><li>Compare the tool with alternatives before choosing a paid plan.</li><li>Use account and privacy settings carefully.</li></ul></article>
 <article class="card box"><h2>Pricing &amp; limitations</h2><p>Pricing and availability can change. Verify current details on the official provider website before purchasing or relying on a feature.</p><p>Free access, regional availability, usage limits and paid features may vary.</p></article>
 </section>
-<section class="card"><h2>Beginner guidance</h2><p>Start with a simple task, review the provider's documentation and privacy information, and avoid entering passwords, payment-card details or other sensitive information into tools unless you understand why it is required.</p><div class="notice">Waris Digital Hub does not claim to be the owner or official representative of this service. Always verify important details on the official provider website.</div></section>
+<section class="card"><h2>Beginner guidance</h2><p>Start with a simple task, review the provider's documentation and privacy information, and avoid entering passwords, payment-card details or other sensitive information into tools unless you understand why it is required.</p><section class="card">
+<h2>About ${esc(t[0])}</h2>
+<p>${esc(t[0])} is listed on Waris Digital Hub as a ${esc(t[1].toLowerCase())} resource. This page is an independent guide designed to help visitors understand what the service is used for before visiting the provider.</p>
+<h2>What you can use it for</h2>
+<p>Depending on the current features offered by the provider, this type of tool can support everyday digital work such as creating content, organizing information, communicating, learning, researching, designing or managing projects. Check the official website for the latest feature availability.</p>
+<h2>How to get started</h2>
+<ol><li>Open the official provider website using the button above.</li><li>Review the current features, account requirements and pricing.</li><li>Choose only the features you actually need.</li><li>Review important output or information before relying on it.</li></ol>
+<h2>What to check before using it</h2>
+<ul><li>Current pricing and free-plan limits</li><li>Supported devices, countries and account requirements</li><li>Privacy policy and the information you plan to share</li><li>Export, cancellation or account-management options</li></ul>
+<h2>Limitations and practical advice</h2>
+<p>Online services change over time. Features, pricing, availability and interface details may differ by region or account. Waris Digital Hub does not guarantee a provider's performance or availability, so important decisions should be based on current official information.</p>
+<h2>Frequently asked questions</h2>
+<h3>Is ${esc(t[0])} an official Waris Digital Hub service?</h3><p>No. It is an independent third-party listing. Use the official provider link for the service itself.</p>
+<h3>Is the information on this page guaranteed to stay current?</h3><p>No. Providers can change features and pricing. We recommend checking the official source before signing up or purchasing.</p>
+<h3>Where should I check current pricing?</h3><p>Check the provider's official website because prices, plans and regional availability can change.</p>
+</section>
+`;
+document.getElementById("app").insertAdjacentHTML("beforeend",`
+${insert}
+<section class="card"><h2>Related ${esc(t[1])} tools</h2><div class="chips">${related.map(x=>`<a class="chip" href="tool.html?tool=${encodeURIComponent(x[0])}">${esc(x[0])}</a>`).join("")}</div><p class="muted">Compare options based on your actual task, privacy needs, limits and budget.</p></section>
+`);<div class="notice">Waris Digital Hub does not claim to be the owner or official representative of this service. Always verify important details on the official provider website.</div></section>
 <section class="card"><h2>Related tools</h2><div class="chips">${related.map(x=>'<a class="chip" href="tool.html?tool='+encodeURIComponent(x[0])+'">'+esc(x[0])+'</a>').join("")||'<span class="muted">No related tools listed.</span>'}</div></section>`;
 }
 </script></body></html>
