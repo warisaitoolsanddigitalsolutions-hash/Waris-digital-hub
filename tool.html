@@ -61,6 +61,22 @@ const tools=[
 ["Bing","Websites","Microsoft search engine and web services.","https://www.bing.com/"],
 ["Wikipedia","Websites","Free collaborative encyclopedia.","https://www.wikipedia.org/"]
 ];
+const categoryGuidance={
+"AI Tools":["Research, drafting, brainstorming and learning support","Check output accuracy, privacy settings, usage limits and current plan features.","What task will I use it for? What information should I avoid sharing?"],
+"Design":["Presentations, graphics, prototypes and visual content","Check export options, templates, collaboration features and commercial-use terms.","Do I need collaboration? Which file formats must I export?"],
+"Video":["Editing, captions, short-form content and media production","Check export quality, watermark rules, asset licensing and device requirements.","What resolution and export format do I need?"],
+"Writing":["Editing, clarity, tone and document drafting","Review every suggested change and check how sensitive text is handled.","Will the tool change my intended meaning or tone?"],
+"Productivity":["Planning, notes, projects, files and recurring workflows","Prefer a workflow you can maintain; check integrations and export options.","Will this reduce work or simply add another app?"],
+"Communication":["Messaging, meetings, communities and team coordination","Review privacy, moderation, notification and account settings.","Who needs access and what information will be shared?"],
+"Developer":["Code hosting, coding assistance, deployment and collaboration","Never publish secrets; review generated code and check licensing/security requirements.","How will I store code safely and review changes?"],
+"Social":["Publishing, discovery, communities and creator activity","Review privacy controls, audience settings and platform rules.","Who can see this content and what can I control?"],
+"Entertainment":["Video, music, games and leisure content","Check regional availability, subscription terms and age/content settings.","Is the service available in my region and on my device?"],
+"Shopping":["Product discovery, comparison and online purchasing","Compare seller details, total cost, delivery, returns and current terms before buying.","Who is the actual seller and what is the return policy?"],
+"Travel":["Accommodation, reservations and travel planning","Verify dates, cancellation terms, taxes, location details and provider policies.","What is included in the displayed price?"],
+"Websites":["Search, reference and general online services","Check the source, date and privacy terms before relying on information.","Is this the original or authoritative source for what I need?"],
+"Software":["Productivity software and online services","Check compatibility, account requirements, pricing and export options.","Will it work on my device and with my existing files?"],
+"Entertainment":["Media and leisure services","Check availability, subscription terms and account settings.","Does it fit my device and current subscription needs?"]
+};
 const q=new URLSearchParams(location.search).get("tool")||"";
 const esc=s=>String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
 const t=tools.find(x=>x[0].toLowerCase()===q.toLowerCase());
@@ -72,8 +88,9 @@ const related=tools.filter(x=>x[1]===t[1]&&x[0]!==t[0]).slice(0,4);
 document.getElementById("app").innerHTML=`
 <section class="card hero"><div><span class="eyebrow">${esc(t[1])}</span><h1 class="title">${esc(t[0])}</h1><p class="muted">${esc(t[2])}</p><div class="chips"><span class="chip">${esc(t[1])}</span><span class="chip">Official provider</span><span class="chip">Waris Digital Hub</span></div><a class="btn primary" href="${esc(t[3])}" target="_blank" rel="noopener">Visit Official Website ↗</a><a class="btn ghost" href="index.html#tools">Back to Catalog</a></div><div class="logo-big" style="padding:0;overflow:hidden"><img src="https://image.thum.io/get/width/900/crop/620/noanimate/${encodeURIComponent(t[3])}" alt="${esc(t[0])} website preview screenshot" loading="lazy" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"></div></section>
 <section class="grid"><article class="card box"><h2>Overview</h2><p>${esc(t[2])}</p><p class="muted">This listing is for discovery and educational purposes. Features, availability and pricing can vary by country, account type and provider updates.</p></article>
-<article class="card box"><h2>Who can use it?</h2><p>Students, creators, professionals, businesses and everyday users may use this type of service depending on its current terms and eligibility requirements.</p></article>
-<article class="card box"><h2>Practical use cases</h2><ul><li>Explore the official service and its current features.</li><li>Try an available free tier or demo where offered.</li><li>Compare the tool with alternatives before choosing a paid plan.</li><li>Use account and privacy settings carefully.</li></ul></article>
+<article class="card box"><h2>Who is it useful for?</h2><p>${esc((categoryGuidance[t[1]]||["Everyday users and professionals whose needs match the service.","Check the provider’s current terms, availability and privacy information.","What problem am I trying to solve?"])[0])}</p></article>
+<article class="card box"><h2>Practical use &amp; checks</h2><p>${esc((categoryGuidance[t[1]]||["Everyday users and professionals whose needs match the service.","Check the provider’s current terms, availability and privacy information.","What problem am I trying to solve?"])[1])}</p><ul><li>Start with a small, low-risk task.</li><li>Review the official documentation and current features.</li><li>Compare alternatives when cost or privacy matters.</li><li>Keep important files and information protected.</li></ul></article>
+<article class="card box"><h2>Questions before choosing</h2><p>${esc((categoryGuidance[t[1]]||["Everyday users and professionals whose needs match the service.","Check the provider’s current terms, availability and privacy information.","What problem am I trying to solve?"])[2])}</p></article>
 <article class="card box"><h2>Pricing &amp; limitations</h2><p>Pricing and availability can change. Verify current details on the official provider website before purchasing or relying on a feature.</p><p>Free access, regional availability, usage limits and paid features may vary.</p></article>
 </section>
 <section class="card"><h2>Beginner guidance</h2><p>Start with a simple task, review the provider's documentation and privacy information, and avoid entering passwords, payment-card details or other sensitive information into tools unless you understand why it is required.</p><section class="card">
