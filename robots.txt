@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Allow: /ads.txt
 Disallow: /admin.html
 Disallow: /products.html
 Disallow: /checkout.html
