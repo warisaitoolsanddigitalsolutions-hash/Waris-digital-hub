@@ -1076,11 +1076,78 @@ document.getElementById("adminOpen").onclick=function(){window.location.href="ad
 document.getElementById("adminClose").onclick=function(){document.getElementById("adminPanel").classList.remove("open")};
 </script>
 <script type="module">
-import{supabase,esc,signOut}from"./supabase-client.js";
-const box=document.getElementById("publicProducts");
-function card(p){const price=Number(p.discount_price_pkr||p.price_pkr||0),old=Number(p.discount_price_pkr?p.price_pkr:0);return '<article class="glass tool-card product-card"><div class="product-card-preview"><img src="'+esc(p.main_image_url||"assets/tool-placeholder.svg")+'" alt="'+esc(p.name)+' product preview" loading="lazy" onerror="this.onerror=null;this.src=\'assets/tool-placeholder.svg\'"></div><div class="tool-card-top"><div class="tool-logo" style="overflow:hidden"><img src="'+esc(p.logo_url||p.main_image_url||"assets/tool-placeholder.svg")+'" alt="'+esc(p.name)+' logo" loading="lazy" style="width:100%;height:100%;object-fit:cover" onerror="this.onerror=null;this.src=\'assets/tool-placeholder.svg\'"></div><div><h3>'+esc(p.name)+'</h3><span class="cat-chip">'+esc(p.category_name||"Product")+'</span></div></div><p>'+esc(p.short_description||"Waris Digital Hub product listing with practical details.")+'</p><div style="display:flex;gap:10px;align-items:center;margin:8px 0 16px">'+(price?'<strong style="font-size:18px">Rs '+price.toLocaleString()+'</strong>':"")+(old?'<span style="color:var(--txt-3);text-decoration:line-through">Rs '+old.toLocaleString()+'</span>':"")+'</div><div class="tool-card-actions"><a class="btn btn-primary btn-sm" href="product.html?id='+p.id+'">View Full Details</a>'+(p.visit_url?'<a class="btn btn-ghost btn-sm" target="_blank" rel="noopener" href="'+esc(p.visit_url)+'">Visit</a>':"")+'</div></article>'}
-async function load(){try{const{data,error}=await supabase.from("products").select("*").eq("status","approved").eq("published",true).eq("category_name","Featured Products").order("featured",{ascending:false}).order("created_at",{ascending:false}).limit(12);if(error)throw error;const items=data||[];if(!items.length){box.innerHTML='<div class="glass tool-card"><p class="muted">No marketplace products published yet.</p></div>';return}const p=items[0],img=document.getElementById("featuredProductImage");img.loading="lazy";img.src=p.main_image_url||p.logo_url||"assets/tool-placeholder.svg";img.alt=p.name+" product preview";img.onerror=function(){this.src="assets/tool-placeholder.svg"};document.getElementById("featuredProductName").textContent=p.name;document.getElementById("featuredProductDescription").textContent=p.full_description||p.short_description||"Detailed product information is available on the product page.";const price=Number(p.discount_price_pkr||p.price_pkr||0),old=Number(p.discount_price_pkr?p.price_pkr:0);document.getElementById("featuredProductMeta").innerHTML=(p.category_name?'<span>'+esc(p.category_name)+'</span>':"")+(price?'<span>Rs '+price.toLocaleString()+'</span>':"")+(old?'<span>Was Rs '+old.toLocaleString()+'</span>':"");document.getElementById("featuredProductDetails").href="product.html?id="+p.id;const visit=document.getElementById("featuredProductVisit");if(p.visit_url){visit.href=p.visit_url}else{visit.style.display="none"}box.innerHTML=items.map(card).join("")}catch(e){box.innerHTML='<div class="glass tool-card"><p class="muted">Marketplace is being connected. Directory tools remain available.</p></div>';document.getElementById("featuredProductHero").style.display="none"}}\nload();
-const authLinks=document.querySelectorAll('a[href="login.html"],a[href="dashboard.html"],a[href="admin.html"]');const{data:{session}}=await supabase.auth.getSession();if(session){authLinks.forEach(a=>{if(a.href.includes("login.html")){a.textContent="Dashboard";a.href="dashboard.html"}})}supabase.auth.onAuthStateChange((_event,s)=>{if(s)authLinks.forEach(a=>{if(a.href.includes("login.html")){a.textContent="Dashboard";a.href="dashboard.html"}})});
+import { supabase, esc } from "./supabase-client.js";
+
+const box = document.getElementById("publicProducts");
+const hero = document.getElementById("featuredProductHero");
+
+function productCard(p){
+  const price = Number(p.discount_price_pkr || p.price_pkr || 0);
+  const old = Number(p.discount_price_pkr ? p.price_pkr : 0);
+  const image = esc(p.main_image_url || p.logo_url || "assets/tool-placeholder.svg");
+  return '<article class="glass tool-card product-card">' +
+    '<div class="product-card-preview"><img src="' + image + '" alt="' + esc(p.name) + ' product preview" loading="lazy" onerror="this.onerror=null;this.src=\'assets/tool-placeholder.svg\'"></div>' +
+    '<div class="tool-card-top"><div class="tool-logo" style="overflow:hidden"><img src="' + image + '" alt="' + esc(p.name) + ' logo" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div><div><h3>' + esc(p.name) + '</h3><span class="cat-chip">Featured Product</span></div></div>' +
+    '<p>' + esc(p.short_description || "Useful product listing with practical details.") + '</p>' +
+    '<div style="display:flex;gap:10px;align-items:center;margin:8px 0 16px">' +
+    (price ? '<strong style="font-size:18px">Rs ' + price.toLocaleString() + '</strong>' : '') +
+    (old ? '<span style="color:var(--txt-3);text-decoration:line-through">Rs ' + old.toLocaleString() + '</span>' : '') +
+    '</div><div class="tool-card-actions"><a class="btn btn-primary btn-sm" href="product.html?id=' + encodeURIComponent(p.id) + '">View Full Details</a>' +
+    (p.visit_url ? '<a class="btn btn-ghost btn-sm" target="_blank" rel="noopener" href="' + esc(p.visit_url) + '">Visit</a>' : '') +
+    '</div></article>';
+}
+
+async function loadMarketplace(){
+  try{
+    const result = await supabase
+      .from("products")
+      .select("*")
+      .eq("status","approved")
+      .eq("published",true)
+      .eq("category_name","Featured Products")
+      .order("featured",{ascending:false})
+      .order("created_at",{ascending:false})
+      .limit(12);
+
+    if(result.error) throw result.error;
+    const items = result.data || [];
+
+    if(!items.length){
+      box.innerHTML = '<div class="glass tool-card"><p class="muted">No featured products are published yet.</p></div>';
+      hero.style.display = "none";
+      return;
+    }
+
+    const p = items[0];
+    const img = document.getElementById("featuredProductImage");
+    img.src = p.main_image_url || p.logo_url || "assets/tool-placeholder.svg";
+    img.alt = p.name + " product preview";
+    img.onerror = function(){ this.onerror=null; this.src="assets/tool-placeholder.svg"; };
+
+    document.getElementById("featuredProductName").textContent = p.name;
+    document.getElementById("featuredProductDescription").textContent =
+      p.full_description || p.short_description || "Detailed product information is available on the product page.";
+
+    const price = Number(p.discount_price_pkr || p.price_pkr || 0);
+    document.getElementById("featuredProductMeta").innerHTML =
+      (price ? "<span>Rs " + price.toLocaleString() + "</span>" : "") +
+      "<span>Featured Product</span>";
+
+    document.getElementById("featuredProductDetails").href = "product.html?id=" + encodeURIComponent(p.id);
+
+    const visit = document.getElementById("featuredProductVisit");
+    if(p.visit_url){ visit.href = p.visit_url; }
+    else { visit.style.display = "none"; }
+
+    box.innerHTML = items.map(productCard).join("");
+  }catch(error){
+    console.error("Marketplace load failed:", error);
+    hero.style.display = "none";
+    box.innerHTML = '<div class="glass tool-card"><p class="muted">Products could not be loaded right now. Please open the Shop to view published products.</p><a class="btn btn-primary btn-sm" href="shop.html">Open Shop</a></div>';
+  }
+}
+
+loadMarketplace();
 </script>
 
 <style id="featured-products-ui">.featured-product-hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(320px,.75fr);gap:28px;padding:22px;margin:0 0 28px;overflow:hidden;background:linear-gradient(135deg,rgba(12,25,52,.94),rgba(30,18,58,.9));border:1px solid rgba(96,165,250,.22);box-shadow:0 24px 70px rgba(0,0,0,.28)}.product-hero-media{min-height:380px;border-radius:20px;overflow:hidden;background:#030713;border:1px solid rgba(255,255,255,.1)}.product-hero-media img{width:100%;height:100%;min-height:380px;object-fit:cover}.product-hero-info{display:flex;flex-direction:column;justify-content:center;padding:10px}.product-hero-info h3{font-size:clamp(28px,4vw,44px);line-height:1.1;margin:4px 0 14px}.product-hero-info p{font-size:16px;line-height:1.75}.product-hero-meta{display:flex;gap:9px;flex-wrap:wrap;margin:18px 0}.product-hero-meta span{padding:7px 11px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);font-size:13px;color:#c9d5e9}.product-card-preview{width:100%;height:190px;border-radius:14px;overflow:hidden;background:#030713;margin:-2px 0 18px;border:1px solid rgba(255,255,255,.08)}.product-card-preview img{width:100%;height:100%;object-fit:cover}@media(max-width:800px){.featured-product-hero{grid-template-columns:1fr}.product-hero-media,.product-hero-media img{min-height:250px;height:250px}.product-hero-info{padding:4px}}</style>
