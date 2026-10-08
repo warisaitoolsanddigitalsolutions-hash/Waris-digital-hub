@@ -309,6 +309,8 @@ tr:hover td{background:rgba(255,255,255,.02)}
 .preview-body small{font-size:10px;opacity:.82}
 .preview-body i{font-style:normal;font-size:26px;font-weight:900;opacity:.18;position:absolute;right:16px;bottom:6px}
 .preview-label{position:absolute;left:12px;bottom:10px;padding:4px 8px;border-radius:7px;background:rgba(0,0,0,.5);color:#fff;font-size:9px;font-weight:700;backdrop-filter:blur(6px)}
+
+.editorial-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px}.editorial-card{padding:26px}.editorial-card h3{font-size:20px;line-height:1.3;margin:10px 0 12px}.editorial-card p{color:var(--txt-2);font-size:15px;line-height:1.8;margin-bottom:20px}.editorial-card .eyebrow{font-size:11px}@media(max-width:900px){.editorial-grid{grid-template-columns:1fr 1fr}}@media(max-width:620px){.editorial-grid{grid-template-columns:1fr}}
 </style></style>
 <style>
 /* Waris Digital Hub — classic hub styling */
@@ -820,6 +822,55 @@ body::after{
 </section>
 
 <section class="section" id="products"><div class="wrap"><div class="sec-head"><span class="eyebrow">Marketplace</span><h2>Featured Products & Offers</h2><p>Published products, apps, games, services and digital resources. Anyone can submit a product for review; only approved listings are published.</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a href="shop.html" class="btn btn-primary btn-sm">Open Shop</a><a href="submit-product.html" class="btn btn-ghost btn-sm">➕ Submit a Product</a></div></div><div id="featuredProductHero" class="featured-product-hero glass"><div class="product-hero-media"><img id="featuredProductImage" src="assets/tool-placeholder.svg" alt="Featured product preview"></div><div class="product-hero-info"><span class="eyebrow">Featured Product</span><h3 id="featuredProductName">Loading product…</h3><p id="featuredProductDescription" class="muted">Please wait while the marketplace loads.</p><div id="featuredProductMeta" class="product-hero-meta"></div><div class="hero-btns"><a id="featuredProductDetails" class="btn btn-primary" href="shop.html">View Full Details</a><a id="featuredProductVisit" class="btn btn-ghost" href="shop.html" target="_blank" rel="noopener">Visit / Buy</a></div></div></div><div class="tools-grid" id="publicProducts"><div class="glass tool-card"><p class="muted">Loading products…</p></div></div></div></section>
+
+<section class="section" id="editorial-resources">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">ORIGINAL RESOURCES</span>
+      <h2>Practical Digital Guides</h2>
+      <p>Waris Digital Hub is more than a list of links. These resources explain how to evaluate digital services, choose tools for real tasks, and use online platforms more thoughtfully.</p>
+    </div>
+    <div class="editorial-grid">
+      <article class="glass editorial-card">
+        <span class="eyebrow">AI &amp; RESEARCH</span>
+        <h3>How to choose an AI tool for a real task</h3>
+        <p>Start with the job rather than the brand name. Define the output you need, check whether the service supports that workflow, compare its useful features, and verify important information independently. A good tool should reduce unnecessary work rather than add another complicated step.</p>
+        <a class="btn btn-ghost btn-sm" href="guide.html?guide=0">Read the guide →</a>
+      </article>
+      <article class="glass editorial-card">
+        <span class="eyebrow">PRODUCTIVITY</span>
+        <h3>Build a simple digital workflow</h3>
+        <p>A practical workflow usually needs only a few clear stages: capture information, organize it, complete the work, and review the result. Keeping the number of services under control makes it easier to maintain files, tasks, notes and communication across devices.</p>
+        <a class="btn btn-ghost btn-sm" href="guide.html?guide=6">Read the guide →</a>
+      </article>
+      <article class="glass editorial-card">
+        <span class="eyebrow">ONLINE SAFETY</span>
+        <h3>Evaluate an online service before using it</h3>
+        <p>Before relying on a new website or app, look for clear ownership information, understandable terms, a privacy policy, contact information and an official source for important claims. Avoid sharing unnecessary account or financial information with unfamiliar services.</p>
+        <a class="btn btn-ghost btn-sm" href="guide.html?guide=14">Read the guide →</a>
+      </article>
+      <article class="glass editorial-card">
+        <span class="eyebrow">COMPARISONS</span>
+        <h3>Free versus paid digital tools</h3>
+        <p>A free plan can be enough for occasional work, while a paid plan may add storage, collaboration, export options or higher usage limits. Compare the features you actually need instead of choosing a subscription simply because it has more features.</p>
+        <a class="btn btn-ghost btn-sm" href="guide.html?guide=15">Read the guide →</a>
+      </article>
+      <article class="glass editorial-card">
+        <span class="eyebrow">CREATORS</span>
+        <h3>Plan content before choosing an app</h3>
+        <p>For a video, post, presentation or article, first decide the audience, purpose, format and key message. Then choose software that fits those requirements. This approach makes it easier to compare design, editing, writing and publishing tools without getting distracted by unnecessary features.</p>
+        <a class="btn btn-ghost btn-sm" href="guide.html?guide=10">Read the guide →</a>
+      </article>
+      <article class="glass editorial-card">
+        <span class="eyebrow">OUR METHOD</span>
+        <h3>How Waris Digital Hub evaluates listings</h3>
+        <p>We organize resources by purpose and explain practical use cases instead of relying only on names or promotional claims. Provider features and prices can change, so visitors should use the official provider page for the latest terms. Commercial relationships should be clearly identified rather than presented as independent endorsements.</p>
+        <a class="btn btn-ghost btn-sm" href="about.html">About our editorial approach →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="tools">
 <div class="wrap">
 <div class="sec-head">
