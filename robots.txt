@@ -5,4 +5,4 @@ Disallow: /admin.html
 Disallow: /products.html
 Disallow: /checkout.html
 Disallow: /order-confirmation.html
-Sitemap: https://httpswarisalidigitalhub.com/sitemap.xml
+Sitemap: https://warisaitoolsanddigitalsolutions-hash.github.io/Waris-digital-hub/sitemap.xml
