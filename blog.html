@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blog & Guides — Waris Digital Hub</title>
+<meta name="description" content="Practical guides, tutorials and original articles about useful digital tools, AI apps and online productivity.">
+<link rel="canonical" href="https://httpswarisalidigitalhub.com/blog.html">
+<meta name="robots" content="index,follow">
+<link rel="stylesheet" href="portal.css">
+</head>
+<body><main class="wrap">
+<div class="top"><a class="brand" href="index.html"><span class="logo">WD</span>Waris Digital Hub</a><div class="actions"><a class="btn ghost" href="index.html">Home</a><a class="btn ghost" href="guides.html">Guides</a><a class="btn primary" href="admin.html">Admin</a></div></div>
+<section class="hero"><span class="pill">ARTICLES & TUTORIALS</span><h1>Waris Digital Hub Blog</h1><p class="muted">Useful, original articles to help you understand digital tools, learn practical workflows and make informed choices.</p></section>
+<div id="notice" class="notice hidden"></div><section id="posts" class="grid" aria-live="polite"><article class="card">Loading articles…</article></section>
+<footer class="muted" style="padding:32px 0;text-align:center">Waris Digital Hub · <a href="about.html">About</a> · <a href="contact.html">Contact</a> · <a href="privacy.html">Privacy</a></footer>
+</main><script type="module">
+import { supabase, esc } from "./supabase-client.js";
+const root=document.getElementById("posts"),notice=document.getElementById("notice");
+function dateText(v){if(!v)return "";const d=new Date(v);return Number.isNaN(d.getTime())?"":d.toLocaleDateString(undefined,{year:"numeric",month:"short",day:"numeric"})}
+function card(p){const image=p.cover_image_url?'<img src="'+esc(p.cover_image_url)+'" alt="'+esc(p.title)+'" loading="lazy" style="width:100%;max-height:220px;object-fit:cover;border-radius:12px">':"";return '<article class="card">'+image+'<p class="muted">'+esc(p.category||"Guides")+' · '+esc(dateText(p.published_at))+'</p><h2><a href="post.html?slug='+encodeURIComponent(p.slug)+'">'+esc(p.title)+'</a></h2><p>'+esc(p.excerpt||"Read the complete article.")+'</p><a class="btn primary" href="post.html?slug='+encodeURIComponent(p.slug)+'">Read Article →</a></article>'}
+try{const {data,error}=await supabase.from("blog_posts").select("title,slug,excerpt,category,tags,cover_image_url,published_at").eq("status","published").order("published_at",{ascending:false}).limit(100);if(error)throw error;root.innerHTML=(data||[]).map(card).join("")||'<article class="card"><h2>Articles are coming soon</h2><p class="muted">New articles will appear here after the editor publishes them.</p></article>'}catch(e){root.innerHTML='<article class="card"><h2>Articles could not load</h2><p class="muted">Please try again in a little while.</p></article>';notice.textContent="Blog loading error: "+(e.message||"Please try again.");notice.classList.remove("hidden")}
+</script></body></html>
