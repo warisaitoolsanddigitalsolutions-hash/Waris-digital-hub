@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Article — Waris Digital Hub</title>
+<meta name="description" content="Read practical digital tools and technology guides from Waris Digital Hub.">
+<link rel="canonical" href="https://httpswarisalidigitalhub.com/post.html">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Waris Digital Hub">
+<link rel="stylesheet" href="portal.css">
+<style>.article-content{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.85;font-size:1.04rem}.article-cover{width:100%;max-height:420px;object-fit:cover;border-radius:16px}.article-wrap{max-width:850px;margin:auto}.article-wrap h1{line-height:1.2}.article-meta{display:flex;gap:12px;flex-wrap:wrap}</style>
+</head>
+<body><main class="wrap">
+<div class="top"><a class="brand" href="index.html"><span class="logo">WD</span>Waris Digital Hub</a><div class="actions"><a class="btn ghost" href="blog.html">All Articles</a><a class="btn ghost" href="guides.html">Guides</a></div></div>
+<article class="card article-wrap" id="article"><p class="muted">Loading article…</p></article>
+<footer class="muted" style="padding:32px 0;text-align:center"><a href="blog.html">More articles</a> · <a href="about.html">About</a> · <a href="contact.html">Contact</a></footer>
+</main><script type="module">
+import { supabase, esc } from "./supabase-client.js";
+const root=document.getElementById("article"),slug=new URLSearchParams(location.search).get("slug");
+const dateText=v=>{if(!v)return "";const d=new Date(v);return Number.isNaN(d.getTime())?"":d.toLocaleDateString(undefined,{year:"numeric",month:"long",day:"numeric"})};
+try{if(!slug)throw new Error("Article not found.");const {data:p,error}=await supabase.from("blog_posts").select("title,slug,excerpt,content,category,tags,cover_image_url,seo_title,seo_description,published_at,created_at,updated_at").eq("slug",slug).eq("status","published").maybeSingle();if(error)throw error;if(!p)throw new Error("This article is unavailable or has not been published.");const title=p.seo_title||p.title,description=p.seo_description||p.excerpt||"Read this article from Waris Digital Hub.";document.title=title+" | Waris Digital Hub";document.querySelector('meta[name="description"]').content=description;document.querySelector('link[rel="canonical"]').href=location.href.split("#")[0];document.querySelector('meta[property="og:title"]')?.remove();const og=document.createElement("meta");og.setAttribute("property","og:title");og.content=title;document.head.appendChild(og);const od=document.createElement("meta");od.setAttribute("property","og:description");od.content=description;document.head.appendChild(od);const image=p.cover_image_url?'<img class="article-cover" src="'+esc(p.cover_image_url)+'" alt="'+esc(p.title)+'">':"";root.innerHTML=image+'<div class="article-meta muted"><span>'+esc(p.category||"Guides")+'</span><span>'+esc(dateText(p.published_at||p.created_at))+'</span></div><h1>'+esc(p.title)+'</h1><p class="muted">'+esc(p.excerpt||"")+'</p><div class="article-content">'+esc(p.content).replace(/\r\n/g,"\n")+'</div><hr><p class="muted">Published by Waris Digital Hub. Check official sources for time-sensitive details.</p><a class="btn primary" href="blog.html">← Back to all articles</a>';const schema={"@context":"https://schema.org","@type":"Article","headline":p.title,"description":description,"datePublished":p.published_at||p.created_at,"dateModified":p.updated_at||p.created_at,"author":{"@type":"Organization","name":"Waris Digital Hub"},"publisher":{"@type":"Organization","name":"Waris Digital Hub"}};if(p.cover_image_url)schema.image=[p.cover_image_url];const ld=document.createElement("script");ld.type="application/ld+json";ld.textContent=JSON.stringify(schema);document.head.appendChild(ld)}catch(e){root.innerHTML='<h1>Article unavailable</h1><p class="muted">'+esc(e.message||"Please try again later.")+'</p><a class="btn primary" href="blog.html">Back to Blog</a>'}
+</script></body></html>
