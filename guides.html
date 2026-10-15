@@ -10,14 +10,14 @@ import { supabase, esc } from "./supabase-client.js";
 const root = document.getElementById("latest-posts");
 const featuredRoot = document.getElementById("featured-guides");
 try {
- const {data,error}=await supabase.from("blog_posts").select("title,slug,excerpt,category,cover_image_url,published_at").eq("status","published").in("slug",["punjab-e-challan-guide","bijli-ka-bill-check-karain-mepco-esco-lesco","check-online-bisp"]);
+ const {data,error}=await supabase.from("blog_posts").select("title,slug,excerpt,category,cover_image_url,published_at").eq("status","published").in("slug",["pnjab-e-challan-gide","openai-ree-ai-video-generator-gide","bijli-ka-bill-check-karain-mepco-esco-lesco","check-online-bisp"]);
  if(error) throw error;
  featuredRoot.innerHTML=(data||[]).map(p=>'<article class="card">'+(p.cover_image_url?'<img src="'+esc(p.cover_image_url)+'" alt="'+esc(p.title)+'" loading="lazy" style="width:100%;max-height:190px;object-fit:cover;border-radius:12px">':'')+'<p class="muted">'+esc(p.category||"Pakistan Guides")+(p.published_at?' · '+esc(dateText(p.published_at)):'')+'</p><h3><a href="post.html?slug='+encodeURIComponent(p.slug)+'">'+esc(p.title)+'</a></h3><p class="muted">'+esc(p.excerpt||"Read the complete guide.")+'</p><a class="btn primary" href="post.html?slug='+encodeURIComponent(p.slug)+'">Read Guide →</a></article>').join("")||'<article class="card">Featured guides will appear here after publishing.</article>';
 } catch(e) { featuredRoot.innerHTML='<article class="card">Featured guides are temporarily unavailable.</article>'; }
 
 function dateText(v) { if (!v) return ""; const d = new Date(v); return Number.isNaN(d.getTime()) ? "" : d.toLocaleDateString(undefined, {year:"numeric", month:"short", day:"numeric"}); }
 try {
- const { data, error } = await supabase.from("blog_posts").select("title,slug,excerpt,category,published_at").eq("status","published").not("slug","in","(punjab-e-challan-guide,bijli-ka-bill-check-karain-mepco-esco-lesco,check-online-bisp)").order("published_at",{ascending:false}).limit(3);
+ const { data, error } = await supabase.from("blog_posts").select("title,slug,excerpt,category,published_at").eq("status","published").not("slug","in","(pnjab-e-challan-gide,openai-ree-ai-video-generator-gide,bijli-ka-bill-check-karain-mepco-esco-lesco,check-online-bisp)").order("published_at",{ascending:false}).limit(3);
  if (error) throw error;
  root.innerHTML = (data || []).map(p => '<article class="card"><p class="muted">' + esc(p.category || "Article") + ' · ' + esc(dateText(p.published_at)) + '</p><h3><a href="post.html?slug=' + encodeURIComponent(p.slug) + '">' + esc(p.title) + '</a></h3><p class="muted">' + esc(p.excerpt || "Read the complete article.") + '</p><a class="btn primary" href="post.html?slug=' + encodeURIComponent(p.slug) + '">Read Article →</a></article>').join("") || '<article class="card"><h3>New articles coming soon</h3><p class="muted">Published articles will appear here automatically.</p></article>';
 } catch (e) {
