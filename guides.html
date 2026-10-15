@@ -10,7 +10,7 @@ import { supabase, esc } from "./supabase-client.js";
 const root = document.getElementById("latest-posts");
 function dateText(v) { if (!v) return ""; const d = new Date(v); return Number.isNaN(d.getTime()) ? "" : d.toLocaleDateString(undefined, {year:"numeric", month:"short", day:"numeric"}); }
 try {
- const { data, error } = await supabase.from("blog_posts").select("title,slug,excerpt,category,published_at").eq("status","published").order("published_at",{ascending:false}).limit(3);
+ const { data, error } = await supabase.from("blog_posts").select("title,slug,excerpt,category,published_at").eq("status","published").neq("slug","check-online-bisp").order("published_at",{ascending:false}).limit(3);
  if (error) throw error;
  root.innerHTML = (data || []).map(p => '<article class="card"><p class="muted">' + esc(p.category || "Article") + ' · ' + esc(dateText(p.published_at)) + '</p><h3><a href="post.html?slug=' + encodeURIComponent(p.slug) + '">' + esc(p.title) + '</a></h3><p class="muted">' + esc(p.excerpt || "Read the complete article.") + '</p><a class="btn primary" href="post.html?slug=' + encodeURIComponent(p.slug) + '">Read Article →</a></article>').join("") || '<article class="card"><h3>New articles coming soon</h3><p class="muted">Published articles will appear here automatically.</p></article>';
 } catch (e) {
