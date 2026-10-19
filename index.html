@@ -745,6 +745,21 @@ body::after{
 #blog-preview .sec-head h2{color:#eef4ff}
 #blog-preview .sec-head p{color:#aebbd1}
 @media(max-width:640px){#products{padding-top:30px}#blog-preview{padding-top:8px}}
+
+/* Navigation, hero CTA, trust icons and essential footer refinements */
+.nav a{color:#fff!important}
+.nav a:hover,.nav a.active{color:#fff!important;background:rgba(255,255,255,.09)}
+.mobile-menu a{color:#fff!important}
+.hero-copy .lead{font-size:16px;line-height:1.7}
+.btn.blog-cta{border:2px solid #fff!important;color:#fff!important;background:rgba(255,255,255,.035)!important;box-shadow:0 0 0 rgba(255,255,255,0);transition:box-shadow .22s ease,background .22s ease,transform .22s ease}
+.btn.blog-cta:hover,.btn.blog-cta:focus-visible{background:rgba(255,255,255,.1)!important;box-shadow:0 0 18px rgba(255,255,255,.24),0 0 32px rgba(59,130,246,.18);transform:translateY(-2px)}
+.hero-trust{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:22px;color:#9aa9bf;font-size:12px;font-weight:700}
+.hero-trust span{display:inline-flex;align-items:center;gap:7px}
+.hero-trust svg{width:19px;height:19px;flex:none;color:#7dd3fc}
+.essentials-footer{grid-template-columns:minmax(0,1.5fr) minmax(180px,1fr)!important;max-width:850px}
+.footer-essentials .footer-links a{color:#d3dced}
+@media(max-width:640px){.hero-copy .lead{font-size:15px}.hero-trust{align-items:flex-start;flex-direction:column;gap:12px}.essentials-footer{grid-template-columns:1fr!important;gap:24px!important}.nav{display:none}}
+@media(prefers-reduced-motion:reduce){.btn.blog-cta{transition:none}}
 </style></head>
 <body>
 <header class="header">
@@ -756,13 +771,11 @@ body::after{
 <span class="logo-tag">Products · Blog</span>
 </div>
 </a>
-<nav class="nav">
-<a href="#/" class="active">Home</a>
-<a href="#products">Products</a>
-<a href="blog.html">Blog & Articles</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-
+<nav class="nav" aria-label="Main navigation">
+<a href="index.html" class="active">Home</a>
+<a href="blog.html">Blog</a>
+<a href="shop.html">Shop</a>
+<a href="contact.html">Contact Us</a>
 </nav>
 <div class="header-actions">
 <button class="icon-btn hamburger" id="ham" aria-label="Menu">☰</button>
@@ -770,13 +783,11 @@ body::after{
 </div>
 </header>
 
-<div class="mobile-menu" id="mm">
+<div class="mobile-menu" id="mm" aria-label="Mobile navigation">
 <a href="index.html">Home</a>
-<a href="#products">Products</a>
-
-<a href="blog.html">Blog & Articles</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
+<a href="blog.html">Blog</a>
+<a href="shop.html">Shop</a>
+<a href="contact.html">Contact Us</a>
 </div>
 
 <main>
@@ -786,12 +797,16 @@ body::after{
   <div class="hero-copy">
     <span class="market-pill">TECH GUIDES &amp; ACCESSORIES</span>
     <h1>Practical Tech Guides. <span class="grad-text">Useful Tech Accessories.</span></h1>
-    <p class="lead">Find practical technology guides, online safety help and selected everyday tech accessories in one clear, beginner-friendly place.</p>
+    <p class="lead">Beginner-friendly tech guides, safety tips &amp; daily use tech products in one place.</p>
     <div class="hero-btns">
       <a href="#products" class="btn btn-primary">Explore Tech Accessories <span>→</span></a>
-      <a href="blog.html" class="btn btn-ghost">Read the Blog <span>↗</span></a>
+      <a href="blog.html" class="btn btn-ghost blog-cta">Read the Blog <span>↗</span></a>
     </div>
-    <div class="hero-trust"><span>✦ Selected Tech Accessories</span><span>✓ Helpful Articles</span><span>⚡ Mobile Friendly</span></div>
+    <div class="hero-trust" aria-label="Why use Waris Digital Hub">
+<span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8 21 9.2 17.6 20H6.4L3 9.2 12 2.8Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.5 11.7 2.2 2.2 4.8-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Selected Tech Accessories</span>
+<span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 9.3 17 19 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Helpful Articles</span>
+<span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13.2 2.5-8 11h5.6l-.7 8 8.7-12h-5.8l.2-7Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Mobile Friendly</span>
+</div>
   </div>
   <div class="hero-art" aria-hidden="true">
     <div class="hero-dashboard"><div class="hero-bar"><i></i><i></i><i></i><b>Waris Digital Hub</b></div><div class="hero-art-body"><div class="hero-wa">WD</div><strong>Digital Products</strong><small>Useful resources • Clear guides</small><div><em>Guides</em><em>Resources</em><em>Learning</em><em>Dev</em></div></div></div>
@@ -1091,43 +1106,22 @@ body::after{
 </section>
 <footer class="footer">
 <div class="wrap">
-<div class="footer-main">
+<div class="footer-main essentials-footer">
 <div>
-<a href="#/" class="logo">
-<div class="logo-mark">WD</div>
-<div class="logo-text"><span class="logo-name">Waris Digital Hub</span></div>
-</a>
-<p class="footer-desc">Useful Digital Tools, Apps &amp; Websites — All in One Place. A curated directory to help you discover, compare and choose the right digital resources.</p>
+<a href="index.html" class="logo"><div class="logo-mark">WD</div><div class="logo-text"><span class="logo-name">Waris Digital Hub</span></div></a>
+<p class="footer-desc">Beginner-friendly technology guides, online safety tips and selected everyday tech accessories in one place.</p>
 </div>
-<div>
-<h4>Explore</h4>
+<div class="footer-essentials">
+<h4>Website Information</h4>
 <div class="footer-links">
-<a href="#tools">Tools</a>
-<a href="guides.html">Guides</a>
-<a href="#about">About</a>
-<a href="contact.html">Contact</a>
-</div>
-</div>
-<div>
-<h4>Legal</h4>
-<div class="footer-links">
+<a href="about.html">About Us</a>
+<a href="contact.html">Contact Us</a>
 <a href="privacy.html">Privacy Policy</a>
-<a href="terms.html">Terms &amp; Conditions</a>
 <a href="disclaimer.html">Disclaimer</a>
-<a href="affiliate.html">Affiliate Disclosure</a><a href="refund.html">Refund Policy</a>
-</div>
-</div>
-<div>
-<h4>Contact</h4>
-<div class="footer-links">
-<a href="mailto:Warisalidigitalsolutions@gmail.com">Warisalidigitalsolutions@gmail.com</a>
 </div>
 </div>
 </div>
-<div class="footer-bottom">
-<span>© 2026 Waris Digital Hub. All rights reserved.</span>
-<span>Pricing and features may change — always verify on the official provider website.</span>
-</div>
+<div class="footer-bottom"><span>© 2026 Waris Digital Hub. All rights reserved.</span><span>Check official sources for current product details and prices.</span></div>
 </div>
 </footer>
 
