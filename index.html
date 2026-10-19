@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Waris Digital Hub — Products & Blog</title>
-<meta name="description" content="Explore useful digital products and practical technology articles on Waris Digital Hub.">
-<meta name="keywords" content="digital products, online shopping, product guides, blog articles, buying guides">
+<meta name="description" content="Practical technology guides, online safety help and selected everyday tech accessories from Waris Digital Hub.">
+<meta name="keywords" content="technology guides, online safety, digital help, watches, fitness bands, wireless earbuds">
 <meta name="author" content="Waris Digital Hub">
 <meta name="theme-color" content="#0a0e1a">
 <link rel="canonical" href="https://httpswarisalidigitalhub.com/">
@@ -1229,6 +1229,7 @@ async function loadMarketplace(){
       .eq("status","approved")
       .eq("published",true)
       .eq("category_name","Featured Products")
+      .in("name", ["Classic Men's Chronograph Watch", "Minimalist Men's Watch", "Smart Fitness Band", "Wireless Earbuds"])
       .order("featured",{ascending:false})
       .order("created_at",{ascending:false})
       .limit(12);
