@@ -784,14 +784,14 @@ body::after{
 <div class="hero-visual-bg"><span></span><span></span><span></span></div>
 <div class="wrap hero-market">
   <div class="hero-copy">
-    <span class="market-pill">PRODUCTS &amp; ARTICLES</span>
-    <h1>Discover Products. <span class="grad-text">Read Useful Guides.</span></h1>
-    <p class="lead">A simple place to explore digital products and read practical articles, buying advice, and helpful online guides — all clearly organized.</p>
+    <span class="market-pill">TECH GUIDES &amp; ACCESSORIES</span>
+    <h1>Practical Tech Guides. <span class="grad-text">Useful Tech Accessories.</span></h1>
+    <p class="lead">Find practical technology guides, online safety help and selected everyday tech accessories in one clear, beginner-friendly place.</p>
     <div class="hero-btns">
-      <a href="#products" class="btn btn-primary">Explore Products <span>→</span></a>
+      <a href="#products" class="btn btn-primary">Explore Tech Accessories <span>→</span></a>
       <a href="blog.html" class="btn btn-ghost">Read the Blog <span>↗</span></a>
     </div>
-    <div class="hero-trust"><span>✦ Clear Product Listings</span><span>✓ Helpful Articles</span><span>⚡ Mobile Friendly</span></div>
+    <div class="hero-trust"><span>✦ Selected Tech Accessories</span><span>✓ Helpful Articles</span><span>⚡ Mobile Friendly</span></div>
   </div>
   <div class="hero-art" aria-hidden="true">
     <div class="hero-dashboard"><div class="hero-bar"><i></i><i></i><i></i><b>Waris Digital Hub</b></div><div class="hero-art-body"><div class="hero-wa">WD</div><strong>Digital Products</strong><small>Useful resources • Clear guides</small><div><em>Guides</em><em>Resources</em><em>Learning</em><em>Dev</em></div></div></div>
@@ -819,7 +819,7 @@ body::after{
 </div>
 </section>
 
-<section class="section" id="products"><div class="wrap"><div class="sec-head"><span class="eyebrow">Marketplace</span><h2>Products & Offers</h2><p>Browse published product listings and offers. Open any listing to review its details before visiting the seller or provider.</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a href="shop.html" class="btn btn-primary btn-sm">Open Shop</a></div></div><div id="featuredProductHero" class="featured-product-hero glass"><div class="product-hero-media"><img id="featuredProductImage" src="assets/tool-placeholder.svg" alt="Featured product preview"></div><div class="product-hero-info"><span class="eyebrow">Featured Product</span><h3 id="featuredProductName">Loading product…</h3><p id="featuredProductDescription" class="muted">Please wait while the marketplace loads.</p><div id="featuredProductMeta" class="product-hero-meta"></div><div class="hero-btns"><a id="featuredProductDetails" class="btn btn-primary" href="shop.html">View Full Details</a><a id="featuredProductVisit" class="btn btn-ghost" href="shop.html" target="_blank" rel="noopener">Visit / Buy</a></div></div></div><div class="tools-grid" id="publicProducts"><div class="glass tool-card"><p class="muted">Loading products…</p></div></div></div></section>
+<section class="section" id="products"><div class="wrap"><div class="sec-head"><span class="eyebrow">TECH ACCESSORIES</span><h2>Useful Everyday Tech</h2><p>Explore selected watches, fitness bands and wireless earbuds. Check the product details and price before making a purchase.</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a href="shop.html" class="btn btn-primary btn-sm">View All Tech Accessories</a></div></div><div id="featuredProductHero" class="featured-product-hero glass"><div class="product-hero-media"><img id="featuredProductImage" src="assets/tool-placeholder.svg" alt="Featured product preview"></div><div class="product-hero-info"><span class="eyebrow">Featured Product</span><h3 id="featuredProductName">Loading product…</h3><p id="featuredProductDescription" class="muted">Please wait while the marketplace loads.</p><div id="featuredProductMeta" class="product-hero-meta"></div><div class="hero-btns"><a id="featuredProductDetails" class="btn btn-primary" href="shop.html">View Full Details</a><a id="featuredProductVisit" class="btn btn-ghost" href="shop.html" target="_blank" rel="noopener">Visit / Buy</a></div></div></div><div class="tools-grid" id="publicProducts"><div class="glass tool-card"><p class="muted">Loading products…</p></div></div></div></section>
 
 <section class="section" id="blog-preview">
   <div class="wrap">
@@ -1237,7 +1237,7 @@ async function loadMarketplace(){
     const items = result.data || [];
 
     if(!items.length){
-      box.innerHTML = '<div class="glass tool-card"><p class="muted">No featured products are published yet.</p></div>';
+      box.innerHTML = '<div class="glass tool-card"><p class="muted">No tech accessories are available right now.</p></div>';
       hero.style.display = "none";
       return;
     }
@@ -1267,7 +1267,7 @@ async function loadMarketplace(){
   }catch(error){
     console.error("Marketplace load failed:", error);
     hero.style.display = "none";
-    box.innerHTML = '<div class="glass tool-card"><p class="muted">Products could not be loaded right now. Please open the Shop to view published products.</p><a class="btn btn-primary btn-sm" href="shop.html">Open Shop</a></div>';
+    box.innerHTML = '<div class="glass tool-card"><p class="muted">Tech accessories could not be loaded right now. Please try again later.</p><a class="btn btn-primary btn-sm" href="shop.html">Open Shop</a></div>';
   }
 }
 
