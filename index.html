@@ -84,7 +84,7 @@ button{cursor:pointer;border:none;background:none}
 .icon-btn{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;background:var(--surface);border:1px solid var(--border);transition:all .2s;position:relative;color:var(--txt-2)}
 .icon-btn:hover{background:var(--surface-2);border-color:var(--border-2);color:var(--txt);transform:translateY(-1px)}
 .badge{position:absolute;top:-5px;right:-5px;min-width:18px;height:18px;padding:0 5px;background:var(--grad);border-radius:9px;font-size:10.5px;font-weight:700;display:grid;place-items:center;color:#fff;border:2px solid var(--bg-2)}
-.hamburger{display:none}
+.hamburger{display:none;appearance:none;-webkit-appearance:none;padding:0;min-width:44px;min-height:44px;background:transparent!important;background-color:transparent!important;border:1px solid rgba(148,163,184,.38)!important;border-radius:12px;color:#f8fafc!important;box-shadow:none!important;cursor:pointer;line-height:1}.hamburger .hamburger-icon{display:block;width:26px;height:26px;color:#f8fafc;pointer-events:none}
 @media(max-width:900px){.nav{display:none}.hamburger{display:grid}}
 .mobile-menu{display:none;position:fixed;inset:68px 0 0 0;z-index:99;background:rgba(6,9,18,.97);backdrop-filter:blur(20px);padding:24px 20px;overflow-y:auto}
 .mobile-menu.open{display:block;animation:fadeIn .25s ease}
@@ -785,7 +785,7 @@ body::after{
 <a href="refund.html">Refund Policy</a>
 </nav>
 <div class="header-actions">
-<button class="icon-btn hamburger" id="ham" aria-label="Menu">☰</button>
+<button class="icon-btn hamburger" id="ham" type="button" aria-label="Open menu" aria-controls="mm" aria-expanded="false"><svg class="hamburger-icon" viewBox="0 0 24 24" width="27" height="27" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
 </div>
 </div>
 </header>
@@ -1176,10 +1176,13 @@ q=e.target.value.toLowerCase().trim();
 render();
 });
 document.getElementById("ham").addEventListener("click",function(){
-document.getElementById("mm").classList.toggle("open");
+var menu=document.getElementById("mm");
+var isOpen=menu.classList.toggle("open");
+this.setAttribute("aria-expanded",String(isOpen));
+this.setAttribute("aria-label",isOpen?"Close menu":"Open menu");
 });
 document.querySelectorAll("#mm a").forEach(function(a){
-a.addEventListener("click",function(){document.getElementById("mm").classList.remove("open")});
+a.addEventListener("click",function(){document.getElementById("mm").classList.remove("open");var button=document.getElementById("ham");button.setAttribute("aria-expanded","false");button.setAttribute("aria-label","Open menu")});
 });
 render();
 </script>
